@@ -1,4 +1,4 @@
-package Models;
+package Gamerz.studywebapp.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,13 +7,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class UserEntity {
+public class User {
     @Id
     @GeneratedValue
     private Long id;
 
     private String username;
     private String password;
+    private String firstName;
+    private String lastName;
+    private String email;
 
 
 }
