@@ -1,6 +1,6 @@
 package Gamerz.studywebapp.Repository;
 
-import Gamerz.studywebapp.Models.User;
+import Gamerz.studywebapp.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
