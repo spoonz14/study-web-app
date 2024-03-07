@@ -13,9 +13,10 @@ public class AgendaTimer {
     @Id
     @GeneratedValue
     private Long timerID;
+
     private Long userID;
     private LocalDateTime dueDate;
-    private String desc;
+    private String description;
     private int priorityLevel;
     private String category;
     public void setupTimer(int year, int month, int day){
