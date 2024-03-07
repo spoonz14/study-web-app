@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface AgendaTimerRepository extends JpaRepository<AgendaTimer, Long> {
 
-    List<AgendaTimer> findTimersByUSer(String username);
+    List<AgendaTimer> getAllTimersByUserID(long userID);
+    List<AgendaTimer> getAllTimers();
 }
