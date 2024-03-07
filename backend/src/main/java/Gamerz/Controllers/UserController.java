@@ -22,7 +22,7 @@ public class UserController {
         if (userService.registerUsers(user)) {
             return ResponseEntity.ok("Registration successful.");
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username or email alread exists.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username or email already exists.");
         }
     }
 
