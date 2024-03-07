@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-
 public class NotesController {
+
     @Autowired
     private NotesService notesService;
 
@@ -20,8 +20,7 @@ public class NotesController {
         if (notesService.addNote(notes)) {
             return ResponseEntity.ok("Note added.");
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Title already exists");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Title already exists.");
         }
-
     }
 }
