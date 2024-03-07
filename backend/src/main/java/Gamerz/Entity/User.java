@@ -1,4 +1,4 @@
-package Gamerz.studywebapp.Entity;
+package Gamerz.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

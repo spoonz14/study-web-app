@@ -1,11 +1,9 @@
-package Gamerz.studywebapp.Controller;
+package Gamerz.Controllers;
 
-import Gamerz.studywebapp.Entity.User;
-import Gamerz.studywebapp.Service.UserService;
-import org.apache.coyote.Response;
+import Gamerz.Entity.User;
+import Gamerz.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

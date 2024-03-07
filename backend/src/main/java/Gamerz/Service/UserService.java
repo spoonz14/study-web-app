@@ -1,7 +1,7 @@
-package Gamerz.studywebapp.Service;
+package Gamerz.Service;
 
-import Gamerz.studywebapp.Entity.User;
-import Gamerz.studywebapp.Repository.UserRepository;
+import Gamerz.Entity.User;
+import Gamerz.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
