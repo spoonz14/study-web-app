@@ -12,11 +12,11 @@ import java.util.List;
 @Service
 public class AgendaTimerService {
     @Autowired
-    private AgendaTimerRepository AgendaTimerRepository;
+    private AgendaTimerRepository agendaTimerRepository;
 
 
     public boolean registerTimerToUser(long UserID, AgendaTimer timer){
-
+        
         return false;
     }
 
