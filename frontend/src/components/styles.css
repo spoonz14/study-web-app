@@ -29,6 +29,10 @@ nav ul li a {
   color: #767575;
 }
 
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
 .logo {
   height: 40px;
 }
@@ -74,9 +78,33 @@ ul li button:hover {
   border-color: #ccc;
 }
 
+.home-container {
+  position: relative;
+}
+
+.studyImage {
+  width: 100%;
+  height: auto;
+}
+
+.Home-header {
+  position: absolute;
+  z-index: 1;
+  top: 55%;
+  left: 26%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
 .Home-header h1 {
-  margin-top: 80px;
-  padding: 80px;
+  color: white;
+  font-size: 5rem;
+}
+
+.Home-header p {
+  color: white;
+  font-size: 2rem;
+  padding: 0;
 }
 
 .new-note-form input[type="text"],
@@ -86,6 +114,9 @@ ul li button:hover {
 
 .new-note-form textarea {
   height: 200px;
+}
+
+.new-note-form button {
 }
 
 .register {
