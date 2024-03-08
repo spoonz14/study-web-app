@@ -17,8 +17,17 @@ const NoteEdit = ({ note, onSaveNote }) => {
   };
 
   const saveNote = () => {
+    if (editedNote.title.trim() === "" || editedNote.content.trim() === "") {
+      alert("Please provide a title and content for the note.");
+      return;
+    }
+
     onSaveNote(editedNote);
-    setEditedNote(null);
+
+    setEditedNote({
+      title: "",
+      content: "",
+    });
   };
 
   if (!editedNote) {

@@ -38,7 +38,7 @@ const Notes = () => {
         {addNoteForm ? (
           <NewNoteForm onCreateNote={createNote} />
         ) : (
-          <NoteEdit note={chosenNote} saveNote={doSaveNote} />
+          <NoteEdit note={chosenNote} onSaveNote={doSaveNote} />
         )}
       </div>
     </div>
