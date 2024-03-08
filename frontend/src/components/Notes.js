@@ -24,6 +24,15 @@ const Notes = () => {
     setAddNoteForm(false);
   };
 
+  const deleteNote = () => {
+    if (chosenNote) {
+      setNotes(notes.filter((note) => note.id !== chosenNote.id));
+      setChosenNote(null);
+    } else {
+      console.error("Note must be selected");
+    }
+  };
+
   return (
     <div className="notes">
       <div className="notes-list-panel">
@@ -38,7 +47,11 @@ const Notes = () => {
         {addNoteForm ? (
           <NewNoteForm onCreateNote={createNote} />
         ) : (
-          <NoteEdit note={chosenNote} onSaveNote={doSaveNote} />
+          <NoteEdit
+            note={chosenNote}
+            onSaveNote={doSaveNote}
+            onDeleteNote={deleteNote}
+          />
         )}
       </div>
     </div>
