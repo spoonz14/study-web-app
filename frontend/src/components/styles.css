@@ -4,10 +4,13 @@
   padding: 10px 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   width: 100%;
   top: 0;
-  margin-bottom: 50px;
+  z-index: 1000;
+  border-color: #767575;
+  height: 100px;
 }
 
 nav ul {
@@ -31,21 +34,62 @@ nav ul li a {
 }
 
 .note-list h2 {
-  margin-top: 0;
   margin-bottom: 21px;
   font-size: 1.6rem;
   color: #333;
 }
 
+.note-list {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 350px;
+  margin-top: 120px;
+}
+
 .add-note-container {
   margin-bottom: 21px;
+  margin-top: 40px;
 }
 
 ul li {
   margin-bottom: 10px;
 }
 
-.home-header h1 {
-  font-size: 20rem;
-  margin-top: 50px;
+ul li button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+ul li button:hover {
+  background-color: #e0e0e0;
+  border-color: #ccc;
+}
+
+.Home-header h1 {
+  margin-top: 80px;
+  padding: 80px;
+}
+
+.new-note-form input[type="text"],
+.new-note-form textarea {
+  width: 100%;
+}
+
+.new-note-form textarea {
+  height: 200px;
+}
+
+.register {
+  padding: 80px;
+  margin-top: 40px;
+  color: green;
 }
