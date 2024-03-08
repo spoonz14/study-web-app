@@ -15,12 +15,5 @@ public class StudyRoomController {
     @Autowired
     private StudyRoomService studyRoomService;
 
-    @PostMapping("/create")
-    public ResponseEntity<String> add(@RequestBody StudyRoom studyRoom) {
-        if (studyRoomService.createStudyRoom(studyRoom)) {
-            return ResponseEntity.ok("Study room added.");
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Room already exists.");
-        }
-    }
+
 }

@@ -1,8 +1,6 @@
 package Gamerz.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jdk.jfr.MemoryAddress;
 import lombok.Data;
 
@@ -15,7 +13,7 @@ public class StudyRoom {
     @GeneratedValue
     private Long study_room_id;
 
-    private String study_room_name;
+    private String roomName;
 
-    private List<User> userList;
+
 }
