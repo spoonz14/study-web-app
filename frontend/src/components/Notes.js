@@ -26,7 +26,6 @@ const Notes = () => {
 
   return (
     <div className="notes">
-      <NavBar />
       <div className="notes-list-panel">
         <NoteList
           notes={notes}

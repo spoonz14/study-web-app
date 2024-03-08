@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import RegisterUser from "./components/RegisterUser";
 import NoteList from "./components/NoteList";
 import Notes from "./components/Notes";
+import "./components/styles.css";
 
 const App = () => {
   return (

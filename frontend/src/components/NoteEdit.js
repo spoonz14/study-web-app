@@ -21,6 +21,10 @@ const NoteEdit = ({ note, onSaveNote }) => {
     setEditedNote(null);
   };
 
+  if (!editedNote) {
+    return null;
+  }
+
   return (
     <div className="note-edit">
       <input type="text" value={editedNote.title} onChange={editTitle} />
