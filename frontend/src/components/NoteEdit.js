@@ -21,5 +21,13 @@ const NoteEdit = ({ note, saveNote }) => {
     setEditedNote(null);
   };
 
-  return <div className="note-edit"></div>;
+  return (
+    <div className="note-edit">
+      <input type="text" value={editedNote.title} onChange={editTitle} />
+      <textarea value={editedNote.content} onChange={editContent} />
+      <button onClick={saveNote}>Save</button>
+    </div>
+  );
 };
+
+export default EditNote;
