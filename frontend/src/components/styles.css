@@ -57,6 +57,17 @@ nav ul li a:hover {
   margin-top: 40px;
 }
 
+.add-note-container button {
+  width: 30%;
+  padding: 13px;
+  background-color: #4ec479;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
 ul li {
   margin-bottom: 10px;
 }
@@ -109,18 +120,59 @@ ul li button:hover {
 
 .new-note-form input[type="text"],
 .new-note-form textarea {
-  width: 100%;
+  width: 50%;
+  padding: 10px;
+  margin-left: 450px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .new-note-form textarea {
   height: 200px;
 }
 
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.new-note-form {
+  margin-top: -170px;
+}
+
 .new-note-form button {
+  padding: 10px 20px;
+  background-color: #4ec479;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  align-items: center;
+}
+
+.new-note-form button:hover {
+  background-color: #4a9e4e;
 }
 
 .register {
   padding: 80px;
   margin-top: 40px;
   color: green;
+}
+
+.right.panel {
+  width: 50%;
+  margin-top: 100px;
+  margin-left: 20px;
+}
+
+.About-section {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
 }
