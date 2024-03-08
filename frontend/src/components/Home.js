@@ -4,7 +4,7 @@ import axios from "../axios-config";
 
 const Home = () => {
   return (
-    <div>
+    <div className="Home-header">
       <h1>Welcome to Studii!</h1>
     </div>
   );

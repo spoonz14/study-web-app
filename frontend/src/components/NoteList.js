@@ -3,7 +3,7 @@ import React from "react";
 
 const NoteList = ({ notes, onSelectNote, onAddNote, addNoteForm }) => {
   return (
-    <div className="note-List">
+    <div className="note-list">
       <h2>Notes</h2>
       {!addNoteForm && (
         <div className="add-note-container">

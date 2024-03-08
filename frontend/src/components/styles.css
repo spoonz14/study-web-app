@@ -25,3 +25,27 @@ nav ul li a {
   text-decoration: none;
   color: #767575;
 }
+
+.logo {
+  height: 40px;
+}
+
+.note-list h2 {
+  margin-top: 0;
+  margin-bottom: 21px;
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.add-note-container {
+  margin-bottom: 21px;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+.home-header h1 {
+  font-size: 20rem;
+  margin-top: 50px;
+}
