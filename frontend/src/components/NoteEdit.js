@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-const NoteEdit = ({ note, saveNote }) => {
+const NoteEdit = ({ note, onSaveNote }) => {
   const [editedNote, setEditedNote] = React.useState(note);
 
   React.useEffect(() => {
@@ -17,7 +17,7 @@ const NoteEdit = ({ note, saveNote }) => {
   };
 
   const saveNote = () => {
-    saveNote(editedNote);
+    onSaveNote(editedNote);
     setEditedNote(null);
   };
 
@@ -30,4 +30,4 @@ const NoteEdit = ({ note, saveNote }) => {
   );
 };
 
-export default EditNote;
+export default NoteEdit;

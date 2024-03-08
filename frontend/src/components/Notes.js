@@ -1,42 +1,49 @@
 import React, { useState } from "react";
-import NoteList from "./components/NoteList";
-import NoteList from "./components/NoteEdit";
-import NoteList from "./components/NewNoteForm";
-import NoteList from "./components/NavBar";
+import NoteList from "./NoteList";
+import NoteEdit from "./NoteEdit";
+import NavBar from "./NavBar";
+import NewNoteForm from "./NewNoteForm";
+import { Route, Routes } from "react-router-dom";
 
 const Notes = () => {
-    const [notes, setNotes] = useState([
-        {id: 1, title: "Note 1", content: "Note 1 description" }
-    ]);
-    const [chosenNote, setChosenNote] = useState(null);
-    const [addNoteForm, setAddNoteForm] = useState(false);
-};
+  const [notes, setNotes] = useState([
+    { id: 1, title: "Note 1", content: "Note 1 description" },
+  ]);
+  const [chosenNote, setChosenNote] = useState(null);
+  const [addNoteForm, setAddNoteForm] = useState(false);
 
-const doSaveNote = (updatedNote) => {
+  const doSaveNote = (updatedNote) => {
     setNotes(
-        notes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+      notes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
     );
-};
+  };
 
-const createNote = (newNote) => {
-    setNotes([...notes, { id: Date.now(), ...newNote}]);
+  const createNote = (newNote) => {
+    setNotes([...notes, { id: Date.now(), ...newNote }]);
     setChosenNote(null);
     setAddNoteForm(false);
-};
+  };
 
-return (
+  return (
     <div className="notes">
-        <NavBar />
-        <div className="notes-list-panel">
+      <NavBar />
+      <div className="notes-list-panel">
         <NoteList
-        notes={notes}
-        onSelectNote={setChosenNote}
-        onAddNote={() => setAddNoteForm(true)}
-        addNoteForm={AddNoteForm}
-             />
-        </div>
+          notes={notes}
+          onSelectNote={setChosenNote}
+          onAddNote={() => setAddNoteForm(true)}
+          addNoteForm={addNoteForm}
+        />
+      </div>
+      <div className="note-content-panel">
+        {addNoteForm ? (
+          <NewNoteForm onCreateNote={createNote} />
+        ) : (
+          <NoteEdit note={chosenNote} saveNote={doSaveNote} />
+        )}
+      </div>
     </div>
-);
+  );
 };
 
 export default Notes;

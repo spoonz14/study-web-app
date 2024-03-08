@@ -1,6 +1,7 @@
 import React from "react";
 import logoImage from "../components/StudiiLogo.jpg";
 import { Link } from "react-router-dom";
+import NoteList from "./NoteList";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./styles.css";
 
