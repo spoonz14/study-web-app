@@ -1,12 +1,26 @@
-// App.js
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Switch,
+} from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Home from "./components/Home";
 import RegisterUser from "./components/RegisterUser";
-
+import NoteList from "./components/NoteList";
 const App = () => {
   return (
-    <div>
-      <RegisterUser />
-    </div>
+    <Router>
+      <div>
+        <NavBar />
+        <Routes>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/RegisterUser" element={<RegisterUser />} />
+          <Route path="/NoteList" element={<NoteList />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
