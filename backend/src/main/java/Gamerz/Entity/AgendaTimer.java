@@ -13,6 +13,7 @@ public class AgendaTimer {
     @Id
     @GeneratedValue
     private Long timerID;
+
     private Long userID; //Foreign key
     private LocalDateTime dueDate;
     private String description;
