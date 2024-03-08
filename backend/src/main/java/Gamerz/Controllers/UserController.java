@@ -1,6 +1,8 @@
 package Gamerz.Controllers;
 
+import Gamerz.Entity.AgendaTimer;
 import Gamerz.Entity.User;
+import Gamerz.Service.AgendaTimerService;
 import Gamerz.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +18,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private AgendaTimerService agendaTimerService;
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) {
         if (userService.registerUsers(user)) {
@@ -26,6 +29,14 @@ public class UserController {
         }
     }
 
+    @PostMapping("/registerTimer")
+    public ResponseEntity<String> registerTimer(@RequestBody AgendaTimer timer) {
+        if (agendaTimerService.registerTimerToUser(timer)) {
+            return ResponseEntity.ok("Timer registration to user successful.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Timer registration to user failed");
+        }
+    }
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();

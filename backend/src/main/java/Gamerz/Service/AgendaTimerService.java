@@ -13,20 +13,14 @@ import java.util.List;
 public class AgendaTimerService {
     @Autowired
     private AgendaTimerRepository agendaTimerRepository;
-    @Autowired
-    private UserRepository userRepo;
 
-    public boolean registerTimerToUser(int month, int day, int year){
+    public boolean registerTimerToUser(long userID, int year, int month, int day) {
+        boolean success = false;
         AgendaTimer newTimer = new AgendaTimer();
-        newTimer.setupTimer(month, day, year);
+        newTimer.setupTimer(userID, year, month, day);
         agendaTimerRepository.save(newTimer);
-        return true;
-    }
-    public List<AgendaTimer> getAllTimers(){
-    return agendaTimerRepository.getAllTimers();
-    }
-    public List<AgendaTimer> getAllTimersByUserID(long UserID){
-        return agendaTimerRepository.getAllTimersByUserID(UserID);
+        success = true;
+        return success;
     }
     /*
     public boolean registerTimerToUser(User user, AgendaTimer timer) {
@@ -42,4 +36,10 @@ public class AgendaTimerService {
         return true;
     }
     */
+
+    public boolean registerTimerToUser(AgendaTimer timer) {
+        agendaTimerRepository.save(timer);
+        return true;
+    }
+
 }
