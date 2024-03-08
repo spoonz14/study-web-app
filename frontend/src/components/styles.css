@@ -1,3 +1,5 @@
+/*NavBar Styling*/
+
 .navbar {
   background-color: #ffffff;
   color: #fff;
@@ -37,6 +39,45 @@ nav ul li a:hover {
   height: 40px;
 }
 
+/*Home Page Styling*/
+
+.home-container {
+  position: relative;
+}
+
+.studyImage {
+  width: 100%;
+  height: auto;
+}
+
+.Home-header {
+  position: absolute;
+  z-index: 1;
+  top: 55%;
+  left: 26%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.Home-header h1 {
+  color: white;
+  font-size: 5rem;
+}
+
+.Home-header p {
+  color: white;
+  font-size: 2rem;
+  padding: 0;
+}
+
+.About-section {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/*note list Styling*/
+
 .note-list h2 {
   margin-bottom: 21px;
   font-size: 1.6rem;
@@ -51,6 +92,8 @@ nav ul li a:hover {
   width: 350px;
   margin-top: 120px;
 }
+
+/*Add New Note Styling*/
 
 .add-note-container {
   margin-bottom: 21px;
@@ -89,131 +132,31 @@ ul li button:hover {
   border-color: #ccc;
 }
 
-.home-container {
-  position: relative;
-}
-
-.studyImage {
-  width: 100%;
-  height: auto;
-}
-
-.Home-header {
-  position: absolute;
-  z-index: 1;
-  top: 55%;
-  left: 26%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
-
-.Home-header h1 {
-  color: white;
-  font-size: 5rem;
-}
-
-.Home-header p {
-  color: white;
-  font-size: 2rem;
-  padding: 0;
-}
-
-.new-note-form input[type="text"],
-.new-note-form textarea {
-  width: 50%;
-  padding: 10px;
-  margin-left: 450px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 400;
-}
-
-.new-note-form textarea {
-  height: 200px;
-}
-
-.input-box {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-}
-
-.new-note-form {
-  margin-top: -110px;
-}
-
-.new-note-form button {
-  padding: 10px 20px;
-  background-color: #4ec479;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  align-items: center;
-}
-
-.new-note-form button:hover {
-  background-color: #4a9e4e;
-}
+/*Register User Styling*/
 
 .register {
   padding: 80px;
   margin-top: 40px;
-  color: green;
-}
-
-.right.panel {
-  width: 50%;
-  margin-top: 100px;
-  margin-left: 20px;
-}
-
-.About-section {
-  padding: 20px;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.note-edit-form input[type="text"],
-.note-edit-form textarea {
-  width: 50%;
-  padding: 10px;
-  margin-left: 450px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 400;
-}
-
-.note-edit-form textarea {
-  height: 200px;
-}
-
-.input-box {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-}
-
-.note-edit-form {
-  margin-top: -280px;
-}
-
-.note-edit-form button {
-  padding: 10px 20px;
+  color: rgb(255, 255, 255);
   background-color: #4ec479;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  align-items: center;
+  text-align: center;
 }
 
-.note-edit-form button:hover {
-  background-color: #4a9e4e;
+.register input[type="text"],
+.register input[type="Password"],
+.register input[type="Email"] {
+  border-radius: 10px;
+  margin-right: 5px;
+  justify-content: space-between;
+}
+
+/*New Note*/
+
+.new-note-form {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 350px;
+  margin-top: 120px;
 }
