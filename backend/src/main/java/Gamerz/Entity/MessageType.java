@@ -1,4 +1,4 @@
-package Gamerz.chat;
+package Gamerz.Entity;
 
 public enum MessageType {
 

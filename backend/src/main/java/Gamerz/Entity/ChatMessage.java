@@ -1,8 +1,7 @@
-package Gamerz.chat;
+package Gamerz.Entity;
 
 import lombok.*;
 
-import java.awt.*;
 @Getter
 @Setter
 @AllArgsConstructor

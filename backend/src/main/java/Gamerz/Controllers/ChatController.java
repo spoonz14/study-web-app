@@ -1,5 +1,6 @@
-package Gamerz.chat;
+package Gamerz.Controllers;
 
+import Gamerz.Entity.ChatMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
