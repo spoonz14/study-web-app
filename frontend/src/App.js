@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import RegisterUser from "./components/RegisterUser";
 import NoteList from "./components/NoteList";
 import Notes from "./components/Notes";
-import Timers from "./components/Timers.js";
+import Timers from "./components/Timers";
 
 import "./components/styles.css";
 
