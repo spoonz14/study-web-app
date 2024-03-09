@@ -1,4 +1,4 @@
-package Gamerz.studywebapp.chat;
+package Gamerz.chat;
 
 public enum MessageType {
 

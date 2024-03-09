@@ -1,4 +1,4 @@
-package Gamerz.studywebapp.chat;
+package Gamerz.chat;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
