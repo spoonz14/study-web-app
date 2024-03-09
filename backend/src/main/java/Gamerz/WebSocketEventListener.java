@@ -32,7 +32,7 @@ private final SimpMessageSendingOperations messageTemplate;
             var chatMessage = ChatMessage.builder()
                     .type(Gamerz.chat.MessageType.LEAVE)
                     .build();
-            messageTemplate.convertAndSend("/topic/public", chatMessage);
+            messageTemplate.convertAndSend("/chat", chatMessage);
         }
     }
 
