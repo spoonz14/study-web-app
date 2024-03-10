@@ -75,12 +75,41 @@ nav ul li a:hover {
   text-align: center;
   font-size: 1.5rem;
 }
-.timerSetup {
-  background-color: moccasin;
-  border-color: tan;
-  border-width: 6px;
-  border-style: outset;
+.timerHeader {
+  background-color: #333;
   padding: 10px;
+  border-radius: 5px;
+  color: whitesmoke;
+  border-width: 6px;
+  border-color: #111111;
+  border-style: outset;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Calibri', Arial, sans-serif;
+}
+.timerSetup {
+  background-color:whitesmoke;
+
+  border-radius: 12px;
+  padding-bottom: 50px;
+  margin-top: 120px;
+  font-size: 18px;
+  font-family: 'Calibri', Arial, sans-serif;
+  max-width: 700px;
+  box-shadow: 5px 8px 7px rgba(74, 78, 148, 0.337)
+}
+.TimerDataContainer {
+  display: grid;
+  padding: 20px;
+  background-color: rgb(216, 240, 244);
+  border-style: ridge;
+  border-color: #3333336c;
+  border-radius: 5px;
+  font-family: 'Calibri', Arial, sans-serif;
+  font-weight: bold;
+  max-width: 620px;
+  grid-template-columns: 130px 300px; 
+  gap: 10px; 
 }
 /*note list Styling*/
 
