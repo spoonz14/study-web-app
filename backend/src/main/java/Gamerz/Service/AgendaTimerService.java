@@ -22,7 +22,6 @@ public class AgendaTimerService {
         success = true;
         return success;
     }
-
     /*
     public boolean registerTimerToUser(User user, AgendaTimer timer) {
         agendaTimerRepository.save(timer);
