@@ -7,6 +7,7 @@ import NoteList from "./components/NoteList";
 import Notes from "./components/Notes";
 import ChatRoom from "./components/ChatRoom";
 import "./components/styles.css";
+import StudyRoom from "./components/StudyRoom";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/RegisterUser" element={<RegisterUser />} />
           <Route path="/Notes" element={<Notes />} />
           <Route path="/Chat" element={<ChatRoom />} />{" "}
+          <Route path="/room/:id" element={<StudyRoom />} />
         </Routes>
       </div>
     </Router>
