@@ -42,4 +42,9 @@ public class UserController {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
+    @GetMapping("/allTimers")
+    public ResponseEntity<List<AgendaTimer>> getAllTimers() {
+        List<AgendaTimer> timers = agendaTimerService.getAllTimers();
+        return ResponseEntity.ok(timers);
+    }
 }

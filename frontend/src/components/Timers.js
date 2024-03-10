@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+
 import axios from 'axios';
 
 function Timers() {
@@ -7,6 +8,21 @@ function Timers() {
   const [priority, setPriority] = useState('');
   const [category, setCategory] = useState('');
 
+  const [timers, setTimers] = useState([]); // State to store timers
+
+
+  const fetchTimers = async () => {
+    try {
+      const response = await axios.get('http://localhost:8090/allTimers'); // Adjust endpoint as needed
+      setTimers(response.data); // Assuming response.data is an array of timers
+    } catch (error) {
+      console.error("Error fetching timers:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTimers();
+  }, []);
 
 
 
@@ -21,30 +37,40 @@ function Timers() {
 
       const response = await axios.post('http://localhost:8090/registerTimer', requestBody);
       console.log(response.data);
+      fetchTimers();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   return (
+    <div>
     <div className="timerSetup">
       
       <div className='timerHeader'>Agenda Manager</div>
       <br></br>
       <div className='TimerDataContainer'>
-        <label>User ID:</label>
-          <input type="number" value={userID} onChange={e => setUserID(e.target.value)} />
         <label>Description:</label>
           <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
         <label>Category:</label>
           <input type="text" value={category} onChange={e => setCategory(e.target.value)} />
         <label>Priority:  </label>
           <input type="text" value={priority} onChange={e => setPriority(e.target.value)} />
+        
         </div>
       <button onClick={fetchData}>Add Reminder</button>
-      
     </div>
-    
+      <div>
+      {timers.map((timer, index) => (
+        <div className='timersDisplay' key={index}>
+          <p>Description: {timer.description}</p>
+          <p>Category: {timer.category}</p>
+          <p>Priority: {timer.priority}</p>
+          <button>Delete</button>
+        </div>
+      ))}
+    </div>
+    </div>
   );
 }
 

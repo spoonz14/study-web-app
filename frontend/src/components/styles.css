@@ -87,16 +87,30 @@ nav ul li a:hover {
   font-weight: bold;
   font-family: 'Calibri', Arial, sans-serif;
 }
+.timersDisplay {
+  margin-top: 10px;
+  background-color:rgb(255, 232, 203);
+  border-style: outset;
+  border-color: burlywood;
+  color: rgb(74, 11, 11);
+  max-width: 500px;
+  border-radius: 6px;
+  border-width: 7px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 5px 8px 7px rgba(74, 78, 148, 0.337)
+
+}
 .timerSetup {
   background-color:whitesmoke;
-
   border-radius: 12px;
   padding-bottom: 50px;
   margin-top: 120px;
   font-size: 18px;
   font-family: 'Calibri', Arial, sans-serif;
   max-width: 700px;
-  box-shadow: 5px 8px 7px rgba(74, 78, 148, 0.337)
+  box-shadow: 5px 8px 7px rgba(97, 99, 134, 0.299)
 }
 .TimerDataContainer {
   display: grid;

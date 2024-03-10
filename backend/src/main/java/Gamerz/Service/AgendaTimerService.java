@@ -22,6 +22,9 @@ public class AgendaTimerService {
         success = true;
         return success;
     }
+    public List<AgendaTimer> getAllTimers() {
+        return agendaTimerRepository.findAll();
+    }
 
     /*
     public boolean registerTimerToUser(User user, AgendaTimer timer) {
