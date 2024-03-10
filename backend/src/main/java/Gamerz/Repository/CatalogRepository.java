@@ -1,13 +1,12 @@
 package Gamerz.Repository;
 
-import Gamerz.Entity.Catalog;
+import Gamerz.Entity.StudyRoom;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+@Repository
+public interface CatalogRepository extends JpaRepository<StudyRoom, Long> {
 
-public interface CatalogRepository extends JpaRepository<Catalog, Long> {
-
-    Optional<Catalog> findByRoomName(String roomName);
 }
 
 
