@@ -13,3 +13,24 @@ const ChatRoom = () => {
       newSocket.close();
     };
   }, []);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.onopen = () => {
+      console.log("WebSocket connection opened");
+    };
+
+    socket.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      setMessages((prevMessages) => [...prevMessages, message]);
+    };
+
+    socket.onclose = () => {
+      console.log("WebSocket connection closed");
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, [socket]);
