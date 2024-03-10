@@ -1,0 +1,183 @@
+/*NavBar Styling*/
+
+.navbar {
+  background-color: #ffffff;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  border-color: #767575;
+  height: 100px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 100px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #767575;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  height: 40px;
+}
+
+/*Home Page Styling*/
+
+.home-container {
+  position: relative;
+}
+
+.studyImage {
+  width: 100%;
+  height: auto;
+}
+
+.Home-header {
+  position: absolute;
+  z-index: 1;
+  top: 55%;
+  left: 26%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.Home-header h1 {
+  color: white;
+  font-size: 5rem;
+}
+
+.Home-header p {
+  color: white;
+  font-size: 2rem;
+  padding: 0;
+}
+
+.About-section {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/*note list Styling*/
+
+.note-list h2 {
+  margin-bottom: 21px;
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.note-list {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 350px;
+  margin-top: 120px;
+}
+
+/*Add New Note Styling*/
+
+.add-note-container {
+  margin-bottom: 21px;
+  margin-top: 40px;
+}
+
+.add-note-container button {
+  width: 30%;
+  padding: 13px;
+  background-color: #4ec479;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+ul li button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+ul li button:hover {
+  background-color: #e0e0e0;
+  border-color: #ccc;
+}
+
+/* Register User Styling */
+.register {
+  padding: 80px;
+  margin-top: 40px;
+  color: rgb(255, 255, 255);
+  background-color: #4ec479;
+  text-align: center;
+}
+
+.register input[type="text"],
+.register input[type="password"],
+.register input[type="email"] {
+  display: block;
+  width: 20%;
+  margin: 10px auto;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.register button[type="submit"] {
+  display: block;
+  width: 10%;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #fff;
+  color: #4ec479;
+  border: 2px solid #4ec479;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.register button[type="submit"]:hover {
+  background-color: #4ec479;
+  color: #fff;
+}
+
+/*New Note*/
+
+.new-note-form {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 350px;
+  margin-top: 120px;
+}

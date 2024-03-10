@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudyRoomRepository extends JpaRepository<StudyRoom, Long> {
-    StudyRoom findByStudyId(Long Id);
+    StudyRoom findByRoomName(String roomName);
+
+
 
 }

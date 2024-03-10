@@ -1,14 +1,13 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import RegisterUser from "./components/RegisterUser";
 import NoteList from "./components/NoteList";
+import Notes from "./components/Notes";
+import ChatRoom from "./components/ChatRoom";
+import "./components/styles.css";
+
 const App = () => {
   return (
     <Router>
@@ -17,7 +16,8 @@ const App = () => {
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/RegisterUser" element={<RegisterUser />} />
-          <Route path="/NoteList" element={<NoteList />} />
+          <Route path="/Notes" element={<Notes />} />
+          <Route path="/Chat" element={<ChatRoom />} />{" "}
         </Routes>
       </div>
     </Router>
