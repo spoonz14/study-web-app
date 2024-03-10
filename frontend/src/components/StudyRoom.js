@@ -14,7 +14,9 @@ const StudyRoom = () => {
   const fetchRoomName = async (roomId) => {
     try {
       const response = await axios.get(`/room/${roomId}`);
+      console.log("Response from backend:", response.data);
       setRoomName(response.data.roomName);
+      console.log("Room Name:", response.data.roomName);
     } catch (error) {
       console.error("Error fetching roomName: ", error);
     }
@@ -23,7 +25,7 @@ const StudyRoom = () => {
   return (
     <div className="StudyRoom-container">
       <div className="StudyRoom-header">
-        <h1>Welcome to {roomName} room!</h1>
+        <h1>Welcome to "{roomName}"!</h1>
       </div>
       <div className="Content-section">
         <h2>Content</h2>
