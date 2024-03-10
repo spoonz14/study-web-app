@@ -7,10 +7,18 @@ function Timers() {
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('');
   const [category, setCategory] = useState('');
-
   const [timers, setTimers] = useState([]); // State to store timers
 
-
+  const deleteTimer = async (timerId) => {
+    console.log(timerId);
+    
+    try {
+      await axios.delete(`http://localhost:8090/deleteTimer/${timerId}`);
+      fetchTimers();
+    } catch (error) {
+      console.error("Error deleting timer:", error);
+    }
+  };
   const fetchTimers = async () => {
     try {
       const response = await axios.get('http://localhost:8090/allTimers'); // Adjust endpoint as needed
@@ -66,7 +74,8 @@ function Timers() {
           <p>Description: {timer.description}</p>
           <p>Category: {timer.category}</p>
           <p>Priority: {timer.priority}</p>
-          <button>Delete</button>
+          <button onClick={() => deleteTimer(timer.timerID)}>Delete</button>
+          
         </div>
       ))}
     </div>

@@ -22,6 +22,10 @@ public class AgendaTimerService {
         success = true;
         return success;
     }
+    public boolean deleteTimerToUser(long timerID){
+        agendaTimerRepository.deleteById(timerID);
+        return true;
+    }
     public List<AgendaTimer> getAllTimers() {
         return agendaTimerRepository.findAll();
     }
