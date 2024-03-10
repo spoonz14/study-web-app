@@ -34,3 +34,33 @@ const ChatRoom = () => {
       socket.close();
     };
   }, [socket]);
+  const sendMessage = () => {
+    if (!socket || !messageInput.trim()) return;
+    const message = {
+      content: messageInput.trim(),
+      sender: "User",
+      type: "CHAT",
+    };
+    socket.send(JSON.stringify(message));
+    setMessageInput("");
+  };
+
+  return (
+    <div>
+      <div>
+        {messages.map((message, index) => (
+          <div key={index}>{`${message.sender}: ${message.content}`}</div>
+        ))}
+      </div>
+      <input
+        type="text"
+        value={messageInput}
+        onChange={(e) => setMessageInput(e.target.value)}
+        placeholder="Type your message here..."
+      />
+      <button onClick={sendMessage}>Send</button>
+    </div>
+  );
+};
+
+export default ChatRoom;
