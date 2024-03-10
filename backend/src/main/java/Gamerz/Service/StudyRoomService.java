@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudyRoomService {
@@ -27,5 +28,8 @@ public class StudyRoomService {
         return studyRoomRepository.findAll();
     }
 
-
+    public StudyRoom findByStudyRoomId (Long id) {
+       Optional<StudyRoom> optionalStudyRoom = studyRoomRepository.findByStudyRoomId(id);
+       return optionalStudyRoom.orElse(null);
+    }
 }
