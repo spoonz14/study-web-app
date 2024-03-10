@@ -4,6 +4,7 @@ import Gamerz.Entity.StudyRoom;
 import Gamerz.Repository.StudyRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List; // Import the List interface
 
 @Service
 public class StudyRoomService {
@@ -22,4 +23,9 @@ public class StudyRoomService {
         return true;
     }
 
+    // Method to get all study rooms
+    public List<StudyRoom> getAllRooms() {
+        return studyRoomRepository.findAll();
+    }
 }
+
