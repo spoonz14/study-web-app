@@ -10,7 +10,7 @@ const StudyRoom = () => {
     // const roomId = 202;
     fetchRoomName(id);
   }, [id]);
-  
+
   const fetchRoomName = async (roomId) => {
     try {
       const response = await axios.get(`/room/${roomId}`);
@@ -21,3 +21,16 @@ const StudyRoom = () => {
       console.error("Error fetching roomName: ", error);
     }
   };
+  return (
+    <div className="StudyRoom-container">
+      <div className="StudyRoom-header">
+        <h1>Welcome to "{roomName}"!</h1>
+      </div>
+      <div className="Content-section">
+        <h2>Content</h2>
+      </div>
+    </div>
+  );
+};
+
+export default StudyRoom;
