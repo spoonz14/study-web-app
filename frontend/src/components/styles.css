@@ -183,3 +183,9 @@ ul li button:hover {
   line-height: 1.6;
   color: #666; /* Adjust color as needed */
 }
+
+.catalog-panel {
+  margin-top: 50px;
+  font-size: 3rem;
+  margin-left: 50%;
+}
