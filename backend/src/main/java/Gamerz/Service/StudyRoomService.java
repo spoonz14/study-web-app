@@ -4,7 +4,9 @@ import Gamerz.Entity.StudyRoom;
 import Gamerz.Repository.StudyRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List; // Import the List interface
+import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class StudyRoomService {
@@ -12,20 +14,23 @@ public class StudyRoomService {
     private StudyRoomRepository studyRoomRepository;
 
     public boolean createStudyRoom(StudyRoom studyRoom) {
-        // Check if the study room already exists
-        StudyRoom existingStudyRoom = studyRoomRepository.findByStudyId(studyRoom.getStudy_room_id());
-        if (existingStudyRoom != null) {
+        if (studyRoomRepository.findByRoomName(studyRoom.getRoomName()) != null) {
             return false; // Study room already exists
         }
 
-        // Save the study room if it doesn't exist
+        // Save the new study room if it doesn't exist
         studyRoomRepository.save(studyRoom);
         return true;
     }
 
-    // Method to get all study rooms
     public List<StudyRoom> getAllRooms() {
         return studyRoomRepository.findAll();
     }
-}
 
+    public StudyRoom findByStudyRoomId (Long id) {
+        Optional<StudyRoom> optionalStudyRoom = studyRoomRepository.findByStudyRoomId(id);
+        return (StudyRoom) optionalStudyRoom.orElse(null);
+    }
+
+
+}
