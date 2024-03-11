@@ -24,6 +24,9 @@ const NavBar = () => {
           <li>
             <Link to="/Chat">Chat</Link>
           </li>
+          <li>
+            <Link to="/Catalog">Catalog</Link>
+          </li>
         </ul>
       </nav>
     </div>
