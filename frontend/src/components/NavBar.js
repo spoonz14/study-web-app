@@ -2,6 +2,8 @@ import React from "react";
 import logoImage from "../components/StudiiLogo.jpg";
 import { Link } from "react-router-dom";
 import Notes from "./Notes";
+import Timers from "./Timers";
+
 import RegisterUser from "./RegisterUser";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./styles.css";
@@ -20,6 +22,9 @@ const NavBar = () => {
           </li>
           <li>
             <Link to="/Notes">Notes</Link>
+          </li>
+          <li>
+            <Link to="/Timers">Timers</Link>
           </li>
           <li>
             <Link to="/Chat">Chat</Link>
