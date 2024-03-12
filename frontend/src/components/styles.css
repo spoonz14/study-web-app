@@ -170,7 +170,7 @@ nav ul li a:hover {
   border-radius: 8px;
   padding: 20px;
   width: 350px;
-  margin-top: 120px;
+  margin-top: 130px;
 }
 
 @media screen and (max-width: 480px) {
@@ -358,4 +358,16 @@ ul li button:hover {
     margin-top: 20px;
     margin-left: 5%;
   }
+}
+
+.notes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../components/CatalogImage.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }
