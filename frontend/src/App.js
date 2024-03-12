@@ -8,6 +8,7 @@ import Notes from "./components/Notes";
 import Timers from "./components/Timers";
 
 import ChatRoom from "./components/ChatRoom";
+import Catalog from "./components/Catalog";
 import "./components/styles.css";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/Notes" element={<Notes />} />
           <Route path="/Timers" element={<Timers />} />
           <Route path="/Chat" element={<ChatRoom />} />{" "}
+          <Route path="/Catalog" element={<Catalog />} />
         </Routes>
       </div>
     </Router>
