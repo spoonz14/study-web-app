@@ -46,8 +46,12 @@ const NoteEdit = ({ note, onSaveNote, onDeleteNote }) => {
     <div className="note-edit-form">
       <input type="text" value={editedNote.title} onChange={editTitle} />
       <textarea value={editedNote.content} onChange={editContent} />
-      <button onClick={saveNote}>Save</button>
-      <button onClick={deleteNote}>Delete</button>
+      <button className="save-button" onClick={saveNote}>
+        Save
+      </button>
+      <button className="delete-button" onClick={deleteNote}>
+        Delete
+      </button>
     </div>
   );
 };
