@@ -164,8 +164,13 @@ ul li button:hover {
 /* StudyRoom Styling */
 
 .StudyRoom-container {
-  margin-top: 120px; /* Adjust as needed */
+  margin-top: 150px; /* Adjust as needed */
   padding: 20px;
+  background-color: #4ec479;
+  border-radius: 15px;
+  height: 500px;
+  width: 70%;
+  margin-left: 15%;
 }
 
 .StudyRoom-header {
@@ -175,11 +180,39 @@ ul li button:hover {
 
 .StudyRoom-header h1 {
   font-size: 2.5rem;
-  color: #333; /* Adjust color as needed */
+  color: #ffffff; /* Adjust color as needed */
 }
 
 .Content-section {
   font-size: 1.2rem;
-  line-height: 1.6;
-  color: #666; /* Adjust color as needed */
+  line-height: 2;
+  color: #7e7878;
+  text-align: center;
+  background-color: #fff;
+  height: 350px;
+  border-radius: 15px;
+}
+
+@media screen and (max-width: 480px) {
+  .StudyRoom-container {
+    width: auto;
+  }
+  .StudyRoom-header h1 {
+    font-size: 1.5rem;
+  }
+  .Content-section {
+    font-size: 0.8rem;
+  }
+}
+
+.studyRoom-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../components/StudyRoom.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }
