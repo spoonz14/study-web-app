@@ -25,11 +25,7 @@ const RegisterUser = () => {
     try {
       const response = await axios.post("/register", user);
       console.log(response.data);
-<<<<<<< Updated upstream
       setRegistrationSuccess(true);
-=======
-      alert("Registration Successful!"); // Display alert upon successful registration
->>>>>>> Stashed changes
     } catch (error) {
       if (error.response) {
         // Error response from the server
