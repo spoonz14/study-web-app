@@ -21,7 +21,6 @@ const StudyRoom = () => {
       console.error("Error fetching roomName: ", error);
     }
   };
-
   return (
     <div className="StudyRoom-container">
       <div className="StudyRoom-header">

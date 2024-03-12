@@ -4,10 +4,9 @@ import Gamerz.Entity.StudyRoom;
 import Gamerz.Repository.StudyRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudyRoomService {
@@ -29,7 +28,9 @@ public class StudyRoomService {
     }
 
     public StudyRoom findByStudyRoomId (Long id) {
-       Optional<StudyRoom> optionalStudyRoom = studyRoomRepository.findByStudyRoomId(id);
-       return optionalStudyRoom.orElse(null);
+        Optional<StudyRoom> optionalStudyRoom = studyRoomRepository.findByStudyRoomId(id);
+        return (StudyRoom) optionalStudyRoom.orElse(null);
     }
+
+
 }

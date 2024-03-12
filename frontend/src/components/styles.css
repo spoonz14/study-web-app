@@ -164,13 +164,13 @@ ul li button:hover {
 /* StudyRoom Styling */
 
 .StudyRoom-container {
-  margin-top: 120px; /* Adjust as needed */
+  margin-top: 20px; /* Adjust as needed */
   padding: 20px;
 }
 
 .StudyRoom-header {
   text-align: center;
-  margin-bottom: 40px; /* Adjust as needed */
+  margin-bottom: 0px; /* Adjust as needed */
 }
 
 .StudyRoom-header h1 {
@@ -182,4 +182,83 @@ ul li button:hover {
   font-size: 1.2rem;
   line-height: 1.6;
   color: #666; /* Adjust color as needed */
+}
+
+/* Catalog styling*/
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  /* Light grey background for contrast */
+}
+
+.catalog-container {
+  margin-top: 10%;
+  padding: 20px;
+  background-color: #4ec479;
+  min-height: 500px; /* Minimum height to ensure visibility */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
+  border-radius: 20px;
+  width: 50%;
+  margin-left: 23%;
+}
+
+.catalog-title {
+  margin-bottom: 20px;
+  font-size: 27px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  padding-bottom: 20px;
+  color: #ffffff;
+}
+
+.catalog-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../components/CatalogImage.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.catalog-item {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-left: 23%;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #333;
+}
+
+.catalog-item:hover {
+  background-color: #e9e9e9;
+}
+
+.catalog-loading,
+.catalog-error,
+.catalog-empty {
+  text-align: center;
+  margin-top: 20px;
+  color: #333; /* For better visibility */
+  font-size: 18px; /* Increase font size for readability */
+}
+
+@media screen and (max-width: 480px) {
+  .catalog-container {
+    margin-top: 30%;
+    width: 100%;
+    margin-left: 0%;
+  }
 }
