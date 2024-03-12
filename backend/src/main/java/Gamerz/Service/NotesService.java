@@ -5,6 +5,8 @@ import Gamerz.Repository.NotesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NotesService {
     @Autowired
@@ -16,6 +18,10 @@ public class NotesService {
         }
         notesRepository.save(notes);
         return true;
+    }
+
+    public List<Notes> getAllNotes() {
+        return notesRepository.findAll();
     }
 
 }
