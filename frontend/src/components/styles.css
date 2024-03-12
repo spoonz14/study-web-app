@@ -190,34 +190,56 @@ body,
 html {
   margin: 0;
   padding: 0;
-  background-color: #eaeaea; /* Light grey background for contrast */
+  /* Light grey background for contrast */
 }
 
 .catalog-container {
-  margin-top: 20%;
+  margin-top: 10%;
   padding: 20px;
-  background-color: #f0f0f0;
-  min-height: 200px; /* Minimum height to ensure visibility */
+  background-color: #4ec479;
+  min-height: 500px; /* Minimum height to ensure visibility */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
+  border-radius: 20px;
+  width: 50%;
+  margin-left: 23%;
 }
 
 .catalog-title {
   margin-bottom: 20px;
-  font-size: 24px;
+  font-size: 27px;
   font-weight: bold;
   text-align: center;
-  color: #333; /* For better visibility */
+  padding: 20px;
+  padding-bottom: 20px;
+  color: #ffffff;
+}
+
+.catalog-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../components/CatalogImage.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }
 
 .catalog-item {
   background-color: white;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-left: 23%;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 20px;
+  text-align: center;
   cursor: pointer;
   transition: background-color 0.2s;
-  color: #333; /* For better visibility */
+  color: #333;
 }
 
 .catalog-item:hover {
@@ -231,4 +253,12 @@ html {
   margin-top: 20px;
   color: #333; /* For better visibility */
   font-size: 18px; /* Increase font size for readability */
+}
+
+@media screen and (max-width: 480px) {
+  .catalog-container {
+    margin-top: 30%;
+    width: 100%;
+    margin-left: 0%;
+  }
 }
