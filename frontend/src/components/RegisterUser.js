@@ -1,6 +1,5 @@
-// RegisterUser.js
 import React, { useState } from "react";
-import axios from "../axios-config"; // Import the axios instance
+import axios from "../axios-config";
 
 const RegisterUser = () => {
   const [user, setUser] = useState({
@@ -18,7 +17,7 @@ const RegisterUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/register", user); // Use the axios instance
+      const response = await axios.post("/register", user);
       console.log(response.data);
     } catch (error) {
       if (error.response) {
