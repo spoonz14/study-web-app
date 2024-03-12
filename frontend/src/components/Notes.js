@@ -1,33 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NoteList from "./NoteList";
 import NoteEdit from "./NoteEdit";
-import NavBar from "./NavBar";
-import NewNoteForm from "./NewNoteForm";
-import { Route, Routes } from "react-router-dom";
+import axios from "axios";
 
 const Notes = () => {
-  const [notes, setNotes] = useState([
-    { id: 1, title: "Note 1", content: "Note 1 description" },
-  ]);
+  const [notes, setNotes] = useState([]);
   const [chosenNote, setChosenNote] = useState(null);
   const [addNoteForm, setAddNoteForm] = useState(false);
 
-  const doSaveNote = (updatedNote) => {
-    setNotes(
-      notes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
-    );
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
+  const fetchNotes = async () => {
+    try {
+      const response = await axios.get("/allNotes"); // Replace '/allNotes' with your backend endpoint
+      setNotes(response.data);
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+    }
   };
 
-  const createNote = (newNote) => {
-    setNotes([...notes, { id: Date.now(), ...newNote }]);
-    setChosenNote(null);
-    setAddNoteForm(false);
+  const createNote = async (newNote) => {
+    try {
+      await axios.post("/Add", newNote); // Replace '/Add' with your backend endpoint
+      fetchNotes();
+    } catch (error) {
+      console.error("Error creating note:", error);
+    }
   };
 
-  const deleteNote = () => {
+  const deleteNote = async () => {
     if (chosenNote) {
-      setNotes(notes.filter((note) => note.id !== chosenNote.id));
-      setChosenNote(null);
+      try {
+        await axios.delete(`/delete/${chosenNote.id}`); // Replace '/delete' with your backend endpoint
+        fetchNotes();
+      } catch (error) {
+        console.error("Error deleting note:", error);
+      }
     } else {
       console.error("Note must be selected");
     }
