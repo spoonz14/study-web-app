@@ -22,14 +22,17 @@ const StudyRoom = () => {
     }
   };
   return (
-    <div className="StudyRoom-container">
-      <div className="StudyRoom-header">
-        <h1>Welcome to "{roomName}"!</h1>
+    <>
+      <div className="studyRoom-background"></div>
+      <div className="StudyRoom-container">
+        <div className="StudyRoom-header">
+          <h1>Welcome to "{roomName}"!</h1>
+        </div>
+        <div className="Content-section">
+          <h2>Content</h2>
+        </div>
       </div>
-      <div className="Content-section">
-        <h2>Content</h2>
-      </div>
-    </div>
+    </>
   );
 };
 
