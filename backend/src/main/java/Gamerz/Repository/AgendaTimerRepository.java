@@ -1,11 +1,11 @@
 package Gamerz.Repository;
 
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
 import Gamerz.Entity.AgendaTimer;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
+import java.util.List;
+
 public interface AgendaTimerRepository extends JpaRepository<AgendaTimer, Long> {
-    List<AgendaTimer> findByUserID(Long userID);
+
+
 }
