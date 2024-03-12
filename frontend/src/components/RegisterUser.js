@@ -57,7 +57,7 @@ const RegisterUser = () => {
       {registrationSuccess ? (
         <div>
           <div>Registration Successful!</div>
-          <br /> {/* Add space between lines */}
+          <br />
           <div>Returning to home page...</div>
         </div>
       ) : (
