@@ -6,6 +6,7 @@ import RegisterUser from "./components/RegisterUser";
 import NoteList from "./components/NoteList";
 import Notes from "./components/Notes";
 import Timers from "./components/Timers";
+import StudyRoom from "./components/StudyRoom";
 
 import ChatRoom from "./components/ChatRoom";
 import Catalog from "./components/Catalog";
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/Timers" element={<Timers />} />
           <Route path="/Chat" element={<ChatRoom />} />{" "}
           <Route path="/Catalog" element={<Catalog />} />
+          <Route path="/room/:id" element={<StudyRoom />} />
         </Routes>
       </div>
     </Router>
