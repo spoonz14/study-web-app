@@ -161,6 +161,12 @@ ul li button:hover {
   margin-top: 120px;
 }
 
+.timer-page h1 {
+  margin-top: 0;
+  color: black;
+  font-size: 2rem;
+}
+
 /* StudyRoom Styling */
 
 .StudyRoom-container {
