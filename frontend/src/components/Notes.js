@@ -5,15 +5,18 @@ import NoteEdit from "./NoteEdit";
 import NewNoteForm from "./NewNoteForm";
 
 const Notes = () => {
+  //stating variables to manage add notes, selected notes, and newly added notes
   const [notes, setNotes] = useState([]);
   const [chosenNote, setChosenNote] = useState(null);
   const [addNoteForm, setAddNoteForm] = useState(false);
   const [newNote, setNewNote] = useState(null); // State for the newly added note
 
+  //Effect that fetched notes once a new note has been added
   useEffect(() => {
     fetchNotes();
-  }, [newNote]); // Fetch notes whenever a new note is added
+  }, [newNote]);
 
+  //fetch notes from backend
   const fetchNotes = async () => {
     try {
       const response = await axios.get("http://localhost:8090/notes");
@@ -23,6 +26,7 @@ const Notes = () => {
     }
   };
 
+  //function to add a new note
   const addNote = async (newNoteData) => {
     try {
       const response = await axios.post(
@@ -35,6 +39,7 @@ const Notes = () => {
     }
   };
 
+  //function to save edited note
   const saveNote = async (updatedNote) => {
     try {
       console.log("Updated Note:", updatedNote);
@@ -43,7 +48,7 @@ const Notes = () => {
         `http://localhost:8090/notes/${updatedNote.noteId}`,
         updatedNote
       );
-      window.location.reload();
+      window.location.reload(); //refresh page after saving note
       fetchNotes();
     } catch (error) {
       console.error(
@@ -53,16 +58,20 @@ const Notes = () => {
     }
   };
 
+  //function to delete a note
   const deleteNote = async (deletedNote) => {
     try {
+      //delete note from backend
       await axios.delete(`http://localhost:8090/notes/${deletedNote.noteId}`);
-      setNotes(notes.filter((note) => note.noteId !== deletedNote.noteId)); // Update notes state to remove the deleted note
+      // update state of notes to remove deleted note
+      setNotes(notes.filter((note) => note.noteId !== deletedNote.noteId));
       window.location.reload();
     } catch (error) {
       console.error("Error deleting note:", error);
     }
   };
 
+  //function to update note in the notes state
   const updateNote = (updatedNote) => {
     setNotes(
       notes.map((note) =>
@@ -80,7 +89,7 @@ const Notes = () => {
           onAddNote={() => setAddNoteForm(true)}
           addNoteForm={addNoteForm}
           onDeleteNote={deleteNote}
-          newNote={newNote} // Pass newNote to NoteList
+          newNote={newNote}
         />
       </div>
       <div className="note-content-panel">

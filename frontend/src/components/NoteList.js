@@ -10,6 +10,7 @@ const NoteList = ({ notes, onSelectNote, onAddNote, addNoteForm, newNote }) => {
           <button onClick={onAddNote}>Add Note</button>
         </div>
       )}
+      {/* List of notes */}
       <ul>
         {notes.map((note) => (
           <li key={note.id}>
