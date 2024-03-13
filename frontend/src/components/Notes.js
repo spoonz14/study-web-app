@@ -43,6 +43,7 @@ const Notes = () => {
         `http://localhost:8090/notes/${updatedNote.noteId}`,
         updatedNote
       );
+      window.location.reload();
       fetchNotes();
     } catch (error) {
       console.error(
@@ -56,7 +57,7 @@ const Notes = () => {
     try {
       await axios.delete(`http://localhost:8090/notes/${deletedNote.noteId}`);
       setNotes(notes.filter((note) => note.noteId !== deletedNote.noteId)); // Update notes state to remove the deleted note
-      window.location.reload(); // Reload the page after successful deletion
+      window.location.reload();
     } catch (error) {
       console.error("Error deleting note:", error);
     }
