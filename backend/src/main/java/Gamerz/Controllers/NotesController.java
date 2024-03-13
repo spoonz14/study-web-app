@@ -20,6 +20,7 @@ public class NotesController {
     @Autowired
     NotesRepository notesRepository;
 
+    // Endpoint to add a new note
     @PostMapping("/notes")
     public ResponseEntity<String> add(@RequestBody Notes notes) {
         if (notesService.addNote(notes)) {
@@ -29,12 +30,14 @@ public class NotesController {
         }
     }
 
+    // Endpoint to retrieve all notes
     @GetMapping("/notes")
     public ResponseEntity<List<Notes>> getAllNotes() {
         List<Notes> notes = notesService.getAllNotes();
         return ResponseEntity.ok(notes);
     }
 
+    // Endpoint to update a note by ID
     @PutMapping("/notes/{id}")
     public ResponseEntity<String> updateNote(@PathVariable Long id, @RequestBody Notes updatedNote) {
         Notes existingNote = notesService.findNoteById(id);
@@ -52,6 +55,7 @@ public class NotesController {
         return ResponseEntity.ok("Note updated.");
     }
 
+    // Endpoint to delete a note by ID
     @DeleteMapping("/notes/{id}")
     public ResponseEntity<String> deleteNote(@PathVariable Long id) {
         if (notesService.deleteNotes(id)) {

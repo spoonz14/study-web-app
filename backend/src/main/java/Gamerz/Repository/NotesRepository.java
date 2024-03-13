@@ -11,7 +11,10 @@ import java.util.Optional;
 @Repository
 public interface NotesRepository extends JpaRepository<Notes, Long> {
 
+    //Method that finds notes by their title
     Notes findByTitle(String title);
+
+    //Method to find notes by description
     Notes findByDescription(String description);
 
 //    Optional<Notes> findNoteById(Long noteId);
