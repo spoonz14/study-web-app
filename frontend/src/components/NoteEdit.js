@@ -1,3 +1,5 @@
+// NoteEdit.js
+
 import React from "react";
 import "./styles.css";
 
@@ -12,21 +14,24 @@ const NoteEdit = ({ note, onSaveNote, onDeleteNote }) => {
     setEditedNote({ ...editedNote, title: e.target.value });
   };
 
-  const editContent = (e) => {
-    setEditedNote({ ...editedNote, content: e.target.value });
+  const editDescription = (e) => {
+    setEditedNote({ ...editedNote, description: e.target.value }); // Add description to editedNote
   };
 
   const saveNote = () => {
-    if (editedNote.title.trim() === "" || editedNote.content.trim() === "") {
-      alert("Please provide a title and content for the note.");
+    if (
+      editedNote.title.trim() === "" ||
+      editedNote.description.trim() === "" // Ensure description is not empty
+    ) {
+      alert("Please provide a title, and description for this note.");
       return;
     }
 
-    onSaveNote(editedNote);
+    onSaveNote(editedNote); // Save edited note
 
     setEditedNote({
       title: "",
-      content: "",
+      description: "", // Reset description
     });
   };
 
@@ -45,9 +50,16 @@ const NoteEdit = ({ note, onSaveNote, onDeleteNote }) => {
   return (
     <div className="note-edit-form">
       <input type="text" value={editedNote.title} onChange={editTitle} />
-      <textarea value={editedNote.content} onChange={editContent} />
-      <button onClick={saveNote}>Save</button>
-      <button onClick={deleteNote}>Delete</button>
+      <textarea
+        value={editedNote.description} // Bind description value
+        onChange={editDescription} // Bind editDescription function
+      />
+      <button className="save-button" onClick={saveNote}>
+        Save
+      </button>
+      <button className="delete-button" onClick={deleteNote}>
+        Delete
+      </button>
     </div>
   );
 };

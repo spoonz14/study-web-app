@@ -10,9 +10,9 @@ import lombok.Data;
 public class Notes {
     @Id
     @GeneratedValue
-    private Long note_id;
+    private Long noteId;
 
     private String title;
     private String description;
-    
+
 }

@@ -1,7 +1,7 @@
 import axios from "../axios-config";
 import React from "react";
 
-const NoteList = ({ notes, onSelectNote, onAddNote, addNoteForm }) => {
+const NoteList = ({ notes, onSelectNote, onAddNote, addNoteForm, newNote }) => {
   return (
     <div className="note-list">
       <h2>Notes</h2>

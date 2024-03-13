@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
-const NewNoteForm = ({ onCreateNote }) => {
-  const [title, setTitle] = React.useState("");
-  const [content, setContent] = React.useState("");
+const NewNoteForm = ({ onAddNote, addNoteForm, setAddNoteForm }) => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const newFormTitle = (e) => {
     setTitle(e.target.value);
   };
 
-  const newFormContent = (e) => {
-    setContent(e.target.value);
+  const newFormDescription = (e) => {
+    setDescription(e.target.value);
   };
 
-  const doCreateNote = () => {
-    if (title.trim() !== "" && content.trim() !== "") {
-      onCreateNote({
+  const handleAddNote = () => {
+    if (title.trim() !== "" && description.trim() !== "") {
+      onAddNote({
         title,
-        content,
+        description,
       });
       setTitle("");
-      setContent("");
+      setDescription("");
+      // Close the form after adding the note
+      setAddNoteForm(false);
     }
   };
 
@@ -33,11 +35,11 @@ const NewNoteForm = ({ onCreateNote }) => {
         onChange={newFormTitle}
       />
       <textarea
-        placeholder="Content"
-        value={content}
-        onChange={newFormContent}
+        placeholder="Description"
+        value={description}
+        onChange={newFormDescription}
       />
-      <button onClick={doCreateNote}>Add Note</button>
+      <button onClick={handleAddNote}>Add Note</button>
     </div>
   );
 };
