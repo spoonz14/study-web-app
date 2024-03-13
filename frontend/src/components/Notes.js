@@ -2,16 +2,17 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import NoteList from "./NoteList";
 import NoteEdit from "./NoteEdit";
-import NewNoteForm from "./NewNoteForm"; // Import NewNoteForm component
+import NewNoteForm from "./NewNoteForm";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [chosenNote, setChosenNote] = useState(null);
   const [addNoteForm, setAddNoteForm] = useState(false);
+  const [newNote, setNewNote] = useState(null); // State for the newly added note
 
   useEffect(() => {
     fetchNotes();
-  }, []);
+  }, [newNote]); // Fetch notes whenever a new note is added
 
   const fetchNotes = async () => {
     try {
@@ -22,16 +23,13 @@ const Notes = () => {
     }
   };
 
-  const addNote = async (newNote) => {
+  const addNote = async (newNoteData) => {
     try {
-      // Send a POST request to your backend API with the new note data
-      const response = await axios.post("http://localhost:8090/notes", newNote);
-
-      // Update the notes state with the response data, which should contain the newly added note
-      setNotes([...notes, response.data]);
-
-      // Reset the addNoteForm state to close the form after adding the note
-      setAddNoteForm(false);
+      const response = await axios.post(
+        "http://localhost:8090/notes",
+        newNoteData
+      );
+      setNewNote(response.data); // Update newNote with the newly added note data
     } catch (error) {
       console.error("Error adding note:", error);
     }
@@ -54,13 +52,22 @@ const Notes = () => {
     }
   };
 
-  const deleteNote = async (updatedNote) => {
+  const deleteNote = async (deletedNote) => {
     try {
-      await axios.delete(`http://localhost:8090/notes/${updatedNote.noteId}`); // Replace with your backend endpoint
-      fetchNotes();
+      await axios.delete(`http://localhost:8090/notes/${deletedNote.noteId}`);
+      setNotes(notes.filter((note) => note.noteId !== deletedNote.noteId)); // Update notes state to remove the deleted note
+      window.location.reload(); // Reload the page after successful deletion
     } catch (error) {
       console.error("Error deleting note:", error);
     }
+  };
+
+  const updateNote = (updatedNote) => {
+    setNotes(
+      notes.map((note) =>
+        note.noteId === updatedNote.noteId ? updatedNote : note
+      )
+    );
   };
 
   return (
@@ -69,9 +76,10 @@ const Notes = () => {
         <NoteList
           notes={notes}
           onSelectNote={setChosenNote}
-          onAddNote={() => setAddNoteForm(true)} // Open the add note form when this function is called
+          onAddNote={() => setAddNoteForm(true)}
           addNoteForm={addNoteForm}
           onDeleteNote={deleteNote}
+          newNote={newNote} // Pass newNote to NoteList
         />
       </div>
       <div className="note-content-panel">
@@ -79,9 +87,9 @@ const Notes = () => {
           note={chosenNote}
           onSaveNote={saveNote}
           onDeleteNote={deleteNote}
+          onUpdateNote={updateNote}
         />
       </div>
-      {/* Render NewNoteForm component */}
       {addNoteForm && (
         <NewNoteForm onAddNote={addNote} setAddNoteForm={setAddNoteForm} />
       )}

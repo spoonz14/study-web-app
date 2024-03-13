@@ -27,7 +27,7 @@ const NoteEdit = ({ note, onSaveNote, onDeleteNote }) => {
       return;
     }
 
-    onSaveNote(editedNote);
+    onSaveNote(editedNote); // Save edited note
 
     setEditedNote({
       title: "",
