@@ -21,7 +21,7 @@ public class CatalogController {
         return ResponseEntity.ok(studyRooms);
     }
 
-    @PostMapping("catalog/create")
+    @PostMapping("/catalog")
     public ResponseEntity<String> create(@RequestBody StudyRoom studyRoom) {
         if (studyRoomService.createStudyRoom(studyRoom)) {
             return ResponseEntity.ok("Study room added.");
@@ -31,7 +31,6 @@ public class CatalogController {
     }
 
 }
-
 
 
 

@@ -1,36 +1,83 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import NoteList from "./NoteList";
 import NoteEdit from "./NoteEdit";
-import NavBar from "./NavBar";
 import NewNoteForm from "./NewNoteForm";
-import { Route, Routes } from "react-router-dom";
 
 const Notes = () => {
-  const [notes, setNotes] = useState([
-    { id: 1, title: "Note 1", content: "Note 1 description" },
-  ]);
+  //stating variables to manage add notes, selected notes, and newly added notes
+  const [notes, setNotes] = useState([]);
   const [chosenNote, setChosenNote] = useState(null);
   const [addNoteForm, setAddNoteForm] = useState(false);
+  const [newNote, setNewNote] = useState(null); // State for the newly added note
 
-  const doSaveNote = (updatedNote) => {
-    setNotes(
-      notes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
-    );
-  };
+  //Effect that fetched notes once a new note has been added
+  useEffect(() => {
+    fetchNotes();
+  }, [newNote]);
 
-  const createNote = (newNote) => {
-    setNotes([...notes, { id: Date.now(), ...newNote }]);
-    setChosenNote(null);
-    setAddNoteForm(false);
-  };
-
-  const deleteNote = () => {
-    if (chosenNote) {
-      setNotes(notes.filter((note) => note.id !== chosenNote.id));
-      setChosenNote(null);
-    } else {
-      console.error("Note must be selected");
+  //fetch notes from backend
+  const fetchNotes = async () => {
+    try {
+      const response = await axios.get("http://localhost:8090/notes");
+      setNotes(response.data);
+    } catch (error) {
+      console.error("Error fetching notes:", error);
     }
+  };
+
+  //function to add a new note
+  const addNote = async (newNoteData) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8090/notes",
+        newNoteData
+      );
+      setNewNote(response.data); // Update newNote with the newly added note data
+    } catch (error) {
+      console.error("Error adding note:", error);
+    }
+  };
+
+  //function to save edited note
+  const saveNote = async (updatedNote) => {
+    try {
+      console.log("Updated Note:", updatedNote);
+      // Fetching updatedNote from the backend
+      await axios.put(
+        `http://localhost:8090/notes/${updatedNote.noteId}`,
+        updatedNote
+      );
+      window.location.reload(); //refresh page after saving note
+      fetchNotes();
+    } catch (error) {
+      console.error(
+        `Note ID: ${updatedNote.noteId} Error saving note: `,
+        error
+      );
+    }
+  };
+
+  //function to delete a note
+  const deleteNote = async (deletedNote) => {
+    try {
+      //delete note from backend
+      await axios.delete(`http://localhost:8090/notes/${deletedNote.noteId}`);
+      // update state of notes to remove deleted note
+      setNotes(notes.filter((note) => note.noteId !== deletedNote.noteId));
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting note:", error);
+    }
+  };
+
+  //function to update note in the notes state
+  const updateNote = (updatedNote) => {
+    setNotes(
+      notes.map((note) =>
+        note.noteId === updatedNote.noteId ? updatedNote : note
+      )
+    );
   };
 
   return (
@@ -41,19 +88,21 @@ const Notes = () => {
           onSelectNote={setChosenNote}
           onAddNote={() => setAddNoteForm(true)}
           addNoteForm={addNoteForm}
+          onDeleteNote={deleteNote}
+          newNote={newNote}
         />
       </div>
       <div className="note-content-panel">
-        {addNoteForm ? (
-          <NewNoteForm onCreateNote={createNote} />
-        ) : (
-          <NoteEdit
-            note={chosenNote}
-            onSaveNote={doSaveNote}
-            onDeleteNote={deleteNote}
-          />
-        )}
+        <NoteEdit
+          note={chosenNote}
+          onSaveNote={saveNote}
+          onDeleteNote={deleteNote}
+          onUpdateNote={updateNote}
+        />
       </div>
+      {addNoteForm && (
+        <NewNoteForm onAddNote={addNote} setAddNoteForm={setAddNoteForm} />
+      )}
     </div>
   );
 };

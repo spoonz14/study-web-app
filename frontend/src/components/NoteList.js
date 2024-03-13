@@ -1,7 +1,7 @@
 import axios from "../axios-config";
 import React from "react";
 
-const NoteList = ({ notes, onSelectNote, onAddNote, addNoteForm }) => {
+const NoteList = ({ notes, onSelectNote, onAddNote, addNoteForm, newNote }) => {
   return (
     <div className="note-list">
       <h2>Notes</h2>
@@ -10,6 +10,7 @@ const NoteList = ({ notes, onSelectNote, onAddNote, addNoteForm }) => {
           <button onClick={onAddNote}>Add Note</button>
         </div>
       )}
+      {/* List of notes */}
       <ul>
         {notes.map((note) => (
           <li key={note.id}>

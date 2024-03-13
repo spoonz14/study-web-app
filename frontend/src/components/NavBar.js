@@ -27,7 +27,7 @@ const NavBar = () => {
             <Link to="/Timers">Timers</Link>
           </li>
           <li>
-            <Link to="/Chat">Chat</Link>
+            <Link to="/Catalog">Catalog</Link>
           </li>
         </ul>
       </nav>
