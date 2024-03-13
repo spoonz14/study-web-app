@@ -5,7 +5,7 @@ import axios from 'axios';
 function Timers() {
   const [userID, setUserID] = useState('');
   const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState('');
+  const [priorityLevel, setPriority] = useState('');
   const [category, setCategory] = useState('');
   const [timers, setTimers] = useState([]); // State to store timers
 
@@ -40,7 +40,7 @@ function Timers() {
         userID: Number(userID), // Convert userID to a number since the input returns a string
         description: description,
         category: category,
-        priority: Number(priority)
+        priorityLevel: Number(priorityLevel)
       };
 
       const response = await axios.post('http://localhost:8090/registerTimer', requestBody);
@@ -63,7 +63,7 @@ function Timers() {
         <label>Category:</label>
           <input type="text" value={category} onChange={e => setCategory(e.target.value)} />
         <label>Priority:  </label>
-          <input type="text" value={priority} onChange={e => setPriority(e.target.value)} />
+          <input type="number" value={priorityLevel} onChange={e => setPriority(e.target.value)} />
         
         </div>
       <button onClick={fetchData}>Add Reminder</button>
@@ -73,7 +73,7 @@ function Timers() {
         <div className='timersDisplay' key={index}>
           <p>Description: {timer.description}</p>
           <p>Category: {timer.category}</p>
-          <p>Priority: {timer.priority}</p>
+          <p>Priority: {timer.priorityLevel}</p>
           <button onClick={() => deleteTimer(timer.timerID)}>Delete</button>
           
         </div>
