@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "../axios-config";
 
 const RegisterUser = () => {
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     username: "",
@@ -20,6 +20,7 @@ const RegisterUser = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  // Function to handle the submit event
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -40,11 +41,11 @@ const RegisterUser = () => {
     }
   };
 
-  // Redirect to "/Home" after 3 seconds of displaying the "Registration Successful!" message
+  // Redirect to home page after 3 seconds of displaying the "Registration Successful!" message
   useEffect(() => {
     if (registrationSuccess) {
       const redirectTimer = setTimeout(() => {
-        navigate("/"); // Use navigate instead of history.push
+        navigate("/"); // Return to home page
       }, 3000);
 
       return () => clearTimeout(redirectTimer); // Clear the timer on unmount

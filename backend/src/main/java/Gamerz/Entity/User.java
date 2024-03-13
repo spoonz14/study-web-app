@@ -14,7 +14,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long id; // Auto-incremented Primary Key
 
     private String username;
     private String password;

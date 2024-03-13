@@ -14,9 +14,11 @@ import java.util.List;
 @RestController
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserService userService; // Creating an instance of the UserService object
     @Autowired
     private AgendaTimerService agendaTimerService;
+
+    // PostMapping function to register users
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) {
         if (userService.registerUsers(user)) {
@@ -43,6 +45,9 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Timer deletion failed");
         }
     }
+
+    // GetMapping function to fetch all users in the database.
+    // Not used in the application, mainly used for testing in postman
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
