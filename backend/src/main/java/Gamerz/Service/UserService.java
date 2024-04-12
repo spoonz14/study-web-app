@@ -19,6 +19,9 @@ public class UserService {
         if (userRepository.findByEmail(user.getEmail()) != null) {
             return false; // Email already exists
         }
+        if (user.getRole() == null) {
+            user.setRole("user");
+        }
         userRepository.save(user);
         return true;
     }
