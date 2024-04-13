@@ -20,10 +20,16 @@ public class LoginController {
     public ResponseEntity<String> login(@RequestBody Login login) {
         User authenticatedUser = loginService.login(login);
         if (authenticatedUser != null) {
+            // Generate JWT token
+            String token = JwtUtils.generateToken(
+                    authenticatedUser.getId(),
+                    authenticatedUser.getUsername(),
+                    authenticatedUser.getRole()
+            );
 
-            return ResponseEntity.ok("Login successful.");
-        }
-        else {
+            // Send the token back to the client
+            return ResponseEntity.ok(token);
+        } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid username or password.");
         }
     }

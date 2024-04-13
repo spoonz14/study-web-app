@@ -1,81 +1,79 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-
+import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import axios from "../axios-config";
 
 const Login = () => {
     const navigate = useNavigate();
-
-    const [user, setUser] = useState({
-        username: "",
-        password: "",
-    });
-
+    const [user, setUser] = useState({ username: "", password: "" });
     const [loginSuccess, setLoginSuccess] = useState(false);
 
     const handleChange = (e) => {
-        setUser({...user, [e.target.name]: e.target.value});
-    }
+        setUser({ ...user, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-          const response = await axios.post("/login", user);
-          console.log(response.data);
-          setLoginSuccess(true);
-      } catch (error) {
-          if (error.response) {
-            // Error response from the server
-            console.error("Login failed:", error.response.data);
-          } else if (error.request) {
-            // The request was made but no response was received
-            console.error("No response received:", error.request);
-          } else {
-            // Something happened in setting up the request that triggered an error
-            console.error("Request failed:", error.message);
-          }
-      }
-  }  
+        e.preventDefault();
+        try {
+            const response = await axios.post("/login", user);
+            sessionStorage.setItem('token', response.data);
+            setLoginSuccess(true);
 
-    // Redirect to "/Home" after 3 seconds of displaying the "Registration Successful!" message
-  useEffect(() => {
-    if (loginSuccess) {
-      const redirectTimer = setTimeout(() => {
-        navigate("/"); // Use navigate instead of history.push
-      }, 3000);
+            // Update isLoggedIn state in NavBar component
+            const navbar = document.getElementById("navbar-root");
+            if (navbar) {
+                navbar.dispatchEvent(new Event("loginSuccess"));
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+        }
+    };
 
-      return () => clearTimeout(redirectTimer); // Clear the timer on unmount
-    }
-  }, [loginSuccess, navigate]);
+    useEffect(() => {
+        const token = sessionStorage.getItem("token");
+        if (token) {
+            setLoginSuccess(true);
+        }
+    }, []);
 
-  return (
-    <div className="register">
-      <h2>Login</h2>
-      {loginSuccess ? (
-        <div>
-          <div>Login Successful!</div>
-          <br />
-          <div>Returning to home page...</div>
+    useEffect(() => {
+        if (loginSuccess) {
+            const redirectTimer = setTimeout(() => {
+                navigate("/"); // Use navigate instead of history.push
+            }, 3000);
+
+            return () => clearTimeout(redirectTimer); // Clear the timer on unmount
+        }
+    }, [loginSuccess, navigate]);
+
+    return (
+        <div className="register">
+            <h2>Login</h2>
+            {loginSuccess ? (
+                <div>
+                    <div>Login Successful!</div>
+                    <br />
+                    <div>Returning to login page...</div>
+                </div>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        onChange={handleChange}
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        onChange={handleChange}
+                    />
+                    <button type="submit">Login</button>
+                </form>
+            )}
         </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-          />
-          <button type="submit">Login</button>
-        </form>
-      )}
-    </div>
-  );
+    );
 };
 
 export default Login;
