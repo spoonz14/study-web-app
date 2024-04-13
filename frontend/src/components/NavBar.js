@@ -7,32 +7,38 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./styles.css";
 
 const NavBar = () => {
-  // State to track if the user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // Check if there is a token in the session storage on initial render
   useEffect(() => {
     const token = sessionStorage.getItem("token");
-    if (token != null) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false); // Ensure isLoggedIn is false if there's no token
+    setIsLoggedIn(!!token); // Set isLoggedIn based on token existence
+
+    const handleLoginSuccess = () => {
+      setIsLoggedIn(true); // Update isLoggedIn state on login success
+    };
+
+    const navbar = document.getElementById("navbar-root");
+    if (navbar) {
+      navbar.addEventListener("loginSuccess", handleLoginSuccess);
     }
+
+    return () => {
+      if (navbar) {
+        navbar.removeEventListener("loginSuccess", handleLoginSuccess);
+      }
+    };
   }, []);
 
-  // Logout handler
   const handleLogout = () => {
-    // Remove the token from session storage on logout
     sessionStorage.removeItem("token");
-    // Update the logged-in state
     setIsLoggedIn(false);
-    // Redirect to the login page
-    navigate("/login");
+    navigate("/");
+    window.location.reload();
   };
 
   return (
-    <div className="navbar">
+    <div id="navbar-root" className="navbar">
       <img src={logoImage} alt="Logo" className="logo" />
       <nav>
         <ul>
@@ -41,15 +47,12 @@ const NavBar = () => {
           </li>
           {isLoggedIn ? (
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={handleLogout} className="nav-link logout-button">Logout</button>
             </li>
           ) : (
             <React.Fragment>
               <li>
                 <Link to="/Login">Login</Link>
-              </li>
-              <li>
-                <Link to="/RegisterUser">Register</Link>
               </li>
             </React.Fragment>
           )}

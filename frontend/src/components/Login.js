@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../axios-config";
 
 const Login = () => {
@@ -19,7 +18,6 @@ const Login = () => {
             sessionStorage.setItem('token', response.data);
             setLoginSuccess(true);
 
-            // Update isLoggedIn state in NavBar component
             const navbar = document.getElementById("navbar-root");
             if (navbar) {
                 navbar.dispatchEvent(new Event("loginSuccess"));
@@ -42,7 +40,7 @@ const Login = () => {
                 navigate("/"); // Use navigate instead of history.push
             }, 3000);
 
-            return () => clearTimeout(redirectTimer); // Clear the timer on unmount
+            return () => clearTimeout(redirectTimer);
         }
     }, [loginSuccess, navigate]);
 
@@ -53,7 +51,7 @@ const Login = () => {
                 <div>
                     <div>Login Successful!</div>
                     <br />
-                    <div>Returning to login page...</div>
+                    <div>Returning to Home page...</div>
                 </div>
             ) : (
                 <form onSubmit={handleSubmit}>
@@ -70,6 +68,9 @@ const Login = () => {
                         onChange={handleChange}
                     />
                     <button type="submit">Login</button>
+                    <Link to="/RegisterUser">
+                        <button type="button">Sign up</button>
+                    </Link>
                 </form>
             )}
         </div>
