@@ -1,6 +1,5 @@
 package Gamerz;
 
-
 import Gamerz.Entity.ChatMessage;
 import Gamerz.Entity.MessageType;
 import lombok.RequiredArgsConstructor;
@@ -16,21 +15,19 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 @Slf4j
 public class WebSocketEventListener {
 
-private final SimpMessageSendingOperations messageTemplate;
+    private final SimpMessageSendingOperations messageTemplate;
 
     @EventListener
-    public void handleWebSocketDisconnectListener(
-            SessionDisconnectEvent event
-    ) {
+    public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         if (username != null) {
-            log.info("User Disconnected : {}", username);
-            var chatMessage = ChatMessage.builder()
+            log.info("User Disconnected: {}", username);
+            ChatMessage chatMessage = ChatMessage.builder()
                     .type(MessageType.LEAVE)
+                    .sender(username)
                     .build();
-            messageTemplate.convertAndSend("/chat", chatMessage);
+            messageTemplate.convertAndSend("/topic/chat", chatMessage);
         }
     }
-
 }

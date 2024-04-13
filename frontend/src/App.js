@@ -8,6 +8,7 @@ import Timers from "./components/Timers";
 import StudyRoom from "./components/StudyRoom";
 import Catalog from "./components/Catalog";
 import Login from "./components/Login";
+import ChatComponent from "./components/ChatComponent";
 import "./components/styles.css";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/Timers" element={<Timers />} />
           <Route path="/Catalog" element={<Catalog />} />
           <Route path="/room/:id" element={<StudyRoom />} />
+          <Route path="/Chat" element={<ChatComponent />} />
         </Routes>
       </div>
     </Router>

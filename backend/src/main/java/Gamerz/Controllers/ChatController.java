@@ -1,29 +1,26 @@
 package Gamerz.Controllers;
 
 import Gamerz.Entity.ChatMessage;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.stereotype.Controller;
+import Gamerz.Entity.MessageType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class ChatController {
 
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/chat")
-    public ChatMessage sendMessage(
-            @Payload ChatMessage chatMessage
-    ) {
-        return chatMessage;
-    }
-    @MessageMapping("/chat.addUser")
-    @SendTo("/chat")
-    public ChatMessage addUser(
-            @Payload ChatMessage chatMessage,
-            SimpMessageHeaderAccessor headerAccessor
-    ) {
-        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        return chatMessage;
+    @PostMapping("/send-message")
+    public void sendMessage(@RequestBody String messageContent) {
+        // Assuming you have the sender information available, for example, as a logged-in user
+        String sender = "Alice";
+
+        // Create a ChatMessage using the builder pattern
+        ChatMessage chatMessage = ChatMessage.builder()
+                .content(messageContent)
+                .sender(sender)
+                .type(MessageType.CHAT)
+                .build();
+
+        // Further logic to send the message, for example, through WebSocket
     }
 }
