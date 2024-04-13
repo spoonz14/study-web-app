@@ -23,7 +23,6 @@ const Login = () => {
           const response = await axios.post("/login", user);
           console.log(response.data);
           setLoginSuccess(true);
-          navigate("/"); // Redirect to home page after successful login
       } catch (error) {
           if (error.response) {
             // Error response from the server
@@ -51,7 +50,7 @@ const Login = () => {
 
   return (
     <div className="register">
-      <h2>Register User</h2>
+      <h2>Login</h2>
       {loginSuccess ? (
         <div>
           <div>Login Successful!</div>

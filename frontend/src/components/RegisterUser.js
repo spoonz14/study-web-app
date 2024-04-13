@@ -44,7 +44,7 @@ const RegisterUser = () => {
   useEffect(() => {
     if (registrationSuccess) {
       const redirectTimer = setTimeout(() => {
-        navigate("/"); // Use navigate instead of history.push
+        navigate("/login"); // Use navigate instead of history.push
       }, 3000);
 
       return () => clearTimeout(redirectTimer); // Clear the timer on unmount
@@ -58,7 +58,7 @@ const RegisterUser = () => {
         <div>
           <div>Registration Successful!</div>
           <br />
-          <div>Returning to home page...</div>
+          <div>Returning to login page...</div>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
