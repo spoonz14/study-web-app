@@ -1,4 +1,3 @@
-// WebSocketConfig.java
 package Gamerz.Configuration;
 
 import org.springframework.context.annotation.Configuration;
@@ -20,4 +19,5 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/websocket-chat").setAllowedOrigins("*").withSockJS();
     }
+
 }
