@@ -1,5 +1,6 @@
 package Gamerz.Controllers;
 
+import Gamerz.Configuration.JwtUtils;
 import Gamerz.Entity.Login;
 import Gamerz.Entity.User;
 import Gamerz.Service.LoginService;
@@ -17,8 +18,16 @@ public class LoginController {
 
     @PostMapping("/login/")
     public ResponseEntity<String> login(@RequestBody Login login) {
-        if (loginService.login(login)) {
-            return ResponseEntity.ok("Login successful.");
+        User authenticatedUser = loginService.login(login);
+        if (authenticatedUser != null) {
+            // Extract info
+            Long userId = authenticatedUser.getId();
+            String username = authenticatedUser.getUsername();
+            String role = authenticatedUser.getRole();
+
+            // Generate token
+            String token = JwtUtils.generateToken(userId, username, role);
+            return ResponseEntity.ok("Login successful. Token: "+ token);
         }
         else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid username or password.");

@@ -14,12 +14,12 @@ public class LoginService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean login(Login login) {
+    public User login(Login login) {
         User user = userRepository.findByUsername(login.getUsername());
         if (user != null && user.getPassword().equals(login.getPassword())) {
-            return true;
+            return user;
         }
-        return false;
+        return null;
     }
 
 
