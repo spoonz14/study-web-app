@@ -23,9 +23,11 @@ const NavBar = () => {
           <li>
             <Link to="/Notes">Notes</Link>
           </li>
-          <li>
-            <Link to="/Timers">Timers</Link>
-          </li>
+          {isLoggedIn ? (
+  <li>
+    <Link to="/Timers">Timers</Link>
+  </li>
+) : null}
           <li>
             <Link to="/Catalog">Catalog</Link>
           </li>
