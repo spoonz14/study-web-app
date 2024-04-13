@@ -17,4 +17,6 @@ public class Notes {
     // Description or content of the note
     private String description;
 
+    private Long userId;
+
 }
