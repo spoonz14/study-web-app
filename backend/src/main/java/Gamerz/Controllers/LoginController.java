@@ -20,14 +20,8 @@ public class LoginController {
     public ResponseEntity<String> login(@RequestBody Login login) {
         User authenticatedUser = loginService.login(login);
         if (authenticatedUser != null) {
-            // Extract info
-            Long userId = authenticatedUser.getId();
-            String username = authenticatedUser.getUsername();
-            String role = authenticatedUser.getRole();
 
-            // Generate token
-            String token = JwtUtils.generateToken(userId, username, role);
-            return ResponseEntity.ok("Login successful. Token: "+ token);
+            return ResponseEntity.ok("Login successful.");
         }
         else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid username or password.");
