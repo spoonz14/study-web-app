@@ -6,9 +6,8 @@ import RegisterUser from "./components/RegisterUser";
 import Notes from "./components/Notes";
 import Timers from "./components/Timers";
 import StudyRoom from "./components/StudyRoom";
-
-import ChatRoom from "./components/ChatRoom";
 import Catalog from "./components/Catalog";
+import Login from "./components/Login";
 import "./components/styles.css";
 
 const App = () => {
@@ -18,6 +17,7 @@ const App = () => {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/RegisterUser" element={<RegisterUser />} />
           <Route path="/RegisterUser" element={<RegisterUser />} />
           <Route path="/Notes" element={<Notes />} />
           <Route path="/Timers" element={<Timers />} />

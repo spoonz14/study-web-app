@@ -16,7 +16,7 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    @PostMapping("/login/")
+    @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Login login) {
         User authenticatedUser = loginService.login(login);
         if (authenticatedUser != null) {

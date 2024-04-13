@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "../axios-config";
 
 const RegisterUser = () => {
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate(); // Move this line inside the component
 
   const [user, setUser] = useState({
     username: "",
