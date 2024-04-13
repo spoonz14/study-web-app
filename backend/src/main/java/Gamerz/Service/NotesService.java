@@ -14,7 +14,7 @@ public class NotesService {
     private NotesRepository notesRepository;
 
     public boolean addNote(Notes notes) {
-        if (notesRepository.findByTitle(notes.getTitle()) != null) {
+        if (notesRepository.findByTitleAndUserId(notes.getTitle(), notes.getUserId()) != null) {
             return false;
         }
         notesRepository.save(notes);
@@ -23,6 +23,10 @@ public class NotesService {
 
     public List<Notes> getAllNotes() {
         return notesRepository.findAll();
+    }
+
+    public List<Notes> getAllNotesByUserId(Long userId) {
+        return notesRepository.findByUserId(userId);
     }
 
     public Notes findNoteById(Long id) {
