@@ -16,5 +16,5 @@ public class StudyRoom {
     private Long chatId;
     private String roomName;
 
-
+    private Long userId;
 }

@@ -27,4 +27,13 @@ public class CatalogService {
         return roomNames;
     }
 
+    public boolean createStudyRoom(StudyRoom studyRoom) {
+        if (studyRoomRepository.findByRoomName(studyRoom.getRoomName()) != null) {
+            return false; // Study room already exists
+        }
+
+        // Save the new study room if it doesn't exist
+        studyRoomRepository.save(studyRoom);
+        return true;
+    }
 }

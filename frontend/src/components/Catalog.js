@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios-config";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate
 
 const Catalog = () => {
   const [studyRooms, setStudyRooms] = useState([]);
@@ -36,6 +36,8 @@ const Catalog = () => {
       <div className="catalog-background"></div>
       <div className="catalog-container">
         <div className="catalog-title">Study Groups</div>
+        {/* Render button to create a new room */}
+        <Link to="/Room/create" className="create-room create-room-button">Create New Room</Link>
         {studyRooms.map((room) => (
           // Render each study room as a clickable element
           <div
