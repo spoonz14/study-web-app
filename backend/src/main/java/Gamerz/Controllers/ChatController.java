@@ -1,26 +1,42 @@
 package Gamerz.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import Gamerz.Entity.ChatMessage;
-import Gamerz.Entity.MessageType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import Gamerz.Service.MessageService;
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/messages")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ChatController {
 
-    @PostMapping("/send-message")
-    public void sendMessage(@RequestBody String messageContent) {
-        // Assuming you have the sender information available, for example, as a logged-in user
-        String sender = "Alice";
+    private final MessageService messageService;
 
-        // Create a ChatMessage using the builder pattern
-        ChatMessage chatMessage = ChatMessage.builder()
-                .content(messageContent)
-                .sender(sender)
-                .type(MessageType.CHAT)
-                .build();
+    @Autowired
+    public ChatController(MessageService messageService) {
+        this.messageService = messageService;
+    }
 
-        // Further logic to send the message, for example, through WebSocket
+    @PostMapping
+    public ResponseEntity<?> saveMessage(@RequestBody ChatMessage chatMessage) {
+        try {
+            messageService.saveMessage(chatMessage);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving message: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<ChatMessage>> getMessagesByUserId(@PathVariable Long userId) {
+        try {
+            List<ChatMessage> messages = messageService.getMessagesByUserId(userId);
+            return ResponseEntity.ok(messages);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }

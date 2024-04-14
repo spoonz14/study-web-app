@@ -1,67 +1,32 @@
 package Gamerz.Entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChatMessage {
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String content;
     private String sender;
     private MessageType type;
 
-    private ChatMessage() {
-    }
+    private Long userId; // Add this property
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    // Getters and setters
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
+    // Constructors
+    public ChatMessage(String content, String sender, MessageType type) {
         this.content = content;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
         this.sender = sender;
-    }
-
-    public MessageType getType() {
-        return type;
-    }
-
-    public void setType(MessageType type) {
         this.type = type;
     }
-
-    // Builder class
-    public static class Builder {
-        private final ChatMessage chatMessage;
-
-        private Builder() {
-            chatMessage = new ChatMessage();
-        }
-
-        public Builder content(String content) {
-            chatMessage.setContent(content);
-            return this;
-        }
-
-        public Builder sender(String sender) {
-            chatMessage.setSender(sender);
-            return this;
-        }
-
-        public Builder type(MessageType type) {
-            chatMessage.setType(type);
-            return this;
-        }
-
-        public ChatMessage build() {
-            return chatMessage;
-        }
-    }
 }
+
