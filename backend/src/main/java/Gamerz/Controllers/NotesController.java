@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class NotesController {
 
     @Autowired
@@ -31,15 +32,15 @@ public class NotesController {
     }
 
     // Endpoint to retrieve all notes
-    @GetMapping("/notes")
-    public ResponseEntity<List<Notes>> getAllNotes() {
-        List<Notes> notes = notesService.getAllNotes();
+    @GetMapping("/notes/{userId}")
+    public ResponseEntity<List<Notes>> getAllNotes(@PathVariable Long userId) {
+        List<Notes> notes = notesService.getAllNotesByUserId(userId);
         return ResponseEntity.ok(notes);
     }
 
     // Endpoint to update a note by ID
-    @PutMapping("/notes/{id}")
-    public ResponseEntity<String> updateNote(@PathVariable Long id, @RequestBody Notes updatedNote) {
+    @PutMapping("/notes/{userId}/{id}")
+    public ResponseEntity<String> updateNote(@PathVariable Long id, Long userId, @RequestBody Notes updatedNote) {
         Notes existingNote = notesService.findNoteById(id);
         if (existingNote == null) {
             return ResponseEntity.notFound().build();

@@ -32,5 +32,13 @@ public class StudyRoomService {
         return (StudyRoom) optionalStudyRoom.orElse(null);
     }
 
-
+    public boolean deleteStudyRoom(Long id) {
+        Optional<StudyRoom> optionalStudyRoom = studyRoomRepository.findByStudyRoomId(id);
+        if (optionalStudyRoom.isPresent()) {
+            studyRoomRepository.delete(optionalStudyRoom.get());
+            return true; // Study room deleted successfully
+        } else {
+            return false; // Study room not found
+        }
+    }
 }
