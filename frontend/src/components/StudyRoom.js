@@ -3,15 +3,15 @@ import axios from "../axios-config";
 import { useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate, Link } from "react-router-dom";
-import ChatComponent from "./ChatComponent"; 
+import ChatComponent from "./ChatComponent";
 
 const StudyRoom = () => {
   const navigate = useNavigate();
   const [roomName, setRoomName] = useState("");
   const [roomUserId, setRoomUserId] = useState("");
   const { id } = useParams();
-  const [tokenUserId, setUserId] = useState(null); 
-  const [canDelete, setCanDelete] = useState(false); 
+  const [tokenUserId, setUserId] = useState(null);
+  const [canDelete, setCanDelete] = useState(false);
   const [deletionSuccess, setDeletionSuccess] = useState(false);
 
   useEffect(() => {
@@ -83,18 +83,18 @@ const StudyRoom = () => {
               <div>Returning to login page...</div>
             </div>
           ) : (
-            tokenUserId === roomUserId && (
-              <button className="create-room-button" onClick={handleDelete}>
-                Delete Room
-              </button>
-            )
+            <div className="Content-section">
+              <h2>Chat</h2>
+              <ChatComponent roomId={id} />
+            </div>
           )}
         </div>
-        <div className="Content-section">
-          <h2>Chat</h2>
-          <ChatComponent roomId={id} />
-        </div>
       </div>
+      {tokenUserId === roomUserId && (
+        <button className="delete-room-button" onClick={handleDelete}>
+          Delete Room
+        </button>
+      )}
     </>
   );
 };

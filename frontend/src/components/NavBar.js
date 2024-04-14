@@ -60,13 +60,10 @@ const NavBar = () => {
             <Link to="/Notes">Notes</Link>
           </li>
           <li>
-            <Link to="/Timers">Timers</Link>
+            <Link to="/Timers">To Do List</Link>
           </li>
           <li>
-            <Link to="/Catalog">Catalog</Link>
-          </li>
-          <li>
-            <Link to="/Chat">Chat</Link> {/* Add a link to the chat page */}
+            <Link to="/Catalog">Study Rooms</Link>
           </li>
         </ul>
       </nav>

@@ -35,9 +35,11 @@ const Catalog = () => {
     <>
       <div className="catalog-background"></div>
       <div className="catalog-container">
-        <div className="catalog-title">Study Groups</div>
+        <div className="catalog-title">Study Rooms</div>
         {/* Render button to create a new room */}
-        <Link to="/Room/create" className="create-room create-room-button">Create New Room</Link>
+        <Link to="/Room/create" className="create-room create-room-button">
+          Create New Room
+        </Link>
         {studyRooms.map((room) => (
           // Render each study room as a clickable element
           <div
