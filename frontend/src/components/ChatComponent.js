@@ -23,7 +23,6 @@ const ChatComponent = ({ roomId }) => {
     const username = decodedToken.sub;
     setUsername(username);
     setUserId(userId);
-
     console.log("Username: ", username)
 
     const ws = new WebSocket(
