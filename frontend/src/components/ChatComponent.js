@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
-const ChatComponent = () => {
+const ChatComponent = ({ roomId }) => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [socket, setSocket] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -19,25 +20,18 @@ const ChatComponent = () => {
 
     const decodedToken = jwtDecode(token);
     const userId = decodedToken.id;
+    const username = decodedToken.sub;
+    setUsername(username);
     setUserId(userId);
 
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8090/api/messages/${userId}`
-        );
-        setMessages(response.data);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
+    console.log("Username: ", username)
 
-    fetchMessages();
-
-    const ws = new WebSocket(`ws://localhost:8090/websocket?userId=${userId}`);
+    const ws = new WebSocket(
+      `ws://localhost:8090/websocket?&roomId=${roomId}`
+    );
 
     ws.onopen = () => {
-      console.log("Connected to WebSocket server");
+      console.log("WebSocket connection opened");
       setSocket(ws);
     };
 
@@ -47,31 +41,51 @@ const ChatComponent = () => {
       setMessages((prevMessages) => [...prevMessages, receivedMessage]);
     };
 
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket connection closed");
+      setSocket(null);
+    };
+
+    const fetchMessages = async () => {
+      try {
+        console.log("Room ID: ", roomId);
+        const response = await axios.get(
+          `http://localhost:8090/api/messages/${roomId}`
+        );
+        setMessages(response.data);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+
+    fetchMessages();
+
     return () => {
       if (ws) {
         ws.close();
       }
     };
-  }, [navigate]);
+  }, [roomId, navigate]);
 
   const sendMessage = async () => {
     if (socket && socket.readyState === WebSocket.OPEN) {
       const newMessage = {
         content: inputMessage,
-        sender: "You",
+        sender: username,
+        studyRoomId: roomId,
         userId: userId,
       };
 
       console.log("Sending message:", newMessage);
 
       try {
-        // Send message to the backend
         await axios.post("http://localhost:8090/api/messages", newMessage);
-
-        // Display confirmation message
         console.log("Message successfully sent and saved to the database.");
 
-        // Update the UI or perform any additional actions
         setMessages((prevMessages) => [...prevMessages, newMessage]);
         setInputMessage("");
       } catch (error) {
@@ -88,9 +102,7 @@ const ChatComponent = () => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={
-              message.sender === "You" ? "sent-message" : "received-message"
-            }
+            className={message.sender === username ? "sent-message" : "received-message"}
           >
             <span>{message.sender}: </span>
             <span>{message.content}</span>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios-config";
 import { useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate, Link } from "react-router-dom"; // Import useNavigate and Link
+import { useNavigate, Link } from "react-router-dom";
+import ChatComponent from "./ChatComponent"; 
 
 const StudyRoom = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const StudyRoom = () => {
     if (token) {
       const decodedToken = jwtDecode(token);
       const tokenUserId = decodedToken.id;
-      setUserId(tokenUserId); // Set the user ID in state
+      setUserId(tokenUserId);
     }
   }, []);
 
@@ -73,25 +74,25 @@ const StudyRoom = () => {
     <>
       <div className="studyRoom-background"></div>
       <div className="StudyRoom-container">
-      <div className="StudyRoom-header">
-  <h1>Welcome to "{roomName}"!</h1>
-  {deletionSuccess ? (
-    <div>
-      <div>Deletion Successful.</div>
-      <br />
-      <div>Returning to login page...</div>
-    </div>
-  ) : (
-    tokenUserId === roomUserId && (
-      <button className="create-room-button" onClick={handleDelete}>
-        Delete Room
-      </button>
-    )
-  )}
-</div>
-
+        <div className="StudyRoom-header">
+          <h1>Welcome to "{roomName}"!</h1>
+          {deletionSuccess ? (
+            <div>
+              <div>Deletion Successful.</div>
+              <br />
+              <div>Returning to login page...</div>
+            </div>
+          ) : (
+            tokenUserId === roomUserId && (
+              <button className="create-room-button" onClick={handleDelete}>
+                Delete Room
+              </button>
+            )
+          )}
+        </div>
         <div className="Content-section">
-          <h2>Content</h2>
+          <h2>Chat</h2>
+          <ChatComponent roomId={id} />
         </div>
       </div>
     </>

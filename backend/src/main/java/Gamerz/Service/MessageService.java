@@ -23,4 +23,7 @@ public class MessageService {
     public List<ChatMessage> getMessagesByUserId(Long userId) {
         return messageRepository.findByUserId(userId);
     }
+    public List<ChatMessage> getMessagesByStudyRoomId(Long studyRoomId) {
+        return messageRepository.findByStudyRoomId(studyRoomId);
+    }
 }

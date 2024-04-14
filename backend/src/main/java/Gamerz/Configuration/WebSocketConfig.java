@@ -41,6 +41,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
                         return false;
                     }
                 }, "/websocket")
-                .setAllowedOrigins("http://localhost:3000","http://localhost:3001" ); // Allow requests from localhost:3000
+                .setAllowedOrigins("http://localhost:3000","http://localhost:3001" );
     }
 }

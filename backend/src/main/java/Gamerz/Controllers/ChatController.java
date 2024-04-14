@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/messages")
-@CrossOrigin(origins = "http://localhost:3000")
 public class ChatController {
 
     private final MessageService messageService;
@@ -30,13 +29,23 @@ public class ChatController {
         }
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<ChatMessage>> getMessagesByUserId(@PathVariable Long userId) {
+    @GetMapping("/{studyRoomId}")
+    public ResponseEntity<List<ChatMessage>> getMessagesByStudyRoomId(@PathVariable Long studyRoomId) {
         try {
-            List<ChatMessage> messages = messageService.getMessagesByUserId(userId);
+            List<ChatMessage> messages = messageService.getMessagesByStudyRoomId(studyRoomId);
             return ResponseEntity.ok(messages);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+//    @GetMapping("/{userId}")
+//    public ResponseEntity<List<ChatMessage>> getMessagesByUserId(@PathVariable Long userId) {
+//        try {
+//            List<ChatMessage> messages = messageService.getMessagesByUserId(userId);
+//            return ResponseEntity.ok(messages);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//        }
+//    }
 }

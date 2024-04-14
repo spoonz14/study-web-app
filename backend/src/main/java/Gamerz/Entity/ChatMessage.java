@@ -19,6 +19,7 @@ public class ChatMessage {
     private String sender;
     private MessageType type;
 
+    private Long studyRoomId;
     private Long userId;
 
     // Constructors
