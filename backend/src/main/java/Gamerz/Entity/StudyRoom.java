@@ -16,4 +16,5 @@ public class StudyRoom {
 
     private String roomName;
 
+    private Long userId;
 }
