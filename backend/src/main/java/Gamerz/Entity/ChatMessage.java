@@ -20,7 +20,7 @@ public class ChatMessage {
     private String sender;
     private MessageType type;
 
-    private Long userId; // Add this property
+    private Long userId;
 
     // Constructors
     public ChatMessage(String content, String sender, MessageType type) {
