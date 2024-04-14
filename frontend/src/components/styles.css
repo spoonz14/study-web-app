@@ -521,7 +521,7 @@ html {
 }
 
 .chat-container {
-  width: 300px;
+  width: 600px;
   margin: 20px auto;
   margin-top: 20%;
   border: 1px solid #ccc;
@@ -537,6 +537,7 @@ html {
   background-color: #e6f2ff;
   padding: 5px;
   border-radius: 5px;
+  margin-left: 50%;
   margin-bottom: 5px;
 }
 
@@ -544,6 +545,7 @@ html {
   background-color: #f2f2f2;
   padding: 5px;
   border-radius: 5px;
+  margin-right: 50%;
   margin-bottom: 5px;
 }
 
