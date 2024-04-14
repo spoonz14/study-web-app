@@ -30,21 +30,6 @@ public class AgendaTimerService {
         return agendaTimerRepository.findAll();
     }
 
-    /*
-    public boolean registerTimerToUser(User user, AgendaTimer timer) {
-        agendaTimerRepository.save(timer);
-
-        if(user.getId() == null) {
-            return false;
-        }
-        Long userId = user.getId();
-        timer.setUserID(userId);
-        agendaTimerRepository.save(timer);
-
-        return true;
-    }
-    */
-
     public boolean registerTimerToUser(AgendaTimer timer) {
         agendaTimerRepository.save(timer);
         return true;
