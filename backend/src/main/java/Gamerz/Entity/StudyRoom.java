@@ -16,5 +16,4 @@ public class StudyRoom {
 
     private String roomName;
 
-
 }

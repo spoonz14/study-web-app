@@ -222,15 +222,14 @@ body,
 html {
   margin: 0;
   padding: 0;
-  /* Light grey background for contrast */
 }
 
 .catalog-container {
   margin-top: 10%;
   padding: 20px;
   background-color: #4ec479;
-  min-height: 500px; /* Minimum height to ensure visibility */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
+  min-height: 500px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   width: 50%;
   margin-left: 23%;
@@ -287,6 +286,25 @@ html {
   font-size: 18px; /* Increase font size for readability */
 }
 
+.create-room-button {
+  display: inline-block; /* Change to inline-block to arrange horizontally */
+  width: 150px; /* Set the width to 150px or adjust as needed */
+  margin: 20px 10px; /* Add margin for spacing */
+  padding: 12px; /* Increase padding for bigger buttons */
+  background-color: #fff;
+  color: #4ec479;
+  border: 2px solid #4ec479;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none; /* Remove underline */
+}
+
+.create-room-button:hover {
+  background-color: #4ec479;
+  color: #fff;
+}
+
 @media screen and (max-width: 480px) {
   .catalog-container {
     margin-top: 30%;
@@ -294,6 +312,8 @@ html {
     margin-left: 0%;
   }
 }
+
+/* Add Study Room Styling*/
 
 /* Timer Styling*/
 
