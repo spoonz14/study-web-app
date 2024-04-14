@@ -8,11 +8,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Login {
+public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long scheduleId;
 
-    private String username;
-    private String password;
+    String title;
+    String description;
+    String startTime;
+    String endTime;
+
+    Long userId;
+
 }
