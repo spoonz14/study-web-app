@@ -78,7 +78,7 @@ const StudyRoom = () => {
             <div>
               <div>Deletion Successful.</div>
               <br />
-              <div>Returning to login page...</div>
+              <div>Returning to study rooms...</div>
             </div>
           ) : (
             <div className="Content-section">
