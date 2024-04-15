@@ -27,6 +27,7 @@ function Timers() {
     try {
       console.log(`Fetch timers with id ${getIdFromToken()}`)
       const response = await axios.get(`http://localhost:8090/userTimers/${getIdFromToken()}`); // Adjust endpoint as needed
+      console.log(response.data)
       setTimers(response.data); // Assuming response.data is an array of timers
     } catch (error) {
       console.error("Error fetching timers:", error);
@@ -52,12 +53,14 @@ const getIdFromToken = () => {
   const fetchData = async () => {
    
     try {
+      const castedDate = new Date(dueDate);
+      console.log(`casted date: ${castedDate}`)
       const requestBody = {
         userID: Number(getIdFromToken()), // Convert userID to a number since the input returns a string
         description: description,
         category: category,
         priorityLevel: Number(priorityLevel),
-        dueDate: dueDate
+        dueDate: castedDate
       };
 
       const response = await axios.post('http://localhost:8090/registerTimer', requestBody);
@@ -67,7 +70,12 @@ const getIdFromToken = () => {
       console.error("Error fetching data:", error);
     }
   };
-
+ const formatDateForInput = (date) => {
+    return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
+  };
+  const formatDueDate = (dueDateArray) => {
+    return new Date(dueDateArray[0], dueDateArray[1] - 1, dueDateArray[2], dueDateArray[3], dueDateArray[4]);
+  };
   return (
     <div className="timers-background">
     <div className="timerSetup">

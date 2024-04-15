@@ -18,6 +18,9 @@ class Notif  {
       return userId;
     }
 };
+ formatDueDate = (dueDateArray) => {
+  return new Date(dueDateArray[0], dueDateArray[1] - 1, dueDateArray[2], dueDateArray[3], dueDateArray[4]);
+};
      fetchTimers = async () => {
         try {
           console.log(`Fetch timers with id ${this.getIdFromToken()}`)
@@ -26,11 +29,16 @@ class Notif  {
           const currentDate = new Date();
 
           console.log(`cur time: ${currentDate}`)
-
+          console.log(response.data);
           response.data.forEach(timer => {
+            
             var dateInst = new Date(timer.dueDate)
-            if (dateInst >= currentDate) {
-            var timeDue = dateInst.getTime() - currentDate.getTime()
+            
+            console.log("date inst " + dateInst)
+            var timeDue = dateInst.getTime() - currentDate.getTime();
+            console.log("now " + currentDate)
+
+            if (timeDue >= 0) {  
             console.log(timeDue);
             setTimeout(
               () => {
