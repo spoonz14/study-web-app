@@ -603,11 +603,11 @@ html {
 .chat-container {
   width: 1000px;
   margin: 20px auto;
-  margin-top: 5%;
+  margin-top: 0%;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  max-height: 250px; /* Set a maximum height */
+  max-height: 270px; /* Set a maximum height */
   overflow-y: auto; /* Enable vertical scrolling */
   position: relative; /* Set position to relative for children positioning */
 }
