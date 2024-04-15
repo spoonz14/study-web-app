@@ -432,9 +432,9 @@ html {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 700px;
-  margin-left: 29%;
-  margin-top: -19%;
+  width: 80%; /* Adjusted width for responsiveness */
+  max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
+  margin: -0% auto; /* Center the form horizontally and adjust the top margin */
 }
 
 .new-note-form input,
@@ -482,9 +482,9 @@ html {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 700px;
-  margin-left: 29%;
-  margin-top: -25%;
+  width: 80%; /* Adjusted width for responsiveness */
+  max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
+  margin: -10% auto; /* Center the form horizontally and adjust the top margin */
 }
 
 .note-edit-form input,
