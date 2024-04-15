@@ -4,8 +4,10 @@ import axios from 'axios';
 
 
 class Notif  {
-   sound = new Audio('bloop.mp3'); // Add your sound file path here
-
+   sound = new Audio('bloop.mp3'); 
+   constructor() {
+    this.sound = new Audio('bloop.mp3');  // Load sound
+}
    getIdFromToken = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
@@ -20,8 +22,25 @@ class Notif  {
         try {
           console.log(`Fetch timers with id ${this.getIdFromToken()}`)
           const response = await axios.get(`http://localhost:8090/userTimers/${this.getIdFromToken()}`); // Adjust endpoint as needed
-          response.data.array.forEach(element => {
-            console.log(element + "element")
+          console.log("fetching timers for notifaction system")
+          const currentDate = new Date();
+
+          console.log(`cur time: ${currentDate}`)
+
+          response.data.forEach(timer => {
+            var dateInst = new Date(timer.dueDate)
+            if (dateInst >= currentDate) {
+            var timeDue = dateInst.getTime() - currentDate.getTime()
+            console.log(timeDue);
+            setTimeout(
+              () => {
+                console.log("BLEEP")
+                alert(`${timer.description} is due`);
+                //this.sound.play(); //doesnt work rn
+              },
+              timeDue
+            );
+            }
           });
 
         } catch (error) {console.error("Error fetching timers:", error);}

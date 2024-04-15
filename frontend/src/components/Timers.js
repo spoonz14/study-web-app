@@ -8,6 +8,7 @@ function Timers() {
   const [userID, setUserID] = useState('');
   const [description, setDescription] = useState('');
   const [priorityLevel, setPriority] = useState('');
+  const [dueDate, setDueDate] = useState('');
   const [category, setCategory] = useState('');
   const [timers, setTimers] = useState([]); // State to store timers
   var userId;
@@ -38,6 +39,7 @@ const getIdFromToken = () => {
       console.log("Token: ", decodedToken);
       const userId = decodedToken.id;
       console.log("User ID: ", userId);
+      console.log("userid" +userId);
       return userId;
     }
   }
@@ -54,7 +56,8 @@ const getIdFromToken = () => {
         userID: Number(getIdFromToken()), // Convert userID to a number since the input returns a string
         description: description,
         category: category,
-        priorityLevel: Number(priorityLevel)
+        priorityLevel: Number(priorityLevel),
+        dueDate: dueDate
       };
 
       const response = await axios.post('http://localhost:8090/registerTimer', requestBody);
@@ -78,7 +81,8 @@ const getIdFromToken = () => {
           <input type="text" value={category} onChange={e => setCategory(e.target.value)} />
         <label>Priority:  </label>
           <input type="number" value={priorityLevel} onChange={e => setPriority(e.target.value)} />
-        
+          <label>Due Date:  </label>
+          <input type="datetime-local" value={dueDate} onChange={e => setDueDate(e.target.value)} />
         </div>
       <button onClick={fetchData}>Add Reminder</button>
     </div>
@@ -88,6 +92,8 @@ const getIdFromToken = () => {
           <p>Description: {timer.description}</p>
           <p>Category: {timer.category}</p>
           <p>Priority: {timer.priorityLevel}</p>
+          <p>Due: {timer.dueDate}</p>
+
           <button onClick={() => deleteTimer(timer.timerID)}>Delete</button>
           
         </div>

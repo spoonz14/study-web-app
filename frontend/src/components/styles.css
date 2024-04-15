@@ -257,7 +257,7 @@ html {
   z-index: -1;
 }
 .timers-background {
-  position: fixed;
+ 
   top: 0;
   left: 0;
   width: 100%;
@@ -354,6 +354,7 @@ html {
   box-shadow: 5px 8px 7px rgba(74, 78, 148, 0.337);
 }
 .timerSetup {
+  
   background-color: whitesmoke;
   border-radius: 12px;
   padding-bottom: 50px;
