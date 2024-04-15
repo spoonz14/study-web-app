@@ -13,16 +13,26 @@ import java.util.List;
 public class AgendaTimerService {
     @Autowired
     private AgendaTimerRepository agendaTimerRepository;
-    @Autowired
-    private UserRepository userRepo;
 
-    public boolean registerTimerToUser(User user, AgendaTimer timer) {
-        if(user.getId() == null) {
-            return false;
-        }
-        Long userId = user.getId();
-        timer.setUserID(userId);
+    public boolean registerTimerToUser(long userID, int year, int month, int day) {
+        boolean success = false;
+        AgendaTimer newTimer = new AgendaTimer();
+        newTimer.setupTimer(userID, year, month, day);
+        agendaTimerRepository.save(newTimer);
+        success = true;
+        return success;
+    }
+    public boolean deleteTimerToUser(long timerID){
+        agendaTimerRepository.deleteById(timerID);
+        return true;
+    }
+    public List<AgendaTimer> getAllTimers() {
+        return agendaTimerRepository.findAll();
+    }
+
+    public boolean registerTimerToUser(AgendaTimer timer) {
         agendaTimerRepository.save(timer);
         return true;
     }
+
 }

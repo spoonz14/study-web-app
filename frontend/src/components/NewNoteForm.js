@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
-const NewNoteForm = ({ onCreateNote }) => {
-  const [title, setTitle] = React.useState("");
-  const [content, setContent] = React.useState("");
+const NewNoteForm = ({ onAddNote, addNoteForm, setAddNoteForm }) => {
+  //Variables to store new note Title and Description
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
+  // function to update the title state when input change is made
   const newFormTitle = (e) => {
     setTitle(e.target.value);
   };
 
-  const newFormContent = (e) => {
-    setContent(e.target.value);
+  // function to update the description state when textarea change is made
+  const newFormDescription = (e) => {
+    setDescription(e.target.value);
   };
 
-  const doCreateNote = () => {
-    if (title.trim() !== "" && content.trim() !== "") {
-      onCreateNote({
+  // function to add a new note
+  const handleAddNote = () => {
+    // check if the title and description fields aren't empty
+    if (title.trim() !== "" && description.trim() !== "") {
+      onAddNote({
         title,
-        content,
+        description,
       });
+      // Reset the title and description states
       setTitle("");
-      setContent("");
+      setDescription("");
+      // Close the form after adding the note
+      setAddNoteForm(false);
     }
   };
 
@@ -33,11 +41,11 @@ const NewNoteForm = ({ onCreateNote }) => {
         onChange={newFormTitle}
       />
       <textarea
-        placeholder="Content"
-        value={content}
-        onChange={newFormContent}
+        placeholder="Description"
+        value={description}
+        onChange={newFormDescription}
       />
-      <button onClick={doCreateNote}>Add Note</button>
+      <button onClick={handleAddNote}>Add Note</button>
     </div>
   );
 };
