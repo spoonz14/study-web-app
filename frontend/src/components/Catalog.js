@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios-config";
-import { Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate
+import { Link, useNavigate } from "react-router-dom";
 
 const Catalog = () => {
   const [studyRooms, setStudyRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("Fetching study rooms...");

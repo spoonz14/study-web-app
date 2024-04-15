@@ -47,7 +47,9 @@ const NavBar = () => {
           </li>
           {isLoggedIn ? (
             <li>
-              <button onClick={handleLogout} className="nav-link logout-button">Logout</button>
+              <button onClick={handleLogout} className="nav-link logout-button">
+                Logout
+              </button>
             </li>
           ) : (
             <React.Fragment>
@@ -61,6 +63,9 @@ const NavBar = () => {
           </li>
           <li>
             <Link to="/Timers">Timers</Link>
+          </li>
+          <li>
+            <Link to="/Calendar">Calendar</Link>
           </li>
           <li>
             <Link to="/Catalog">Catalog</Link>
