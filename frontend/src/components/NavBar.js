@@ -64,10 +64,10 @@ const NavBar = () => {
           </li>
           {isLoggedIn ? (
           <li> 
-            <Link to="/Timers">Timers</Link>
+            <Link to="/Timers">To Do List</Link>
           </li> ) : null}
           <li>
-            <Link to="/Catalog">Catalog</Link>
+            <Link to="/Catalog">Study Rooms</Link>
           </li>
         </ul>
       </nav>
