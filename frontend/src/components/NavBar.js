@@ -11,7 +11,6 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-
     const token = sessionStorage.getItem("token");
     setIsLoggedIn(!!token); // Set isLoggedIn based on token existence
 
@@ -50,7 +49,9 @@ const NavBar = () => {
           </li>
           {isLoggedIn ? (
             <li>
-              <button onClick={handleLogout} className="nav-link logout-button">Logout</button>
+              <button onClick={handleLogout} className="nav-link logout-button">
+                Logout
+              </button>
             </li>
           ) : (
             <React.Fragment>
@@ -63,9 +64,13 @@ const NavBar = () => {
             <Link to="/Notes">Notes</Link>
           </li>
           {isLoggedIn ? (
-          <li> 
-            <Link to="/Timers">To Do List</Link>
-          </li> ) : null}
+            <li>
+              <Link to="/Timers">To Do List</Link>
+            </li>
+          ) : null}
+          <li>
+            <Link to="/Calendar">Calendar</Link>
+          </li>
           <li>
             <Link to="/Catalog">Study Rooms</Link>
           </li>
