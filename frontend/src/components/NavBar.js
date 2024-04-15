@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logoImage from "../components/StudiiLogo.jpg";
 import { Link, useNavigate } from "react-router-dom";
-
-import RegisterUser from "./RegisterUser";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ChatComponent from "./ChatComponent"; // Import the ChatComponent
 import "./styles.css";
 
 const NavBar = () => {
@@ -47,7 +45,9 @@ const NavBar = () => {
           </li>
           {isLoggedIn ? (
             <li>
-              <button onClick={handleLogout} className="nav-link logout-button">Logout</button>
+              <button onClick={handleLogout} className="nav-link logout-button">
+                Logout
+              </button>
             </li>
           ) : (
             <React.Fragment>
@@ -60,10 +60,10 @@ const NavBar = () => {
             <Link to="/Notes">Notes</Link>
           </li>
           <li>
-            <Link to="/Timers">Timers</Link>
+            <Link to="/Timers">To Do List</Link>
           </li>
           <li>
-            <Link to="/Catalog">Catalog</Link>
+            <Link to="/Catalog">Study Rooms</Link>
           </li>
         </ul>
       </nav>

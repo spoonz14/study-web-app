@@ -5,7 +5,6 @@ import NoteEdit from "./NoteEdit";
 import NewNoteForm from "./NewNoteForm";
 import { jwtDecode, InvalidTokenError } from "jwt-decode";
 
-
 const Notes = () => {
   // stating variables to manage add notes, selected notes, and newly added notes
   const [notes, setNotes] = useState([]);
@@ -28,70 +27,79 @@ const Notes = () => {
     fetchNotes();
   }, [newNote]);
 
-// Fetch notes from backend
-const fetchNotes = async () => {
-  try {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      const userId = decodedToken.id;
-      const response = await axios.get(`http://localhost:8090/notes/${userId}`);
-      setNotes(response.data);
+  // Fetch notes from backend
+  const fetchNotes = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+        const response = await axios.get(
+          `http://localhost:8090/notes/${userId}`
+        );
+        setNotes(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching notes:", error);
     }
-  } catch (error) {
-    console.error("Error fetching notes:", error);
-  }
-};
+  };
 
-// Function to add a new note
-const addNote = async (newNoteData) => {
-  try {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      const userId = decodedToken.id;
-      newNoteData.userId = userId;
-      const response = await axios.post(`http://localhost:8090/notes`, newNoteData);
-      setNewNote(response.data);
+  // Function to add a new note
+  const addNote = async (newNoteData) => {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+        newNoteData.userId = userId;
+        const response = await axios.post(
+          `http://localhost:8090/notes`,
+          newNoteData
+        );
+        setNewNote(response.data);
+      }
+    } catch (error) {
+      console.error("Error adding note:", error);
     }
-  } catch (error) {
-    console.error("Error adding note:", error);
-  }
-};
+  };
 
-// Function to save edited note
-const saveNote = async (updatedNote) => {
-  try {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      const userId = decodedToken.id;
-      await axios.put(`http://localhost:8090/notes/${userId}/${updatedNote.noteId}`, updatedNote);
-      window.location.reload();
-      fetchNotes();
+  // Function to save edited note
+  const saveNote = async (updatedNote) => {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+        await axios.put(
+          `http://localhost:8090/notes/${userId}/${updatedNote.noteId}`,
+          updatedNote
+        );
+        window.location.reload();
+        fetchNotes();
+      }
+    } catch (error) {
+      console.error(
+        `Note ID: ${updatedNote.noteId} Error saving note: `,
+        error
+      );
     }
-  } catch (error) {
-    console.error(`Note ID: ${updatedNote.noteId} Error saving note: `, error);
-  }
-};
+  };
 
-// Function to delete a note
-const deleteNote = async (deletedNote) => {
-  try {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      const userId = decodedToken.id;
-      await axios.delete(`http://localhost:8090/notes/${deletedNote.noteId}`);
-      setNotes(notes.filter((note) => note.noteId !== deletedNote.noteId));
-      window.location.reload();
+  // Function to delete a note
+  const deleteNote = async (deletedNote) => {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+        await axios.delete(`http://localhost:8090/notes/${deletedNote.noteId}`);
+        setNotes(notes.filter((note) => note.noteId !== deletedNote.noteId));
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error deleting note:", error);
     }
-  } catch (error) {
-    console.error("Error deleting note:", error);
-  }
-};
-
-
+  };
 
   // Function to update note in the notes state
   const updateNote = (updatedNote) => {

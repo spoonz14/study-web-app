@@ -54,6 +54,25 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
+@media screen and (max-width: 480px) {
+  .navbar {
+    margin-top: 10%;
+  }
+  .navbar ul {
+    flex-direction: column; /* Adjusted property to flex-direction */
+    margin-top: 10%;
+    align-items: flex-start; /* Adjusted alignment */
+    margin-right: 0%; /* Added padding to the left for spacing */
+  }
+
+  .navbar ul li {
+    margin: 10px 0; /* Adjusted margin for spacing */
+  }
+  .logo {
+    padding: 0%;
+  }
+}
+
 /*Home Page Styling*/
 
 .home-container {
@@ -118,7 +137,12 @@ ul li button:hover {
   margin-top: 40px;
   color: rgb(255, 255, 255);
   background-color: #4ec479;
+  font-size: 1.5rem;
   text-align: center;
+}
+
+.register p {
+  font-size: 0.7rem;
 }
 
 .register input[type="text"],
@@ -126,6 +150,7 @@ ul li button:hover {
 .register input[type="email"] {
   display: block;
   width: 20%;
+  font-size: 0.9rem;
   margin: 10px auto;
   padding: 10px;
   border: none;
@@ -143,6 +168,7 @@ ul li button:hover {
   color: #4ec479;
   border: 2px solid #4ec479;
   border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   text-decoration: none; /* Remove underline */
@@ -150,7 +176,7 @@ ul li button:hover {
 
 .register button[type="submit"]:hover,
 .register button[type="button"]:hover {
-  background-color: #4ec479;
+  background-color: #389a5c;
   color: #fff;
 }
 
@@ -167,7 +193,7 @@ ul li button:hover {
   padding: 20px;
   background-color: #4ec479;
   border-radius: 15px;
-  height: 500px;
+  height: 510px;
   width: 70%;
   margin-left: 15%;
 }
@@ -180,15 +206,17 @@ ul li button:hover {
 .StudyRoom-header h1 {
   font-size: 2.5rem;
   color: #ffffff; /* Adjust color as needed */
+  font-family: "Montserrat", sans-serif;
 }
 
 .Content-section {
   font-size: 1.2rem;
   line-height: 2;
   color: #7e7878;
+  font-family: "Montserrat", sans-serif;
   text-align: center;
   background-color: #fff;
-  height: 350px;
+  height: 400px;
   border-radius: 15px;
 }
 
@@ -216,6 +244,28 @@ ul li button:hover {
   z-index: -1;
 }
 
+.delete-room-button {
+  display: inline-block; /* Change to inline-block to arrange horizontally */
+  width: 150px; /* Set the width to 150px or adjust as needed */
+  margin: 20px 10px; /* Add margin for spacing */
+  padding: 12px; /* Increase padding for bigger buttons */
+  color: #fff;
+  margin-left: 46%;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #e6372e;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none; /* Remove underline */
+}
+
+.delete-room-button:hover {
+  background-color: #ca3028;
+  color: #fff;
+}
+
 /* Catalog styling*/
 
 body,
@@ -228,7 +278,9 @@ html {
   margin-top: 10%;
   padding: 20px;
   background-color: #4ec479;
-  min-height: 500px; 
+  min-height: 500px;
+  max-height: 200px; /* Set a max-height for the container */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   width: 50%;
@@ -237,7 +289,7 @@ html {
 
 .catalog-title {
   margin-bottom: 20px;
-  font-size: 27px;
+  font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
   padding: 20px;
@@ -262,15 +314,18 @@ html {
   border: 1px solid #ccc;
   padding: 20px;
   width: 50%;
+  font-weight: 500;
+  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   margin-left: 23%;
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 10px;
   border-radius: 20px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.2s;
-  color: #333;
+  color: #5f5e5e;
 }
 
 .catalog-item:hover {
@@ -292,6 +347,9 @@ html {
   margin: 20px 10px; /* Add margin for spacing */
   padding: 12px; /* Increase padding for bigger buttons */
   background-color: #fff;
+  margin-left: 40%;
+  text-align: center;
+  font-weight: 600;
   color: #4ec479;
   border: 2px solid #4ec479;
   border-radius: 5px;
@@ -301,7 +359,7 @@ html {
 }
 
 .create-room-button:hover {
-  background-color: #4ec479;
+  background-color: #3e915d;
   color: #fff;
 }
 
@@ -376,7 +434,7 @@ html {
   padding: 20px;
   width: 700px;
   margin-left: 29%;
-  margin-top: -9%;
+  margin-top: -19%;
 }
 
 .new-note-form input,
@@ -405,7 +463,7 @@ html {
 }
 
 .new-note-form button:hover {
-  background-color: #40a264;
+  background-color: #338551;
 }
 
 @media screen and (max-width: 1200px) {
@@ -426,7 +484,7 @@ html {
   padding: 20px;
   width: 700px;
   margin-left: 29%;
-  margin-top: -15%;
+  margin-top: -25%;
 }
 
 .note-edit-form input,
@@ -489,7 +547,7 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 1200px;
   background-image: url("../components/CatalogImage.jpg");
   background-size: cover;
   background-position: center;
@@ -510,7 +568,7 @@ html {
   border-radius: 8px;
   padding: 20px;
   width: 350px;
-  margin-top: 130px;
+  margin-top: 140px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -526,7 +584,7 @@ html {
 
 .add-note-container {
   margin-bottom: 21px;
-  margin-top: 40px;
+  margin-top: -2%;
 }
 
 .add-note-container button {
@@ -538,4 +596,74 @@ html {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+/*Chat Feature*/
+
+.chat-container {
+  width: 1000px;
+  margin: 20px auto;
+  margin-top: 5%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  max-height: 250px; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  position: relative; /* Set position to relative for children positioning */
+}
+
+.messages-container {
+  margin-bottom: 60px; /* Adjust margin to make space for input container */
+}
+
+.sent-message {
+  background-color: #cff3d8;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 50%;
+  margin-bottom: 5px;
+}
+
+.received-message {
+  background-color: #e6e1e1;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 50%;
+  margin-bottom: 5px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  bottom: 0; /* Stick input container to the bottom */
+  background-color: #fff; /* Optional: Set a background color */
+  padding: 10px; /* Optional: Add padding for better appearance */
+}
+
+.input-container input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.input-container button {
+  padding: 8px 15px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  background-color: #40a264;
+}
+
+@media screen and (max-width: 1200px) {
+  .chat-container {
+    width: 50%;
+  }
 }
