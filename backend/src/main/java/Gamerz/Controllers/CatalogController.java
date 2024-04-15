@@ -14,6 +14,8 @@ import java.util.List;
 public class CatalogController {
     @Autowired
     private StudyRoomService studyRoomService;
+    @Autowired
+    private CatalogService catalogService;
 
     @GetMapping("/catalog")
     public ResponseEntity<List<StudyRoom>> getAllRooms() {
@@ -23,13 +25,12 @@ public class CatalogController {
 
     @PostMapping("/catalog")
     public ResponseEntity<String> create(@RequestBody StudyRoom studyRoom) {
-        if (studyRoomService.createStudyRoom(studyRoom)) {
+        if (catalogService.createStudyRoom(studyRoom)) {
             return ResponseEntity.ok("Study room added.");
         } else {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Room already exists.");
         }
     }
-
 }
 
 

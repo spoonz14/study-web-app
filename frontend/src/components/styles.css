@@ -1,8 +1,8 @@
-/*NavBar Styling*/
+/* NavBar Styling */
 
 .navbar {
   background-color: #ffffff;
-  color: #fff;
+  color: #767575; /* Changed text color to match navigation links */
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -19,16 +19,18 @@ nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex; /* Changed to flex to ensure consistent spacing */
+  gap: 20px; /* Added gap between navigation items */
 }
 
 nav ul li {
   display: inline;
-  margin-right: 100px;
+  margin-right: 40px; /* Adjust the margin as needed */
 }
 
 nav ul li a {
   text-decoration: none;
-  color: #767575;
+  color: inherit; /* Changed to inherit color from parent */
 }
 
 nav ul li a:hover {
@@ -37,6 +39,19 @@ nav ul li a:hover {
 
 .logo {
   height: 40px;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit; /* Changed to inherit color from parent */
+  font-size: inherit;
+  padding: 0;
+}
+
+.logout-button:hover {
+  text-decoration: underline;
 }
 
 /*Home Page Styling*/
@@ -118,20 +133,23 @@ ul li button:hover {
   outline: none;
 }
 
-.register button[type="submit"] {
-  display: block;
-  width: 10%;
-  margin: 20px auto;
-  padding: 10px;
+.register button[type="submit"],
+.register button[type="button"] {
+  display: inline-block; /* Change to inline-block to arrange horizontally */
+  width: 150px; /* Set the width to 150px or adjust as needed */
+  margin: 20px 10px; /* Add margin for spacing */
+  padding: 12px; /* Increase padding for bigger buttons */
   background-color: #fff;
   color: #4ec479;
   border: 2px solid #4ec479;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  text-decoration: none; /* Remove underline */
 }
 
-.register button[type="submit"]:hover {
+.register button[type="submit"]:hover,
+.register button[type="button"]:hover {
   background-color: #4ec479;
   color: #fff;
 }
@@ -204,15 +222,14 @@ body,
 html {
   margin: 0;
   padding: 0;
-  /* Light grey background for contrast */
 }
 
 .catalog-container {
   margin-top: 10%;
   padding: 20px;
   background-color: #4ec479;
-  min-height: 500px; /* Minimum height to ensure visibility */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
+  min-height: 500px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   width: 50%;
   margin-left: 23%;
@@ -279,6 +296,25 @@ html {
   font-size: 18px; /* Increase font size for readability */
 }
 
+.create-room-button {
+  display: inline-block; /* Change to inline-block to arrange horizontally */
+  width: 150px; /* Set the width to 150px or adjust as needed */
+  margin: 20px 10px; /* Add margin for spacing */
+  padding: 12px; /* Increase padding for bigger buttons */
+  background-color: #fff;
+  color: #4ec479;
+  border: 2px solid #4ec479;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none; /* Remove underline */
+}
+
+.create-room-button:hover {
+  background-color: #4ec479;
+  color: #fff;
+}
+
 @media screen and (max-width: 480px) {
   .catalog-container {
     margin-top: 30%;
@@ -286,6 +322,8 @@ html {
     margin-left: 0%;
   }
 }
+
+/* Add Study Room Styling*/
 
 /* Timer Styling*/
 

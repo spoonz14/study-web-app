@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate, Link } from "react-router-dom"; // Import useNavigate and Link
 
 import axios from "../axios-config";
 
 const RegisterUser = () => {
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     username: "",
@@ -28,26 +28,22 @@ const RegisterUser = () => {
       setRegistrationSuccess(true);
     } catch (error) {
       if (error.response) {
-        // Error response from the server
         console.error("Registration failed:", error.response.data);
       } else if (error.request) {
-        // The request was made but no response was received
         console.error("No response received:", error.request);
       } else {
-        // Something happened in setting up the request that triggered an error
         console.error("Request failed:", error.message);
       }
     }
   };
 
-  // Redirect to "/Home" after 3 seconds of displaying the "Registration Successful!" message
   useEffect(() => {
     if (registrationSuccess) {
       const redirectTimer = setTimeout(() => {
-        navigate("/"); // Use navigate instead of history.push
+        navigate("/login");
       }, 3000);
 
-      return () => clearTimeout(redirectTimer); // Clear the timer on unmount
+      return () => clearTimeout(redirectTimer);
     }
   }, [registrationSuccess, navigate]);
 
@@ -58,7 +54,7 @@ const RegisterUser = () => {
         <div>
           <div>Registration Successful!</div>
           <br />
-          <div>Returning to home page...</div>
+          <div>Returning to login page...</div>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -93,6 +89,7 @@ const RegisterUser = () => {
             onChange={handleChange}
           />
           <button type="submit">Register</button>
+          <Link to="/login"><button type="button">Back</button></Link>
         </form>
       )}
     </div>

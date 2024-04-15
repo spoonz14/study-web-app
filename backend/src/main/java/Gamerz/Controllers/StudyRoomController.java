@@ -24,5 +24,15 @@ public class StudyRoomController {
 
         }
     }
+
+    @DeleteMapping("/room/{id}")
+    public ResponseEntity<String> deleteStudyRoom(@PathVariable Long id) {
+        boolean isDeleted = studyRoomService.deleteStudyRoom(id);
+        if (isDeleted) {
+            return ResponseEntity.ok("Study Room deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Study Room not found.");
+        }
+    }
 }
 
