@@ -20,6 +20,9 @@ const AddStudyRoom = () => {
             console.log("User ID: ", userId);
             setUserId(userId); // Set the user ID in state
         }
+        else {
+            navigate("/login");
+        }
     }, []);
 
     const handleChange = (e) => {

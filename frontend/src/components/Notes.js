@@ -4,9 +4,10 @@ import NoteList from "./NoteList";
 import NoteEdit from "./NoteEdit";
 import NewNoteForm from "./NewNoteForm";
 import { jwtDecode, InvalidTokenError } from "jwt-decode";
+import { useNavigate, Link } from "react-router-dom";
 
 const Notes = () => {
-  // stating variables to manage add notes, selected notes, and newly added notes
+  const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [chosenNote, setChosenNote] = useState(null);
   const [addNoteForm, setAddNoteForm] = useState(false);
@@ -19,6 +20,9 @@ const Notes = () => {
       console.log("Token: ", decodedToken);
       const userId = decodedToken.id;
       console.log("User ID: ", userId);
+    }
+    else {
+      navigate("/login");
     }
   }, []);
 
