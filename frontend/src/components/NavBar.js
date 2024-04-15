@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logoImage from "../components/StudiiLogo.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import ChatComponent from "./ChatComponent"; // Import the ChatComponent
 import "./styles.css";
 
 const NavBar = () => {

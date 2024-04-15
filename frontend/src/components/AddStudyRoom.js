@@ -23,7 +23,7 @@ const AddStudyRoom = () => {
         else {
             navigate("/login");
         }
-    }, []);
+    }, [navigate]);
 
     const handleChange = (e) => {
         setStudyRoom({ ...studyRoom, [e.target.name]: e.target.value });

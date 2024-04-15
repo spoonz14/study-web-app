@@ -24,7 +24,7 @@ const Notes = () => {
     else {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   // Effect that fetched notes once a new note has been added
   useEffect(() => {
