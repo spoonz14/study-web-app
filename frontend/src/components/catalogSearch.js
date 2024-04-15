@@ -11,6 +11,7 @@ const CatalogSearch = () => {
   };
 
   const handleSearchSubmit = (event) => {
+    console.log("searchterm:"+searchTerm)
     event.preventDefault();
     navigate(`/catalog?query=${encodeURIComponent(searchTerm)}`);
   };

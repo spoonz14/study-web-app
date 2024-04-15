@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios-config";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-
+const submitSearch = (param) => {
+  console.log("FFF"+param)
+  try {
+    const endpoint = param ? `/catalog/search/${param}` : "/catalog";
+    const response = axios.get(endpoint);
+    return response.data;
+  } catch (error) {
+  }
+}
 const Catalog = () => {
   const [studyRooms, setStudyRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,12 +18,11 @@ const Catalog = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState(searchParams.get("query") || "");
 
-  useEffect(() => {
+  useEffect(() => { //this is called everytime the search changes for now
     const fetchStudyRooms = async () => {
       setIsLoading(true);
       try {
-        // If there's a query, use the search endpoint; otherwise, fetch all study rooms
-        const endpoint = query ? `/catalog/search?query=${query}` : "/catalog";
+        const endpoint = query ? `/catalog/search/${query}` : "/catalog";
         const response = await axios.get(endpoint);
         setStudyRooms(response.data);
       } catch (error) {
@@ -27,8 +34,8 @@ const Catalog = () => {
     fetchStudyRooms();
   }, [query]);
 
+
   const handleSearch = (e) => {
-    e.preventDefault();
     setSearchParams({ query }); // Update URL with search query
   };
 
@@ -39,15 +46,7 @@ const Catalog = () => {
   return (
     <>
       <div className="search-container">
-        <form onSubmit={handleSearch}>
-          <input 
-            type="text" 
-            placeholder="Search groups..." 
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
+       
       </div>
       <div className="catalog-container">
         <div className="catalog-title">Study Groups</div>
@@ -63,6 +62,15 @@ const Catalog = () => {
             {room.roomName}
           </div>
         ))}
+         <form onSubmit={handleSearch}>
+          <input 
+            type="text" 
+            placeholder="Search groups..." 
+            value={query}
+            onChange={(e) => {setQuery(e.target.value)}}
+          />
+          <button type="submit">Search</button>
+        </form>
       </div>
     </>
   );
