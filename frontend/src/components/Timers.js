@@ -66,7 +66,7 @@ function Timers() {
 
   useEffect(() => {
     fetchTimers();
-  }, [dayNumber, monthNumber]); // Add dayNumber and monthNumber as dependencies
+  }, [dayNumber, monthNumber]);
 
   const formatDueDate = (dueDateStr) => {
     const dateObj = new Date(dueDateStr);
