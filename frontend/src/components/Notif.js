@@ -25,6 +25,7 @@ class Notif  {
         try {
           console.log(`Fetch timers with id ${this.getIdFromToken()}`)
           const response = await axios.get(`http://localhost:8090/userTimers/${this.getIdFromToken()}`); // Adjust endpoint as needed
+          console.log("Response: ", response);
           console.log("fetching timers for notifaction system")
           const currentDate = new Date();
 
@@ -39,7 +40,7 @@ class Notif  {
             console.log("now " + currentDate)
 
             if (timeDue >= 0) {  
-            console.log(timeDue);
+            console.log("Time due: ", timeDue);
             setTimeout(
               () => {
                 console.log("BLEEP")

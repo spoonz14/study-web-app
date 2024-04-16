@@ -77,25 +77,31 @@ function Timers() {
 
   const fetchData = async () => {
     try {
-      const { day, month } = formatDueDate(dueDate); // Extract day and month from dueDate
+      const { day, month } = formatDueDate(dueDate);
       const dateParts = dueDate.split(/[-T:]/);
-      const localDate = new Date(
-        Date.UTC(dateParts[0], dateParts[1] - 1, dateParts[2], dateParts[3], dateParts[4])
-      );
-  
+      console.log("Date parts: ", dateParts);
+      // Create a new Date object directly from the components (local time)
+    const localDate = new Date(
+      dateParts[0], // year
+      dateParts[1] - 1, // month (subtract 1 as months are 0-indexed)
+      dateParts[2], // day
+      dateParts[3], // hour
+      dateParts[4] // minute
+    );
+      console.log("local date: ", localDate);
       const requestBody = {
         userId: userId,
         description: description,
         category: category,
         priorityLevel: Number(priorityLevel),
         dueDate: localDate,
-        numberedDay: day, // Use extracted day
-        numberedMonth: month, // Use extracted month
+        numberedDay: day,
+        numberedMonth: month,
       };
-      console.log("Info: ", requestBody);
+      
       const response = await axios.post('http://localhost:8090/Timers', requestBody);
       navigate(`/Timers/${month}/${day}`);
-      window.location.reload();
+      // window.location.reload();
       fetchTimers();
     } catch (error) {
       console.error("Error fetching data:", error);
