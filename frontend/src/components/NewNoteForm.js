@@ -34,6 +34,7 @@ const NewNoteForm = ({ onAddNote, addNoteForm, setAddNoteForm }) => {
 
   return (
     <div className="new-note-form">
+      <h2>New Note</h2>
       <input
         type="text"
         placeholder="Title"
