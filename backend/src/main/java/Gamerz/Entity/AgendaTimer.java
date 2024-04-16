@@ -14,9 +14,16 @@ public class AgendaTimer {
     @GeneratedValue
     private Long timerID;
 
-    private Long userID; //Foreign key
-    private LocalDateTime dueDate;
+    private int year;
+    private int month;
+    private int day;
+
+    private Long userID;
+    private String dueDate;
     private String description;
     private int priorityLevel;
     private String category;
+    public void setupTimer(long userID, int year, int month, int day){
+        dueDate = LocalDateTime.of(year, month, day, 0, 0).toString();
+    }
 }

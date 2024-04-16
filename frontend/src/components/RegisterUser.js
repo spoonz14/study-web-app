@@ -1,8 +1,11 @@
-// RegisterUser.js
-import React, { useState } from "react";
-import axios from "../axios-config"; // Import the axios instance
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom"; // Import useNavigate and Link
+
+import axios from "../axios-config";
 
 const RegisterUser = () => {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -11,6 +14,8 @@ const RegisterUser = () => {
     email: "",
   });
 
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -18,58 +23,75 @@ const RegisterUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/register", user); // Use the axios instance
+      const response = await axios.post("/register", user);
       console.log(response.data);
+      setRegistrationSuccess(true);
     } catch (error) {
       if (error.response) {
-        // Error response from the server
         console.error("Registration failed:", error.response.data);
       } else if (error.request) {
-        // The request was made but no response was received
         console.error("No response received:", error.request);
       } else {
-        // Something happened in setting up the request that triggered an error
         console.error("Request failed:", error.message);
       }
     }
   };
 
+  useEffect(() => {
+    if (registrationSuccess) {
+      const redirectTimer = setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+
+      return () => clearTimeout(redirectTimer);
+    }
+  }, [registrationSuccess, navigate]);
+
   return (
     <div className="register">
       <h2>Register User</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-        <button type="submit">Register</button>
-      </form>
+      {registrationSuccess ? (
+        <div>
+          <div>Registration Successful!</div>
+          <br />
+          <div>Returning to login page...</div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            onChange={handleChange}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+          />
+          <button type="submit">Register</button>
+          <Link to="/login"><button type="button">Back</button></Link>
+        </form>
+      )}
     </div>
   );
 };

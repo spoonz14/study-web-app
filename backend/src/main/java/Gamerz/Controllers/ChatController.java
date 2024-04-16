@@ -1,29 +1,51 @@
 package Gamerz.Controllers;
 
-import Gamerz.chat.ChatMessage;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import Gamerz.Entity.ChatMessage;
+import Gamerz.Service.MessageService;
+import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api/messages")
 public class ChatController {
 
-    @MessageMapping("/chat")
-    @SendTo("/topic/messages")
-    public ChatMessage sendMessage(
-            @Payload ChatMessage chatMessage
-    ) {
-        return chatMessage;
+    private final MessageService messageService;
+
+    @Autowired
+    public ChatController(MessageService messageService) {
+        this.messageService = messageService;
     }
-//    @MessageMapping("/chat.addUser")
-//    @SendTo("/chat")
-//    public ChatMessage addUser(
-//            @Payload ChatMessage chatMessage,
-//            SimpMessageHeaderAccessor headerAccessor
-//    ) {
-//        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-//        return chatMessage;
+
+    @PostMapping
+    public ResponseEntity<?> saveMessage(@RequestBody ChatMessage chatMessage) {
+        try {
+            messageService.saveMessage(chatMessage);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving message: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/{studyRoomId}")
+    public ResponseEntity<List<ChatMessage>> getMessagesByStudyRoomId(@PathVariable Long studyRoomId) {
+        try {
+            List<ChatMessage> messages = messageService.getMessagesByStudyRoomId(studyRoomId);
+            return ResponseEntity.ok(messages);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+//    @GetMapping("/{userId}")
+//    public ResponseEntity<List<ChatMessage>> getMessagesByUserId(@PathVariable Long userId) {
+//        try {
+//            List<ChatMessage> messages = messageService.getMessagesByUserId(userId);
+//            return ResponseEntity.ok(messages);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//        }
 //    }
 }

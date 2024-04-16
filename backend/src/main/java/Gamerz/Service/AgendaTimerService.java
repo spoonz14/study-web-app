@@ -7,22 +7,45 @@ import Gamerz.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class AgendaTimerService {
     @Autowired
     private AgendaTimerRepository agendaTimerRepository;
-    @Autowired
-    private UserRepository userRepo;
 
-    public boolean registerTimerToUser(User user, AgendaTimer timer) {
-        if(user.getId() == null) {
-            return false;
+    public boolean registerTimerToUser(long userID, int year, int month, int day) {
+        boolean success = false;
+        AgendaTimer newTimer = new AgendaTimer();
+        newTimer.setupTimer(userID, year, month, day);
+        agendaTimerRepository.save(newTimer);
+        success = true;
+        return success;
+    }
+    public boolean deleteTimerToUser(long timerID){
+        agendaTimerRepository.deleteById(timerID);
+        return true;
+    }
+    public List<AgendaTimer> getAllTimers() {
+        return agendaTimerRepository.findAll();
+    }
+    public List<AgendaTimer> getTimersByUserId(long userId) {
+
+        List<AgendaTimer> all = new ArrayList<AgendaTimer>();
+        List<AgendaTimer> filtered = new ArrayList<AgendaTimer>();
+        all = agendaTimerRepository.findAll();
+        for (AgendaTimer timer : all){
+            if (timer.getUserID() == userId){
+                filtered.add(timer);
+            }
         }
-        Long userId = user.getId();
-        timer.setUserID(userId);
+        return filtered;
+    }
+
+    public boolean registerTimerToUser(AgendaTimer timer) {
         agendaTimerRepository.save(timer);
         return true;
     }
+
 }
