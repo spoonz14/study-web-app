@@ -35,10 +35,7 @@ const Catalog = () => {
   };
 
   return (
-    <>
-      <div className="search-container">
-        {/* Add your search UI here if needed */}
-      </div>
+    <div className="catalog-background"> {/* Apply background styles to this div */}
       <div className="catalog-container">
         <div className="catalog-title">Study Groups</div>
         <Link to="/Room/create" className="create-room-button">Create New Room</Link>
@@ -63,7 +60,7 @@ const Catalog = () => {
           <button type="submit">Search</button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
