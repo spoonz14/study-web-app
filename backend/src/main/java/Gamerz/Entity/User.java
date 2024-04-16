@@ -17,7 +17,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long id; // Auto-incremented Primary Key
 
     @NotBlank(message = "Username is required.")
     private String username;
