@@ -64,10 +64,6 @@ const NavBar = () => {
           <li>
             <Link to="/Notes">Notes</Link>
           </li>
-          {isLoggedIn ? (
-          <li> 
-            <Link to="/Timers">Timers</Link>
-          </li> ) : null}
           <li>
             <Link to="/Calendar">Calendar</Link>
           </li>
