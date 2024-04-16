@@ -376,14 +376,10 @@ html {
 /* Timer Styling*/
 
 .timerHeader {
-  background-color: #4ec479;
-  align-content: center;
-  text-align: center;
-  align-self: center;
+  background-color: #333;
   padding: 10px;
   border-radius: 5px;
   color: whitesmoke;
-  font-family: "Montserrat", sans-serif;
   border-width: 6px;
   border-color: #111111;
   border-style: outset;
@@ -394,7 +390,6 @@ html {
 .timersDisplay {
   margin-top: 10px;
   background-color: rgb(255, 232, 203);
-  font-family: "Montserrat", sans-serif;
   border-style: outset;
   border-color: burlywood;
   color: rgb(74, 11, 11);
@@ -408,56 +403,26 @@ html {
 }
 .timerSetup {
   background-color: whitesmoke;
-  font-family: "Montserrat", sans-serif;
   border-radius: 12px;
   padding-bottom: 50px;
   margin-top: 120px;
   font-size: 18px;
+  font-family: "Calibri", Arial, sans-serif;
   max-width: 700px;
   box-shadow: 5px 8px 7px rgba(97, 99, 134, 0.299);
 }
 .TimerDataContainer {
   display: grid;
-  font-family: "Montserrat", sans-serif;
   padding: 20px;
   background-color: rgb(216, 240, 244);
   border-style: ridge;
   border-color: #3333336c;
   border-radius: 5px;
+  font-family: "Calibri", Arial, sans-serif;
   font-weight: bold;
   max-width: 620px;
   grid-template-columns: 130px 300px;
   gap: 10px;
-}
-
-.add-timer-button {
-  background-color: #4ec479;
-  color: #f9f9f9;
-  font-family: "Montserrat", sans-serif;
-  padding: 10px;
-  border: none;
-  width: 80px;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.add-timer-button:hover {
-  background-color: #40a264;
-}
-
-.timer-delete-button {
-  background-color: #e6372e;
-  font-family: "Montserrat", sans-serif;
-  color: #f9f9f9;
-  padding: 10px;
-  border: none;
-  width: 80px;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.timer-delete-button:hover {
-  background-color: #ca3028;
 }
 
 /*New Note*/
