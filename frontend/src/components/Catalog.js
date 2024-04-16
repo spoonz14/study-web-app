@@ -6,50 +6,62 @@ const Catalog = () => {
   const [studyRooms, setStudyRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [query, setQuery] = useState(''); // Add query state and setQuery function
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   useEffect(() => {
-    console.log("Fetching study rooms...");
     const fetchStudyRooms = async () => {
+      setIsLoading(true);
       try {
-        const response = await axios.get("/catalog");
-        console.log("Study rooms fetched:", response.data);
+        const endpoint = query ? `/catalog/search/${query}` : "/catalog";
+        const response = await axios.get(endpoint);
         setStudyRooms(response.data);
       } catch (error) {
-        console.error("Error fetching study rooms:", error);
         setError(error);
       }
       setIsLoading(false);
     };
 
     fetchStudyRooms();
-  }, []);
+  }, [query]);
 
-  // Handle study room click event
+  const handleSearch = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    setQuery(e.target.value); // Update query state with input value
+  };
+
   const handleStudyRoomClick = (roomId) => {
-    // Navigate to the room page with the corresponding ID
     navigate(`/Room/${roomId}`);
   };
 
   return (
     <>
-      <div className="catalog-background"></div>
+      <div className="search-container">
+        {/* Add your search UI here if needed */}
+      </div>
       <div className="catalog-container">
-        <div className="catalog-title">Study Rooms</div>
-        {/* Render button to create a new room */}
-        <Link to="/Room/create" className="create-room create-room-button">
-          Create New Room
-        </Link>
+        <div className="catalog-title">Study Groups</div>
+        <Link to="/Room/create" className="create-room-button">Create New Room</Link>
+        {isLoading && <div>Loading...</div>}
+        {error && <div>Error: {error.message}</div>}
         {studyRooms.map((room) => (
-          // Render each study room as a clickable element
           <div
             key={room.studyRoomId}
             className="catalog-item"
-            onClick={() => handleStudyRoomClick(room.studyRoomId)} // Attach click event handler
+            onClick={() => handleStudyRoomClick(room.studyRoomId)}
           >
             {room.roomName}
           </div>
         ))}
+        <form onSubmit={handleSearch}>
+          <input 
+            type="text" 
+            placeholder="Search groups..." 
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
       </div>
     </>
   );
