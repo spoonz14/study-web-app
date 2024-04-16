@@ -37,6 +37,17 @@ function Timers() {
   const fetchTimers = async () => {
     try {
       const userId = getIdFromToken();
+      const response = await axios.get(`http://localhost:8090/Timers/${userId}/${dayNumber}/${monthNumber}`);
+      console.log(response.data)
+      setTimers(response.data);
+    } catch (error) {
+      console.error("Error fetching timers:", error);
+    }
+  };
+
+  const fetchUserTimers = async () => {
+    try {
+      const userId = getIdFromToken();
       const response = await axios.get(`http://localhost:8090/userTimers/${userId}`);
       console.log(response.data)
       setTimers(response.data);
@@ -66,8 +77,8 @@ function Timers() {
         category: category,
         priorityLevel: Number(priorityLevel),
         dueDate: castedDate,
-        dayNumber: dayNumber,
-        monthNumber: monthNumber
+        numberedDay: dayNumber,
+        numberedMonth: monthNumber
       };
       console.log("Info: ", requestBody);
       const response = await axios.post('http://localhost:8090/Timers', requestBody);
@@ -101,6 +112,7 @@ function Timers() {
           <input type="datetime-local" value={dueDate} onChange={e => setDueDate(e.target.value)} />
         </div>
         <button onClick={fetchData}>Add Reminder</button>
+        <button onClick={fetchUserTimers}>Fetch Timers</button>
       </div>
       <div>
         {timers.map((timer, index) => (
@@ -114,7 +126,7 @@ function Timers() {
         ))}
       </div>
     </div>
-  );
+  );  
 }
 
 export default Timers;

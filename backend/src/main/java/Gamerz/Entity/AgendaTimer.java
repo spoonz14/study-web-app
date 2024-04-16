@@ -24,8 +24,8 @@ public class AgendaTimer {
     private int priorityLevel;
     private String category;
 
-    private int dayNumber;
-    private int dayMonth;
+    private int numberedDay;
+    private int numberedMonth;
 
     public void setupTimer(long userID, int year, int month, int day){
         dueDate = LocalDateTime.of(year, month, day, 0, 0).toString();

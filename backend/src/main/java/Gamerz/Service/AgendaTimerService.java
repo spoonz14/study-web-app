@@ -34,6 +34,11 @@ public class AgendaTimerService {
     public List<AgendaTimer> getUserTimers(Long userId) {
         return agendaTimerRepository.findByUserId(userId);
     }
+
+    public List<AgendaTimer> getUserTimersByDate(Long userId, int numberedDay, int numberedMonth) {
+        return agendaTimerRepository.findByUserIdAndNumberedDayAndNumberedMonth(userId, numberedDay, numberedMonth);
+    }
+
 //    public List<AgendaTimer> getTimersByUserId(long userId) {
 //
 //        List<AgendaTimer> all = new ArrayList<AgendaTimer>();
