@@ -5,17 +5,18 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { useNavigate } from "react-router-dom";
 
 const Calendar = ({ events, handleDateClick }) => {
-  const navigate = useNavigate(); // Using the useNavigate hook for navigation
-  const calendarRef = useRef(null); // Ref to access the FullCalendar instance
+  const navigate = useNavigate(); 
+  const calendarRef = useRef(null); 
 
   useEffect(() => {
     const handleEventClick = (info) => {
-      console.log("Clicked!");
-      // Prevent default behavior of FullCalendar's event handling
       info.jsEvent.preventDefault();
-
-      // Navigate to "/Timers" when a day box is clicked
-      navigate("/Timers");
+      const clickedDate = info.date;
+      const dayNumber = clickedDate.getDate();
+      console.log("Day value: ", dayNumber);
+      const monthNumber = clickedDate.getMonth() + 1; // Adding 1 because months are zero-based
+      console.log("Month value: ", monthNumber);
+      navigate(`/Timers/`);
     };
 
     const calendarApi = calendarRef.current.getApi();

@@ -26,7 +26,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/registerTimer")
+    @PostMapping("/Timers")
     public ResponseEntity<String> registerTimer(@RequestBody AgendaTimer timer) {
         if (agendaTimerService.registerTimerToUser(timer)) {
             return ResponseEntity.ok("Timer registration to user successful.");
