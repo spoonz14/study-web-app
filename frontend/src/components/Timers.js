@@ -95,13 +95,13 @@ function Timers() {
       console.log("Info: ", requestBody);
       const response = await axios.post('http://localhost:8090/Timers', requestBody);
       navigate(`/Timers/${month}/${day}`);
+      window.location.reload();
       fetchTimers();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
   
-
   const formatDateForInput = (date) => {
     return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
   };
