@@ -30,18 +30,22 @@ public class AgendaTimerService {
     public List<AgendaTimer> getAllTimers() {
         return agendaTimerRepository.findAll();
     }
-    public List<AgendaTimer> getTimersByUserId(long userId) {
 
-        List<AgendaTimer> all = new ArrayList<AgendaTimer>();
-        List<AgendaTimer> filtered = new ArrayList<AgendaTimer>();
-        all = agendaTimerRepository.findAll();
-        for (AgendaTimer timer : all){
-            if (timer.getUserID() == userId){
-                filtered.add(timer);
-            }
-        }
-        return filtered;
+    public List<AgendaTimer> getUserTimers(Long userId) {
+        return agendaTimerRepository.findByUserId(userId);
     }
+//    public List<AgendaTimer> getTimersByUserId(long userId) {
+//
+//        List<AgendaTimer> all = new ArrayList<AgendaTimer>();
+//        List<AgendaTimer> filtered = new ArrayList<AgendaTimer>();
+//        all = agendaTimerRepository.findAll();
+//        for (AgendaTimer timer : all){
+//            if (timer.getUserId() == userId){
+//                filtered.add(timer);
+//            }
+//        }
+//        return filtered;
+//    }
 
     public boolean registerTimerToUser(AgendaTimer timer) {
         agendaTimerRepository.save(timer);

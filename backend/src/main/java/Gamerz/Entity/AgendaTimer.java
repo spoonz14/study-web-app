@@ -18,7 +18,7 @@ public class AgendaTimer {
     private int month;
     private int day;
 
-    private Long userID;
+    private Long userId;
     private String dueDate;
     private String description;
     private int priorityLevel;

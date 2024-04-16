@@ -56,8 +56,8 @@ public class UserController {
     }
 
     @GetMapping("/userTimers/{userId}")
-    public ResponseEntity<List<AgendaTimer>> getAllTimers(@PathVariable long userId) {
-        List<AgendaTimer> timers = agendaTimerService.getTimersByUserId(userId);
+    public ResponseEntity<List<AgendaTimer>> getUserTimers(@PathVariable long userId) {
+        List<AgendaTimer> timers = agendaTimerService.getUserTimers(userId);
         return ResponseEntity.ok(timers);
     }
 }

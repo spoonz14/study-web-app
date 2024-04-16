@@ -4,19 +4,17 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useNavigate } from "react-router-dom";
 
-const Calendar = ({ events, handleDateClick }) => {
-  const navigate = useNavigate(); 
-  const calendarRef = useRef(null); 
+const Calendar = ({ events }) => {
+  const navigate = useNavigate();
+  const calendarRef = useRef(null);
 
   useEffect(() => {
     const handleEventClick = (info) => {
       info.jsEvent.preventDefault();
       const clickedDate = info.date;
       const dayNumber = clickedDate.getDate();
-      console.log("Day value: ", dayNumber);
       const monthNumber = clickedDate.getMonth() + 1; // Adding 1 because months are zero-based
-      console.log("Month value: ", monthNumber);
-      navigate(`/Timers/`);
+      navigate(`/Timers/${monthNumber}/${dayNumber}`);
     };
 
     const calendarApi = calendarRef.current.getApi();
