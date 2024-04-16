@@ -26,7 +26,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/registerTimer")
+    @PostMapping("/Timers")
     public ResponseEntity<String> registerTimer(@RequestBody AgendaTimer timer) {
         if (agendaTimerService.registerTimerToUser(timer)) {
             return ResponseEntity.ok("Timer registration to user successful.");
@@ -52,6 +52,18 @@ public class UserController {
     @GetMapping("/allTimers")
     public ResponseEntity<List<AgendaTimer>> getAllTimers() {
         List<AgendaTimer> timers = agendaTimerService.getAllTimers();
+        return ResponseEntity.ok(timers);
+    }
+
+    @GetMapping("/userTimers/{userId}")
+    public ResponseEntity<List<AgendaTimer>> getUserTimers(@PathVariable Long userId) {
+        List<AgendaTimer> timers = agendaTimerService.getUserTimers(userId);
+        return ResponseEntity.ok(timers);
+    }
+
+    @GetMapping("/Timers/{userId}/{numberedDay}/{numberedMonth}")
+    public ResponseEntity<List<AgendaTimer>> getUserTimersByDate(@PathVariable Long userId, @PathVariable int numberedDay, @PathVariable int numberedMonth) {
+        List<AgendaTimer> timers = agendaTimerService.getUserTimersByDate(userId, numberedDay, numberedMonth);
         return ResponseEntity.ok(timers);
     }
 }

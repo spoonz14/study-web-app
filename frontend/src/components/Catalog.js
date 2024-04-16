@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios-config";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-const submitSearch = (param) => {
-  console.log("FFF"+param)
-  try {
-    const endpoint = param ? `/catalog/search/${param}` : "/catalog";
-    const response = axios.get(endpoint);
-    return response.data;
-  } catch (error) {
-  }
-}
+import { Link, useNavigate } from "react-router-dom";
+
 const Catalog = () => {
   const [studyRooms, setStudyRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const [query, setQuery] = useState(searchParams.get("query") || "");
+  const [query, setQuery] = useState(''); // Add query state and setQuery function
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
-  useEffect(() => { //this is called everytime the search changes for now
+  useEffect(() => {
     const fetchStudyRooms = async () => {
       setIsLoading(true);
       try {
@@ -34,9 +25,9 @@ const Catalog = () => {
     fetchStudyRooms();
   }, [query]);
 
-
   const handleSearch = (e) => {
-    setSearchParams({ query }); // Update URL with search query
+    e.preventDefault(); // Prevent default form submission behavior
+    setQuery(e.target.value); // Update query state with input value
   };
 
   const handleStudyRoomClick = (roomId) => {
@@ -46,7 +37,7 @@ const Catalog = () => {
   return (
     <>
       <div className="search-container">
-       
+        {/* Add your search UI here if needed */}
       </div>
       <div className="catalog-container">
         <div className="catalog-title">Study Groups</div>
@@ -62,12 +53,12 @@ const Catalog = () => {
             {room.roomName}
           </div>
         ))}
-         <form onSubmit={handleSearch}>
+        <form onSubmit={handleSearch}>
           <input 
             type="text" 
             placeholder="Search groups..." 
             value={query}
-            onChange={(e) => {setQuery(e.target.value)}}
+            onChange={(e) => setQuery(e.target.value)}
           />
           <button type="submit">Search</button>
         </form>
