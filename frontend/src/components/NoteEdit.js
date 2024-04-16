@@ -56,6 +56,7 @@ const NoteEdit = ({ note, onSaveNote, onDeleteNote }) => {
 
   return (
     <div className="note-edit-form">
+      <h2>Edit Note</h2>
       <input type="text" value={editedNote.title} onChange={editTitle} />
       <textarea
         value={editedNote.description} // Bind description value

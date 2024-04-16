@@ -7,6 +7,7 @@ const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
+  const [loginError, setLoginError] = useState("");
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -44,7 +45,11 @@ const Login = () => {
         navbar.dispatchEvent(new Event("loginSuccess"));
       }
     } catch (error) {
-      console.error("Login error:", error);
+      if (error.response && error.response.status === 401) {
+        setLoginError("Incorrect username or password");
+      } else {
+        console.error("Login error:", error);
+      }
     }
   };
 
@@ -95,6 +100,8 @@ const Login = () => {
           {validationErrors.password && (
             <p className="error-message">{validationErrors.password}</p>
           )}
+
+          {loginError && <p className="error-message">{loginError}</p>}
 
           <button type="submit">Login</button>
           <Link to="/RegisterUser">

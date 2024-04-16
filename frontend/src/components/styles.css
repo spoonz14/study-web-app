@@ -56,20 +56,26 @@ nav ul li a:hover {
 
 @media screen and (max-width: 480px) {
   .navbar {
-    margin-top: 10%;
+    margin-top: 0%;
+    height: 200px;
+    justify-content: center; /* Center the navbar horizontally */
   }
   .navbar ul {
-    flex-direction: column; /* Adjusted property to flex-direction */
-    margin-top: 10%;
-    align-items: flex-start; /* Adjusted alignment */
-    margin-right: 0%; /* Added padding to the left for spacing */
+    flex-direction: column;
+    margin-left: 100%;
+    margin-bottom: 50%;
+    margin-top: 30%;
+    align-items: flex-start;
+    margin-right: 0%;
   }
 
   .navbar ul li {
-    margin: 10px 0; /* Adjusted margin for spacing */
+    margin: 0px 0; /* Adjusted margin for vertical spacing */
   }
   .logo {
-    padding: 0%;
+    height: 30px;
+    margin-left: -50%;
+    justify-content: left;
   }
 }
 
@@ -131,6 +137,12 @@ ul li button:hover {
   border-color: #ccc;
 }
 
+@media screen and (max-width: 480px) {
+  .home-container {
+    margin-top: 50%;
+  }
+}
+
 /* Register User Styling */
 .register {
   padding: 80px;
@@ -141,8 +153,9 @@ ul li button:hover {
   text-align: center;
 }
 
-.register p {
-  font-size: 0.7rem;
+.error-message {
+  font-size: 1rem; /* Increase font size */
+  color: rgb(255, 255, 255); /* Set color to red */
 }
 
 .register input[type="text"],
@@ -268,6 +281,33 @@ ul li button:hover {
 
 /* Catalog styling*/
 
+.search-form {
+  margin-bottom: 20px;
+  margin-left: 37%;
+}
+
+.search-input {
+  text-align: center;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 8px 20px;
+  background-color: #4ec479;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #338551;
+}
+
 body,
 html {
   margin: 0;
@@ -308,17 +348,7 @@ html {
   background-position: center;
   z-index: -1;
 }
-.timers-background {
- 
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("../components/Timers.jpg");
-  background-size: cover;
-  background-position: left top;
-  z-index: -1;
-}
+
 .catalog-item {
   background-color: white;
   border: 1px solid #ccc;
@@ -385,35 +415,46 @@ html {
 
 /* Timer Styling*/
 
+.timers-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh !important;
+  background-image: url("../components/CatalogImage.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
 .timerHeader {
-  background-color: #333;
+  margin-top: 19%;
+  background-color: #4ec479;
   padding: 10px;
   border-radius: 5px;
   color: whitesmoke;
   border-width: 6px;
   border-color: #111111;
-  border-style: outset;
+  text-align: center;
   font-size: 20px;
-  font-weight: bold;
-  font-family: "Calibri", Arial, sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .timersDisplay {
+  margin-left: 27%;
   margin-top: 10px;
-  background-color: rgb(255, 232, 203);
-  border-style: outset;
-  border-color: burlywood;
-  color: rgb(74, 11, 11);
-  max-width: 500px;
+  font-family: "Montserrat", sans-serif;
+  background-color: #4ec479;
+  color: rgb(255, 255, 255);
+  max-width: 620px;
   border-radius: 6px;
   border-width: 7px;
   padding: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  box-shadow: 5px 8px 7px rgba(74, 78, 148, 0.337);
+  font-size: 17px;
 }
 .timerSetup {
-  
+  margin-left: 25%;
   background-color: whitesmoke;
+  font-family: "Montserrat", sans-serif;
   border-radius: 12px;
   padding-bottom: 50px;
   margin-top: 120px;
@@ -424,16 +465,56 @@ html {
 }
 .TimerDataContainer {
   display: grid;
+  margin-left: 3%;
+  color: #333;
+  font-family: "Montserrat", sans-serif;
   padding: 20px;
-  background-color: rgb(216, 240, 244);
-  border-style: ridge;
-  border-color: #3333336c;
+  background-color: rgb(213, 216, 217);
   border-radius: 5px;
-  font-family: "Calibri", Arial, sans-serif;
-  font-weight: bold;
+  font-weight: 200;
   max-width: 620px;
   grid-template-columns: 130px 300px;
   gap: 10px;
+}
+.add-timer-button {
+  margin-top: 2%;
+  margin-left: 3%;
+  background-color: #4ec479;
+  color: #f9f9f9;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.add-timer-button:hover {
+  background-color: #338551;
+}
+
+.view-tasks-button {
+  margin-left: 2%;
+  background-color: #4ec479;
+  color: #f9f9f9;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.view-tasks-button:hover {
+  background-color: #338551;
+}
+
+.delete-timer-button {
+  background-color: #e6372e;
+  color: #f9f9f9;
+  padding: 10px;
+  border: none;
+  width: 80px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.delete-timer-button:hover {
+  background-color: #ca3028;
 }
 
 /*New Note*/
@@ -446,6 +527,8 @@ html {
   width: 80%; /* Adjusted width for responsiveness */
   max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
   margin: -0% auto; /* Center the form horizontally and adjust the top margin */
+  margin-top: -22%;
+  margin-right: 20%;
 }
 
 .new-note-form input,
@@ -496,6 +579,8 @@ html {
   width: 80%; /* Adjusted width for responsiveness */
   max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
   margin: -10% auto; /* Center the form horizontally and adjust the top margin */
+  margin-top: -26%;
+  margin-right: 20%;
 }
 
 .note-edit-form input,

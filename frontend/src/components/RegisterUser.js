@@ -53,10 +53,10 @@ const RegisterUser = () => {
       errors.password = "Please enter a password";
     }
     if (formData.firstName.trim() === "") {
-      errors.firstName = "Please enter your first name";
+      errors.firstName = "Please enter your First Name";
     }
     if (formData.lastName.trim() === "") {
-      errors.lastName = "Please enter your last name";
+      errors.lastName = "Please enter your Last Name";
     }
     if (formData.email.trim() === "") {
       errors.email = "Please enter an email";
@@ -83,7 +83,12 @@ const RegisterUser = () => {
       setRegistrationSuccess(true);
     } catch (error) {
       if (error.response && error.response.data.error) {
-        setValidationErrors({ username: error.response.data.error });
+        const errorMessage = error.response.data.error;
+        if (errorMessage.includes("username")) {
+          setValidationErrors({ username: "Username already exists" });
+        } else if (errorMessage.includes("email")) {
+          setValidationErrors({ email: "Email already exists" });
+        }
       } else {
         console.error(
           "Registration failed:",
