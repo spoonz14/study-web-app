@@ -7,6 +7,7 @@ import Notes from "./components/Notes";
 import Timers from "./components/Timers";
 import StudyRoom from "./components/StudyRoom";
 import AddStudyRoom from "./components/AddStudyRoom";
+import ChatComponent from "./components/ChatComponent";
 import Catalog from "./components/Catalog";
 import Login from "./components/Login";
 import CalendarPage from "./components/CalendarPage";
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/Notes" element={<Notes />} />
           <Route path="/Calendar" element={<CalendarPage />} />
           <Route path="/Timers" element={<Timers />} />
+          <Route path="/Chat" element={<ChatComponent />} />
           <Route path="/Catalog" element={<Catalog />} />
           <Route path="/Room/:id" element={<StudyRoom />} />
           <Route path="/Room/create" element={<AddStudyRoom />} />

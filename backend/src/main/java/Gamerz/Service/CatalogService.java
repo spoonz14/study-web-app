@@ -15,6 +15,8 @@ public class CatalogService {
     @Autowired
     private StudyRoomRepository studyRoomRepository;
 
+    @Autowired
+    private CatalogRepository catalogRepository;
 
     public List<String> getRoomNames() {
         List<String> roomNames = new ArrayList<>();
@@ -35,5 +37,9 @@ public class CatalogService {
         // Save the new study room if it doesn't exist
         studyRoomRepository.save(studyRoom);
         return true;
+    }
+
+    public List<StudyRoom> searchByQuery(String query) {
+        return catalogRepository.findByRoomNameContainingIgnoreCase(query);
     }
 }

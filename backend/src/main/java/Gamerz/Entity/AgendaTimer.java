@@ -19,7 +19,7 @@ public class AgendaTimer {
     private int day;
 
     private Long userID;
-    private LocalDateTime dueDate;
+    private String dueDate;
     private String description;
     private int priorityLevel;
     private String category;
@@ -28,6 +28,6 @@ public class AgendaTimer {
     private int dayMonth;
 
     public void setupTimer(long userID, int year, int month, int day){
-        dueDate = LocalDateTime.of(year, month, day, 0, 0);
+        dueDate = LocalDateTime.of(year, month, day, 0, 0).toString();
     }
 }

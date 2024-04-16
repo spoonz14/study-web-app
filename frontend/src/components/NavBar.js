@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logoImage from "../components/StudiiLogo.jpg";
 import { Link, useNavigate } from "react-router-dom";
-
+import Notif from "./Notif";
 import RegisterUser from "./RegisterUser";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./styles.css";
@@ -11,11 +11,14 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+
     const token = sessionStorage.getItem("token");
     setIsLoggedIn(!!token); // Set isLoggedIn based on token existence
 
     const handleLoginSuccess = () => {
       setIsLoggedIn(true); // Update isLoggedIn state on login success
+      var notif = new Notif();
+      notif.fetchTimers();
     };
 
     const navbar = document.getElementById("navbar-root");
@@ -61,9 +64,10 @@ const NavBar = () => {
           <li>
             <Link to="/Notes">Notes</Link>
           </li>
-          <li>
+          {isLoggedIn ? (
+          <li> 
             <Link to="/Timers">Timers</Link>
-          </li>
+          </li> ) : null}
           <li>
             <Link to="/Calendar">Calendar</Link>
           </li>

@@ -1,4 +1,6 @@
 import React, { useState,useEffect } from 'react';
+import { jwtDecode, InvalidTokenError } from "jwt-decode";
+
 
 import axios from 'axios';
 
@@ -6,8 +8,10 @@ function Timers() {
   const [userID, setUserID] = useState('');
   const [description, setDescription] = useState('');
   const [priorityLevel, setPriority] = useState('');
+  const [dueDate, setDueDate] = useState('');
   const [category, setCategory] = useState('');
   const [timers, setTimers] = useState([]); // State to store timers
+  var userId;
 
   const deleteTimer = async (timerId) => {
     console.log(timerId);
@@ -21,13 +25,25 @@ function Timers() {
   };
   const fetchTimers = async () => {
     try {
-      const response = await axios.get('http://localhost:8090/allTimers'); // Adjust endpoint as needed
+      console.log(`Fetch timers with id ${getIdFromToken()}`)
+      const response = await axios.get(`http://localhost:8090/userTimers/${getIdFromToken()}`); // Adjust endpoint as needed
+      console.log(response.data)
       setTimers(response.data); // Assuming response.data is an array of timers
     } catch (error) {
       console.error("Error fetching timers:", error);
     }
   };
-
+const getIdFromToken = () => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token); // Use jwtDecode directly
+      console.log("Token: ", decodedToken);
+      const userId = decodedToken.id;
+      console.log("User ID: ", userId);
+      console.log("userid" +userId);
+      return userId;
+    }
+  }
   useEffect(() => {
     fetchTimers();
   }, []);
@@ -35,12 +51,16 @@ function Timers() {
 
 
   const fetchData = async () => {
+   
     try {
+      const castedDate = new Date(dueDate);
+      console.log(`casted date: ${castedDate}`)
       const requestBody = {
-        userID: Number(userID), // Convert userID to a number since the input returns a string
+        userID: Number(getIdFromToken()), // Convert userID to a number since the input returns a string
         description: description,
         category: category,
-        priorityLevel: Number(priorityLevel)
+        priorityLevel: Number(priorityLevel),
+        dueDate: castedDate
       };
 
       const response = await axios.post('http://localhost:8090/registerTimer', requestBody);
@@ -50,9 +70,14 @@ function Timers() {
       console.error("Error fetching data:", error);
     }
   };
-
+ const formatDateForInput = (date) => {
+    return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
+  };
+  const formatDueDate = (dueDateArray) => {
+    return new Date(dueDateArray[0], dueDateArray[1] - 1, dueDateArray[2], dueDateArray[3], dueDateArray[4]);
+  };
   return (
-    <div>
+    <div className="timers-background">
     <div className="timerSetup">
       
       <div className='timerHeader'>Agenda Manager</div>
@@ -64,7 +89,8 @@ function Timers() {
           <input type="text" value={category} onChange={e => setCategory(e.target.value)} />
         <label>Priority:  </label>
           <input type="number" value={priorityLevel} onChange={e => setPriority(e.target.value)} />
-        
+          <label>Due Date:  </label>
+          <input type="datetime-local" value={dueDate} onChange={e => setDueDate(e.target.value)} />
         </div>
       <button onClick={fetchData}>Add Reminder</button>
     </div>
@@ -74,6 +100,8 @@ function Timers() {
           <p>Description: {timer.description}</p>
           <p>Category: {timer.category}</p>
           <p>Priority: {timer.priorityLevel}</p>
+          <p>Due: {timer.dueDate}</p>
+
           <button onClick={() => deleteTimer(timer.timerID)}>Delete</button>
           
         </div>

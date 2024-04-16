@@ -31,6 +31,12 @@ public class CatalogController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Room already exists.");
         }
     }
+
+    @GetMapping("/catalog/search/{query}")
+    public ResponseEntity<List<StudyRoom>> searchCatalog(@PathVariable String query) {
+        List<StudyRoom> searchResults = catalogService.searchByQuery(query);
+        return ResponseEntity.ok(searchResults);
+    }
 }
 
 
