@@ -68,32 +68,42 @@ function Timers() {
     fetchTimers();
   }, [dayNumber, monthNumber]); // Add dayNumber and monthNumber as dependencies
 
+  const formatDueDate = (dueDateStr) => {
+    const dateObj = new Date(dueDateStr);
+    const day = dateObj.getDate(); // Get the day of the month (1-31)
+    const month = dateObj.getMonth() + 1; // Get the month (0-11), add 1 to match numberedMonth
+    return { day, month };
+  };
+
   const fetchData = async () => {
     try {
-      const castedDate = new Date(dueDate);
+      const { day, month } = formatDueDate(dueDate); // Extract day and month from dueDate
+      const dateParts = dueDate.split(/[-T:]/);
+      const localDate = new Date(
+        Date.UTC(dateParts[0], dateParts[1] - 1, dateParts[2], dateParts[3], dateParts[4])
+      );
+  
       const requestBody = {
         userId: userId,
         description: description,
         category: category,
         priorityLevel: Number(priorityLevel),
-        dueDate: castedDate,
-        numberedDay: dayNumber,
-        numberedMonth: monthNumber
+        dueDate: localDate,
+        numberedDay: day, // Use extracted day
+        numberedMonth: month, // Use extracted month
       };
       console.log("Info: ", requestBody);
       const response = await axios.post('http://localhost:8090/Timers', requestBody);
+      navigate(`/Timers/${month}/${day}`);
       fetchTimers();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+  
 
   const formatDateForInput = (date) => {
     return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
-  };
-
-  const formatDueDate = (dueDateArray) => {
-    return new Date(dueDateArray[0], dueDateArray[1] - 1, dueDateArray[2], dueDateArray[3], dueDateArray[4]);
   };
 
   return (
