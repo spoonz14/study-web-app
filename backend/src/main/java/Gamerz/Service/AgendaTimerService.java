@@ -7,6 +7,7 @@ import Gamerz.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +30,27 @@ public class AgendaTimerService {
     public List<AgendaTimer> getAllTimers() {
         return agendaTimerRepository.findAll();
     }
+
+    public List<AgendaTimer> getUserTimers(Long userId) {
+        return agendaTimerRepository.findByUserId(userId);
+    }
+
+    public List<AgendaTimer> getUserTimersByDate(Long userId, int numberedDay, int numberedMonth) {
+        return agendaTimerRepository.findByUserIdAndNumberedDayAndNumberedMonth(userId, numberedDay, numberedMonth);
+    }
+
+//    public List<AgendaTimer> getTimersByUserId(long userId) {
+//
+//        List<AgendaTimer> all = new ArrayList<AgendaTimer>();
+//        List<AgendaTimer> filtered = new ArrayList<AgendaTimer>();
+//        all = agendaTimerRepository.findAll();
+//        for (AgendaTimer timer : all){
+//            if (timer.getUserId() == userId){
+//                filtered.add(timer);
+//            }
+//        }
+//        return filtered;
+//    }
 
     public boolean registerTimerToUser(AgendaTimer timer) {
         agendaTimerRepository.save(timer);
