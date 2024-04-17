@@ -75,21 +75,26 @@ function Timers() {
   const fetchData = async () => {
     try {
       const castedDate = new Date(dueDate);
+      let day = castedDate.getDate();
+      let month = castedDate.getMonth();
+      month++;
       const requestBody = {
         userId: userId,
         description: description,
         category: category,
         priorityLevel: Number(priorityLevel),
         dueDate: castedDate,
-        numberedDay: dayNumber,
-        numberedMonth: monthNumber,
+        numberedDay: day,
+        numberedMonth: month,
       };
+      console.log("Casted date: ", castedDate);
       console.log("Info: ", requestBody);
       const response = await axios.post(
         "http://localhost:8090/Timers",
         requestBody
       );
       fetchTimers();
+      navigate(`/Timers/${month}/${day}`)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
