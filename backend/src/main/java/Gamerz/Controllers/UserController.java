@@ -65,6 +65,15 @@ public class UserController {
         List<AgendaTimer> timers = agendaTimerService.getUserTimers(userId);
         return ResponseEntity.ok(timers);
     }
+    @GetMapping("/userTimers/{userId}/{category}")
+    public ResponseEntity<List<AgendaTimer>> getUserTimersByCategory(@PathVariable Long userId, @PathVariable String category) {
+        List<AgendaTimer> timers = agendaTimerService.getUserTimersByCategory(userId,category);
+        return ResponseEntity.ok(timers);
+    }
+    @GetMapping("/userTimerCategories/{userId}")
+    public ResponseEntity<List<String>> getCategoriesInTimers(@PathVariable long userId){
+        return ResponseEntity.ok(agendaTimerService.getTimerCategories(userId));
+    }
 
     @GetMapping("/Timers/{userId}/{numberedDay}/{numberedMonth}")
     public ResponseEntity<List<AgendaTimer>> getUserTimersByDate(@PathVariable Long userId, @PathVariable int numberedDay, @PathVariable int numberedMonth) {
