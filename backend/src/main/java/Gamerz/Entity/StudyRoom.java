@@ -16,4 +16,7 @@ public class StudyRoom {
     private Long chatId;
     private String roomName;
     private Long userId;
+
+    @Column(length = 500) // Adjust the length as needed
+    private String description; // New field for the description
 }

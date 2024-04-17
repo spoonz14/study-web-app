@@ -25,6 +25,8 @@ public class CatalogController {
 
     @PostMapping("/catalog")
     public ResponseEntity<String> create(@RequestBody StudyRoom studyRoom) {
+        // Handle creating the study room with a description
+        // The incoming JSON should now include a "description" field
         if (catalogService.createStudyRoom(studyRoom)) {
             return ResponseEntity.ok("Study room added.");
         } else {
