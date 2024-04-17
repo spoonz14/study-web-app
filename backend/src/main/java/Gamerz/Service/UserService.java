@@ -23,6 +23,9 @@ public class UserService {
         if (user.getRole() == null){
             user.setRole("user");
         }
+
+        user.setPassword(user.getPassword());
+
         userRepository.save(user);
         return true; // Success
     }
