@@ -24,8 +24,6 @@ public class UserService {
             user.setRole("user");
         }
 
-        user.setPassword(user.getPassword());
-
         userRepository.save(user);
         return true; // Success
     }

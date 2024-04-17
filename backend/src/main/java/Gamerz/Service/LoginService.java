@@ -16,19 +16,23 @@ public class LoginService {
     private UserRepository userRepository;
 
     public User login(Login login) {
-        User user = userRepository.findByUsername(login.getUsername());
-        if (user != null && user.getPassword() != null ) {
-
+        String username = login.getUsername();
+        User user = userRepository.findByUsername(username);
+        if (user != null && user.getPassword() != null) {
             String inputPassword = login.getPassword();
             String hashedPassword = user.getPassword();
 
             boolean authenticatePassword = BCrypt.checkpw(inputPassword, hashedPassword);
-
             if (authenticatePassword) {
+                System.out.println("Password authentication successful for user: " + username);
                 return user;
+            } else {
+                System.out.println("Password authentication failed for user: " + username);
             }
-            return null;
+        } else {
+            System.out.println("User not found or password is null for username: " + username);
         }
         return null;
     }
+
 }
