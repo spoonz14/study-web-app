@@ -10,4 +10,6 @@ public interface AgendaTimerRepository extends JpaRepository<AgendaTimer, Long> 
 
     List<AgendaTimer> findByUserId(Long userId);
     List<AgendaTimer> findByUserIdAndNumberedDayAndNumberedMonth(Long userId, int numberedDay, int numberedMonth);
+
+    List<AgendaTimer> findByUserIdAndNumberedMonth(Long userId, int numberedMonth);
 }

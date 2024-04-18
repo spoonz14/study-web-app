@@ -1,13 +1,36 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 const Calendar = ({ events }) => {
   const navigate = useNavigate();
   const calendarRef = useRef(null);
+  const [userId, setUserId] = useState(null);
+  const [timers, setTimers] = useState([]);
+
+  const renderEventContent = (eventInfo) => {
+    const dayNumber = eventInfo.date.getDate();
+    const monthNumber = eventInfo.date.getMonth() + 1;
+    const timerNames = timers.filter(
+      (timer) =>
+        timer.numberedDay === dayNumber && timer.numberedMonth === monthNumber
+    ).map((timer) => timer.description);
+
+    const content = (
+      <>
+        <div>{eventInfo.dayNumberText}</div>
+        {timerNames.map((name, index) => (
+          <div key={index}>{name}</div>
+        ))}
+      </>
+    );
+
+    return { domNodes: [content] };
+  };
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -18,6 +41,17 @@ const Calendar = ({ events }) => {
     } else {
       navigate("/login");
     }
+
+    const fetchData = async () => {
+      try {
+        const timersByMonth = await getCurrentMonth();
+        setTimers(timersByMonth);
+      } catch (error) {
+        console.error("Error fetching timers:", error);
+      }
+    };
+
+    fetchData();
   }, [navigate]);
 
   useEffect(() => {
@@ -36,28 +70,24 @@ const Calendar = ({ events }) => {
     };
   }, [navigate]);
 
-  const getCurrentMonth = () => {
+  const getCurrentMonth = async () => {
     const now = new Date();
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return monthNames[now.getMonth()];
+    const monthNumber = now.getMonth() + 1;
+
+    try {
+      const response = await axios.get(
+        `http://localhost:8090/Timers/${userId}/${monthNumber}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching timers by month:", error);
+      return [];
+    }
   };
 
   return (
     <div style={{ marginTop: "20px" }}>
-      <h2 style={{ textAlign: "center" }}>{getCurrentMonth()}</h2>
+      <h2 style={{ textAlign: "center" }}>Current Month</h2>
       <FullCalendar
         ref={calendarRef}
         plugins={[dayGridPlugin, interactionPlugin]}
@@ -69,6 +99,7 @@ const Calendar = ({ events }) => {
         }}
         events={events}
         selectable={true}
+        eventContent={renderEventContent}
       />
     </div>
   );

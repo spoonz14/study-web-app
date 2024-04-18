@@ -80,4 +80,10 @@ public class UserController {
         List<AgendaTimer> timers = agendaTimerService.getUserTimersByDate(userId, numberedDay, numberedMonth);
         return ResponseEntity.ok(timers);
     }
+
+    @GetMapping("/Timers/{userId}/{numberedMonth}")
+    public ResponseEntity<List<AgendaTimer>> getUserTimersByMonth(@PathVariable Long userId, @PathVariable int numberedMonth) {
+        List<AgendaTimer> timers = agendaTimerService.getUserTimersByUserAndMonth(userId, numberedMonth);
+        return ResponseEntity.ok(timers);
+    }
 }

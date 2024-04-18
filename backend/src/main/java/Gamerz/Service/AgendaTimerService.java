@@ -38,6 +38,11 @@ public class AgendaTimerService {
     public List<AgendaTimer> getUserTimersByDate(Long userId, int numberedDay, int numberedMonth) {
         return agendaTimerRepository.findByUserIdAndNumberedDayAndNumberedMonth(userId, numberedDay, numberedMonth);
     }
+
+    public List<AgendaTimer> getUserTimersByUserAndMonth(Long userId,int numberedMonth) {
+        return agendaTimerRepository.findByUserIdAndNumberedMonth(userId, numberedMonth);
+    }
+
     public List<AgendaTimer> getUserTimersByCategory(Long userId, String categoryStr){
         List<AgendaTimer> list = new ArrayList<AgendaTimer>();
         for (AgendaTimer timer : agendaTimerRepository.findByUserId(userId)) {
