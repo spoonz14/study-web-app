@@ -65,11 +65,12 @@ const Calendar = ({ handleDateClick }) => {
         `http://localhost:8090/Timers/${userId}/${monthNumber}`
       );
       console.log("Response: ", response);
-      const currentYear = now.getFullYear(); // Get the current year
+      const currentYear = now.getFullYear();
       const timers = response.data.map((timer) => ({
         id: timer.timerID,
         title: timer.description,
-        start: new Date(currentYear, timer.numberedMonth - 1, timer.numberedDay), // Set the start date using the current year, month, and day
+        start: new Date(currentYear, parseInt(timer.numberedMonth) - 1, parseInt(timer.numberedDay)), // Ensure parsing to integers
+        allDay: true, // Set allDay property to true
       }));
       console.log("Timers: ", timers);
       return timers;
@@ -78,6 +79,7 @@ const Calendar = ({ handleDateClick }) => {
       return [];
     }
   };
+  
   
 
   return (
