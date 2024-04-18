@@ -14,11 +14,11 @@ import java.util.List;
 @RestController
 public class UserController {
     @Autowired
-    private UserService userService; // Creating an instance of the UserService object
+    private UserService userService;
     @Autowired
     private AgendaTimerService agendaTimerService;
 
-    // PostMapping function to register users
+
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) {
         if (userService.registerUsers(user)) {
@@ -46,8 +46,7 @@ public class UserController {
         }
     }
 
-    // GetMapping function to fetch all users in the database.
-    // Not used in the application, mainly used for testing in postman
+
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
@@ -80,4 +79,16 @@ public class UserController {
         List<AgendaTimer> timers = agendaTimerService.getUserTimersByDate(userId, numberedDay, numberedMonth);
         return ResponseEntity.ok(timers);
     }
+
+    @GetMapping("/Timers/{userId}/{numberedMonth}")
+    public ResponseEntity<List<AgendaTimer>> getUserTimersByMonth(@PathVariable Long userId, @PathVariable int numberedMonth) {
+        List<AgendaTimer> timers = agendaTimerService.getUserTimersByUserAndMonth(userId, numberedMonth);
+        return ResponseEntity.ok(timers);
+    }
 }
+
+
+
+
+
+
