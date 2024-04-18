@@ -13,10 +13,10 @@ const NavBar = () => {
   useEffect(() => {
 
     const token = sessionStorage.getItem("token");
-    setIsLoggedIn(!!token); // Set isLoggedIn based on token existence
+    setIsLoggedIn(!!token);
 
     const handleLoginSuccess = () => {
-      setIsLoggedIn(true); // Update isLoggedIn state on login success
+      setIsLoggedIn(true); 
       var notif = new Notif();
       notif.fetchTimers();
     };
