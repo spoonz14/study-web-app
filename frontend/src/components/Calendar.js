@@ -1,13 +1,17 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
-const Calendar = ({ events }) => {
+const Calendar = ({ handleDateClick }) => {
   const navigate = useNavigate();
   const calendarRef = useRef(null);
+  const [userId, setUserId] = useState(null);
+  const [timers, setTimers] = useState([]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -18,6 +22,18 @@ const Calendar = ({ events }) => {
     } else {
       navigate("/login");
     }
+
+    const fetchData = async () => {
+      try {
+        const timersByMonth = await getCurrentMonth();
+        setTimers(timersByMonth);
+        setEvents([...events, ...timersByMonth]);
+      } catch (error) {
+        console.error("Error fetching timers:", error);
+      }
+    };
+
+    fetchData();
   }, [navigate]);
 
   useEffect(() => {
@@ -36,28 +52,42 @@ const Calendar = ({ events }) => {
     };
   }, [navigate]);
 
-  const getCurrentMonth = () => {
+  const getCurrentMonth = async () => {
     const now = new Date();
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    return monthNames[now.getMonth()];
+    const monthNumber = now.getMonth() + 1;
+    const token = sessionStorage.getItem("token");
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.id;
+    setUserId(userId);
+    console.log("User ID: ", userId);
+    try {
+      const response = await axios.get(
+        `http://localhost:8090/Timers/${userId}/${monthNumber}`
+      );
+      console.log("Response: ", response);
+      const currentYear = now.getFullYear();
+      const timers = response.data.map((timer) => ({
+        id: timer.timerID,
+        title: timer.description,
+        start: new Date(
+          currentYear,
+          parseInt(timer.numberedMonth) - 1,
+          parseInt(timer.numberedDay)
+        ),
+        allDay: true,
+      }));
+      console.log("Timers: ", timers);
+      return timers;
+    } catch (error) {
+      console.error("Error fetching timers by month:", error);
+      return [];
+    }
   };
 
   return (
     <div style={{ marginTop: "20px" }}>
-      <h2 style={{ textAlign: "center" }}>{getCurrentMonth()}</h2>
+      <h2 style={{ textAlign: "center" }}>Current Month</h2>
+      {console.log("Events:", events)}
       <FullCalendar
         ref={calendarRef}
         plugins={[dayGridPlugin, interactionPlugin]}
@@ -69,6 +99,8 @@ const Calendar = ({ events }) => {
         }}
         events={events}
         selectable={true}
+        eventContent={null}
+        dateClick={handleDateClick}
       />
     </div>
   );
