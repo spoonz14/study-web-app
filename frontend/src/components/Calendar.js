@@ -3,17 +3,29 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Calendar = ({ events }) => {
   const navigate = useNavigate();
   const calendarRef = useRef(null);
 
   useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.id;
+      setUserId(userId);
+    } else {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     const handleEventClick = (info) => {
       info.jsEvent.preventDefault();
       const clickedDate = info.date;
       const dayNumber = clickedDate.getDate();
-      const monthNumber = clickedDate.getMonth() + 1; // Adding 1 because months are zero-based
+      const monthNumber = clickedDate.getMonth() + 1;
       navigate(`/Timers/${monthNumber}/${dayNumber}`);
     };
 
