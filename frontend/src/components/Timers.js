@@ -11,6 +11,8 @@ function Timers() {
   const [priorityLevel, setPriority] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [category, setCategory] = useState("");
+  const [categorySearch, setCategorySearch] = useState("");
+
   const [timers, setTimers] = useState([]);
 
   useEffect(() => {
@@ -100,20 +102,33 @@ function Timers() {
     }
   };
 
-  const formatDateForInput = (date) => {
-    return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
-  };
+  const filterByCategory = async () => {
+    if (categorySearch != null || categorySearch != ""){
+      fetchTimers();
+    }
+    try {
+      const userId = getIdFromToken();
+      const response = await axios.get(`http://localhost:8090/userTimers/${userId}/${categorySearch}`);
+      console.log(response.data);
+      setTimers(response.data);
+    } catch (error) {
+      console.error("Error getting timers by category:", error);
+    }
+  }
+  const comboBoxComp = () => {
 
-  const formatDueDate = (dueDateArray) => {
-    return new Date(
-      dueDateArray[0],
-      dueDateArray[1] - 1,
-      dueDateArray[2],
-      dueDateArray[3],
-      dueDateArray[4]
-    );
-  };
-
+    return (
+      <div> 
+      <input id = "filerCategoryInput" placeholder="Enter category name"
+       value={categorySearch}
+       onChange={(e) => {setCategorySearch(e.target.value)
+      
+      }
+       }></input>
+      <button onClick={filterByCategory}>Filter</button>
+    </div> 
+   )
+  }
   return (
     <div className="timers-background">
       <div className="timerSetup">
@@ -151,6 +166,7 @@ function Timers() {
         <button className="view-tasks-button" onClick={fetchUserTimers}>
           View Tasks
         </button>
+        {comboBoxComp()}
       </div>
       <div>
         {timers.map((timer, index) => (
