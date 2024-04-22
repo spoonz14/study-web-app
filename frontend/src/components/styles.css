@@ -309,7 +309,6 @@ html {
   z-index: -1;
 }
 .timers-background {
- 
   top: 0;
   left: 0;
   width: 100%;
@@ -347,8 +346,8 @@ html {
 .catalog-empty {
   text-align: center;
   margin-top: 20px;
-  color: #333; /* For better visibility */
-  font-size: 18px; /* Increase font size for readability */
+  color: #333;
+  font-size: 18px;
 }
 
 .create-room-button {
@@ -373,6 +372,12 @@ html {
   color: #fff;
 }
 
+.search-input {
+  border-radius: 15%;
+  height: 25px;
+  width: 250px;
+}
+
 @media screen and (max-width: 480px) {
   .catalog-container {
     margin-top: 30%;
@@ -380,8 +385,6 @@ html {
     margin-left: 0%;
   }
 }
-
-/* Add Study Room Styling*/
 
 /* Timer Styling*/
 
@@ -412,7 +415,6 @@ html {
   box-shadow: 5px 8px 7px rgba(74, 78, 148, 0.337);
 }
 .timerSetup {
-  
   background-color: whitesmoke;
   border-radius: 12px;
   padding-bottom: 50px;
@@ -443,9 +445,9 @@ html {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 80%; /* Adjusted width for responsiveness */
-  max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
-  margin: 0% auto; /* Center the form horizontally and adjust the top margin */
+  width: 80%;
+  max-width: 700px;
+  margin: 0% auto;
 }
 
 .new-note-form input,
@@ -493,9 +495,9 @@ html {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 80%; /* Adjusted width for responsiveness */
-  max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
-  margin: -10% auto; /* Center the form horizontally and adjust the top margin */
+  width: 80%;
+  max-width: 700px;
+  margin: -10% auto;
 }
 
 .note-edit-form input,
