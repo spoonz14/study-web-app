@@ -71,6 +71,10 @@ function Timers() {
     }
   };
 
+  useEffect(() => {
+    fetchTimers();
+  }, [dayNumber, monthNumber]);
+
   const fetchData = async () => {
     try {
       const castedDate = new Date();
