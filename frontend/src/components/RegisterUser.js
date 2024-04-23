@@ -64,7 +64,6 @@ const RegisterUser = () => {
       errors.email = "Please enter a valid email address";
     }
 
-    // Additional check to prevent null values
     for (const key in formData) {
       if (formData[key].trim() === "") {
         errors[key] = `Please enter ${key}`;

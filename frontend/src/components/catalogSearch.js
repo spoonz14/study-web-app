@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './styles.css'; // Make sure to import your stylesheet
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./styles.css";
 
 const CatalogSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   const handleSearchChange = (event) => {
@@ -11,7 +11,7 @@ const CatalogSearch = () => {
   };
 
   const handleSearchSubmit = (event) => {
-    console.log("searchterm:"+searchTerm)
+    console.log("searchterm:" + searchTerm);
     event.preventDefault();
     navigate(`/catalog?query=${encodeURIComponent(searchTerm)}`);
   };

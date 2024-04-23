@@ -3,7 +3,7 @@ import Calendar from "./Calendar";
 import { useNavigate } from "react-router-dom";
 
 const CalendarPage = ({ events }) => {
-  const navigate = useNavigate(); // Using useNavigate hook for navigation
+  const navigate = useNavigate();
 
   const handleDateClick = (info) => {
     // Navigate to "/Timers" when a day box is clicked

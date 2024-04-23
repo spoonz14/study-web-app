@@ -2,7 +2,7 @@
 
 .navbar {
   background-color: #ffffff;
-  color: #767575; /* Changed text color to match navigation links */
+  color: #767575;
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -19,18 +19,18 @@ nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex; /* Changed to flex to ensure consistent spacing */
-  gap: 20px; /* Added gap between navigation items */
+  display: flex;
+  gap: 20px;
 }
 
 nav ul li {
   display: inline;
-  margin-right: 40px; /* Adjust the margin as needed */
+  margin-right: 40px;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: inherit; /* Changed to inherit color from parent */
+  color: inherit;
 }
 
 nav ul li a:hover {
@@ -45,7 +45,7 @@ nav ul li a:hover {
   background: none;
   border: none;
   cursor: pointer;
-  color: inherit; /* Changed to inherit color from parent */
+  color: inherit;
   font-size: inherit;
   padding: 0;
 }
@@ -56,26 +56,20 @@ nav ul li a:hover {
 
 @media screen and (max-width: 480px) {
   .navbar {
-    margin-top: 0%;
-    height: 200px;
-    justify-content: center; /* Center the navbar horizontally */
+    margin-top: 10%;
   }
   .navbar ul {
     flex-direction: column;
-    margin-left: 100%;
-    margin-bottom: 50%;
-    margin-top: 30%;
+    margin-top: 10%;
     align-items: flex-start;
     margin-right: 0%;
   }
 
   .navbar ul li {
-    margin: 0px 0; /* Adjusted margin for vertical spacing */
+    margin: 10px 0;
   }
   .logo {
-    height: 30px;
-    margin-left: -50%;
-    justify-content: left;
+    padding: 0%;
   }
 }
 
@@ -137,12 +131,6 @@ ul li button:hover {
   border-color: #ccc;
 }
 
-@media screen and (max-width: 480px) {
-  .home-container {
-    margin-top: 50%;
-  }
-}
-
 /* Register User Styling */
 .register {
   padding: 80px;
@@ -153,9 +141,8 @@ ul li button:hover {
   text-align: center;
 }
 
-.error-message {
-  font-size: 1rem; /* Increase font size */
-  color: rgb(255, 255, 255); /* Set color to red */
+.register p {
+  font-size: 0.7rem;
 }
 
 .register input[type="text"],
@@ -173,10 +160,10 @@ ul li button:hover {
 
 .register button[type="submit"],
 .register button[type="button"] {
-  display: inline-block; /* Change to inline-block to arrange horizontally */
-  width: 150px; /* Set the width to 150px or adjust as needed */
-  margin: 20px 10px; /* Add margin for spacing */
-  padding: 12px; /* Increase padding for bigger buttons */
+  display: inline-block;
+  width: 150px;
+  margin: 20px 10px;
+  padding: 12px;
   background-color: #fff;
   color: #4ec479;
   border: 2px solid #4ec479;
@@ -184,7 +171,7 @@ ul li button:hover {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 }
 
 .register button[type="submit"]:hover,
@@ -202,7 +189,7 @@ ul li button:hover {
 /* StudyRoom Styling */
 
 .StudyRoom-container {
-  margin-top: 150px; /* Adjust as needed */
+  margin-top: 150px;
   padding: 20px;
   background-color: #4ec479;
   border-radius: 15px;
@@ -213,12 +200,12 @@ ul li button:hover {
 
 .StudyRoom-header {
   text-align: center;
-  margin-bottom: 0px; /* Adjust as needed */
+  margin-bottom: 0px;
 }
 
 .StudyRoom-header h1 {
   font-size: 2.5rem;
-  color: #ffffff; /* Adjust color as needed */
+  color: #ffffff;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -258,10 +245,10 @@ ul li button:hover {
 }
 
 .delete-room-button {
-  display: inline-block; /* Change to inline-block to arrange horizontally */
-  width: 150px; /* Set the width to 150px or adjust as needed */
-  margin: 20px 10px; /* Add margin for spacing */
-  padding: 12px; /* Increase padding for bigger buttons */
+  display: inline-block;
+  width: 150px;
+  margin: 20px 10px;
+  padding: 12px;
   color: #fff;
   margin-left: 46%;
   text-align: center;
@@ -271,7 +258,7 @@ ul li button:hover {
   border-radius: 5px;
   border: none;
   transition: background-color 0.3s, color 0.3s;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 }
 
 .delete-room-button:hover {
@@ -280,33 +267,6 @@ ul li button:hover {
 }
 
 /* Catalog styling*/
-
-.search-form {
-  margin-bottom: 20px;
-  margin-left: 37%;
-}
-
-.search-input {
-  text-align: center;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-size: 16px;
-}
-
-.search-button {
-  padding: 8px 20px;
-  background-color: #4ec479;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.search-button:hover {
-  background-color: #338551;
-}
 
 body,
 html {
@@ -319,8 +279,8 @@ html {
   padding: 20px;
   background-color: #4ec479;
   min-height: 500px;
-  max-height: 200px; /* Set a max-height for the container */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+  max-height: 200px;
+  overflow-y: auto;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   width: 50%;
@@ -348,7 +308,16 @@ html {
   background-position: center;
   z-index: -1;
 }
-
+.timers-background {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../components/Timers.jpg");
+  background-size: cover;
+  background-position: left top;
+  z-index: -1;
+}
 .catalog-item {
   background-color: white;
   border: 1px solid #ccc;
@@ -377,15 +346,15 @@ html {
 .catalog-empty {
   text-align: center;
   margin-top: 20px;
-  color: #333; /* For better visibility */
-  font-size: 18px; /* Increase font size for readability */
+  color: #333;
+  font-size: 18px;
 }
 
 .create-room-button {
-  display: inline-block; /* Change to inline-block to arrange horizontally */
-  width: 150px; /* Set the width to 150px or adjust as needed */
-  margin: 20px 10px; /* Add margin for spacing */
-  padding: 12px; /* Increase padding for bigger buttons */
+  display: inline-block;
+  width: 150px;
+  margin: 20px 10px;
+  padding: 12px;
   background-color: #fff;
   margin-left: 40%;
   text-align: center;
@@ -395,12 +364,26 @@ html {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 }
 
 .create-room-button:hover {
   background-color: #3e915d;
   color: #fff;
+}
+
+.search-form {
+  margin-bottom: 20px;
+  margin-left: 37%;
+}
+
+.search-input {
+  text-align: center;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 480px) {
@@ -411,50 +394,36 @@ html {
   }
 }
 
-/* Add Study Room Styling*/
-
 /* Timer Styling*/
 
-.timers-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh !important;
-  background-image: url("../components/CatalogImage.jpg");
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-}
-
 .timerHeader {
-  margin-top: 19%;
-  background-color: #4ec479;
+  background-color: #333;
   padding: 10px;
   border-radius: 5px;
   color: whitesmoke;
   border-width: 6px;
   border-color: #111111;
-  text-align: center;
+  border-style: outset;
   font-size: 20px;
-  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-family: "Calibri", Arial, sans-serif;
 }
 .timersDisplay {
-  margin-left: 27%;
   margin-top: 10px;
-  font-family: "Montserrat", sans-serif;
-  background-color: #4ec479;
-  color: rgb(255, 255, 255);
-  max-width: 620px;
+  background-color: rgb(255, 232, 203);
+  border-style: outset;
+  border-color: burlywood;
+  color: rgb(74, 11, 11);
+  max-width: 500px;
   border-radius: 6px;
   border-width: 7px;
   padding: 10px;
-  font-size: 17px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 5px 8px 7px rgba(74, 78, 148, 0.337);
 }
 .timerSetup {
-  margin-left: 25%;
   background-color: whitesmoke;
-  font-family: "Montserrat", sans-serif;
   border-radius: 12px;
   padding-bottom: 50px;
   margin-top: 120px;
@@ -465,56 +434,16 @@ html {
 }
 .TimerDataContainer {
   display: grid;
-  margin-left: 3%;
-  color: #333;
-  font-family: "Montserrat", sans-serif;
   padding: 20px;
-  background-color: rgb(213, 216, 217);
+  background-color: rgb(216, 240, 244);
+  border-style: ridge;
+  border-color: #3333336c;
   border-radius: 5px;
-  font-weight: 200;
+  font-family: "Calibri", Arial, sans-serif;
+  font-weight: bold;
   max-width: 620px;
   grid-template-columns: 130px 300px;
   gap: 10px;
-}
-.add-timer-button {
-  margin-top: 2%;
-  margin-left: 3%;
-  background-color: #4ec479;
-  color: #f9f9f9;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-}
-
-.add-timer-button:hover {
-  background-color: #338551;
-}
-
-.view-tasks-button {
-  margin-left: 2%;
-  background-color: #4ec479;
-  color: #f9f9f9;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-}
-
-.view-tasks-button:hover {
-  background-color: #338551;
-}
-
-.delete-timer-button {
-  background-color: #e6372e;
-  color: #f9f9f9;
-  padding: 10px;
-  border: none;
-  width: 80px;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.delete-timer-button:hover {
-  background-color: #ca3028;
 }
 
 /*New Note*/
@@ -524,11 +453,9 @@ html {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 80%; /* Adjusted width for responsiveness */
-  max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
-  margin: -0% auto; /* Center the form horizontally and adjust the top margin */
-  margin-top: -20%;
-  margin-right: 20%;
+  width: 80%;
+  max-width: 700px;
+  margin: 0% auto;
 }
 
 .new-note-form input,
@@ -564,7 +491,7 @@ html {
   .new-note-form {
     width: 80%;
     align-items: center;
-    margin-top: 15%;
+    margin-top: 10%;
     margin-left: -8px;
   }
 }
@@ -576,11 +503,9 @@ html {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 80%; /* Adjusted width for responsiveness */
-  max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
-  margin: -10% auto; /* Center the form horizontally and adjust the top margin */
-  margin-top: -23%;
-  margin-right: 20%;
+  width: 80%;
+  max-width: 700px;
+  margin: -10% auto;
 }
 
 .note-edit-form input,
@@ -699,17 +624,17 @@ html {
 .chat-container {
   width: 1000px;
   margin: 20px auto;
-  margin-top: 0%;
+  margin-top: 5%;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  max-height: 270px; /* Set a maximum height */
-  overflow-y: auto; /* Enable vertical scrolling */
-  position: relative; /* Set position to relative for children positioning */
+  max-height: 250px;
+  overflow-y: auto;
+  position: relative;
 }
 
 .messages-container {
-  margin-bottom: 60px; /* Adjust margin to make space for input container */
+  margin-bottom: 60px;
 }
 
 .sent-message {
@@ -732,9 +657,9 @@ html {
   display: flex;
   align-items: center;
   position: sticky;
-  bottom: 0; /* Stick input container to the bottom */
-  background-color: #fff; /* Optional: Set a background color */
-  padding: 10px; /* Optional: Add padding for better appearance */
+  bottom: 0;
+  background-color: #fff;
+  padding: 10px;
 }
 
 .input-container input {

@@ -63,7 +63,7 @@ const Login = () => {
   useEffect(() => {
     if (loginSuccess) {
       const redirectTimer = setTimeout(() => {
-        navigate("/"); // Use navigate instead of history.push
+        navigate("/");
       }, 3000);
 
       return () => clearTimeout(redirectTimer);
