@@ -27,7 +27,7 @@ public class AgendaTimer {
     private int numberedDay;
     private int numberedMonth;
 
-    public void setupTimer(long userID, int year, int month, int day){
-        dueDate = LocalDateTime.of(year, month, day, 0, 0).toString();
-    }
+//    public void setupTimer(long userID, int year, int month, int day){
+//        dueDate = LocalDateTime.of(year, month, day, 0, 0).toString();
+//    }
 }

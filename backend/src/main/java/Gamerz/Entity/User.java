@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 import java.util.List;
@@ -31,4 +32,8 @@ public class User {
     private String lastName;
     @NotBlank(message = "Email is required.")
     private String email;
+
+    public void setPassword(String password) {
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
 }

@@ -15,14 +15,14 @@ public class AgendaTimerService {
     @Autowired
     private AgendaTimerRepository agendaTimerRepository;
 
-    public boolean registerTimerToUser(long userID, int year, int month, int day) {
-        boolean success = false;
-        AgendaTimer newTimer = new AgendaTimer();
-        newTimer.setupTimer(userID, year, month, day);
-        agendaTimerRepository.save(newTimer);
-        success = true;
-        return success;
-    }
+//    public boolean registerTimerToUser(long userID, int year, int month, int day) {
+//        boolean success = false;
+//        AgendaTimer newTimer = new AgendaTimer();
+//        newTimer.setupTimer(userID, year, month, day);
+//        agendaTimerRepository.save(newTimer);
+//        success = true;
+//        return success;
+//    }
     public boolean deleteTimerToUser(long timerID){
         agendaTimerRepository.deleteById(timerID);
         return true;
@@ -37,6 +37,28 @@ public class AgendaTimerService {
 
     public List<AgendaTimer> getUserTimersByDate(Long userId, int numberedDay, int numberedMonth) {
         return agendaTimerRepository.findByUserIdAndNumberedDayAndNumberedMonth(userId, numberedDay, numberedMonth);
+    }
+
+    public List<AgendaTimer> getUserTimersByUserAndMonth(Long userId,int numberedMonth) {
+        return agendaTimerRepository.findByUserIdAndNumberedMonth(userId, numberedMonth);
+    }
+
+    public List<AgendaTimer> getUserTimersByCategory(Long userId, String categoryStr){
+        List<AgendaTimer> list = new ArrayList<AgendaTimer>();
+        for (AgendaTimer timer : agendaTimerRepository.findByUserId(userId)) {
+            if (timer.getCategory().toLowerCase().contentEquals(categoryStr.toLowerCase())){
+                list.add(timer);
+            }
+        }
+        return list;
+    }
+    public List<String> getTimerCategories(Long userId){
+        List<AgendaTimer> list = agendaTimerRepository.findByUserId(userId);
+        List<String> returnLi = new ArrayList<String>();
+        for (AgendaTimer timer : list){
+            returnLi.add(timer.getCategory());
+        }
+        return returnLi;
     }
 
 //    public List<AgendaTimer> getTimersByUserId(long userId) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import Notif from "./Notif"
 
 function Timers() {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ function Timers() {
   const [priorityLevel, setPriority] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [category, setCategory] = useState("");
+  const [categorySearch, setCategorySearch] = useState("");
+
   const [timers, setTimers] = useState([]);
 
   useEffect(() => {
@@ -68,47 +71,111 @@ function Timers() {
     }
   };
 
-  useEffect(() => {
-    fetchTimers();
-  }, [dayNumber, monthNumber]); // Add dayNumber and monthNumber as dependencies
-
   const fetchData = async () => {
     try {
-      const castedDate = new Date(dueDate);
+      const castedDate = new Date();
+      console.log("Casted Date (1): ", castedDate);
+      let day = castedDate.getDate();
+      let month = castedDate.getMonth();
+      month++;
+  
+      // Calculate the GMT offset for Alberta (Mountain Time)
+      const isDaylightSavingTime = () => {
+        const month = castedDate.getMonth() + 1; // Months are zero-indexed, so add 1
+        const day = castedDate.getDate();
+        const dayOfWeek = castedDate.getDay(); // Sunday (0) to Saturday (6)
+  
+        // Determine the start and end dates for MDT based on typical rules (second Sunday in March to first Sunday in November)
+        const startMDTDate = new Date(castedDate.getFullYear(), 2, 8); // March 8th (March is month 2)
+        const endMDTDate = new Date(castedDate.getFullYear(), 10, 1); // November 1st (November is month 10)
+  
+        // Check if the current date is within the MDT period
+        return (
+          month > startMDTDate.getMonth() &&
+          month < endMDTDate.getMonth() &&
+          !(month === startMDTDate.getMonth() && day < 8) &&
+          !(month === endMDTDate.getMonth() && day >= 8) &&
+          dayOfWeek === 0 // Sunday
+        );
+      };
+  
+      const getGMTOffset = () => {
+        const isDaylightSaving = isDaylightSavingTime();
+  
+        // Set the base offset for Mountain Standard Time (MST)
+        let gmtOffsetHours = -7;
+        gmtOffsetHours++;
+  
+        // Adjust for Mountain Daylight Time (MDT) if applicable
+        // if (isDaylightSaving) {
+        //   gmtOffsetHours++; // MDT is GMT-6
+        // }
+  
+        return gmtOffsetHours;
+      };
+  
+      const gmtOffsetHours = getGMTOffset();
+  
+      // Apply the GMT offset to the casted date
+      castedDate.setHours(castedDate.getHours() + gmtOffsetHours);
+  
+      // Convert castedDate to a string representation
+      const dateString = castedDate.toISOString(); // or castedDate.toString();
+      console.log("Date string: ", dateString);
+  
       const requestBody = {
         userId: userId,
         description: description,
         category: category,
         priorityLevel: Number(priorityLevel),
-        dueDate: castedDate,
-        numberedDay: dayNumber,
-        numberedMonth: monthNumber,
+        dueDate: dateString, // Use the string representation of castedDate
+        numberedDay: day,
+        numberedMonth: month,
       };
-      console.log("Info: ", requestBody);
+      console.log("Casted date (2): ", castedDate);
+      console.log("Info (1): ", requestBody);
+  
       const response = await axios.post(
         "http://localhost:8090/Timers",
         requestBody
       );
+      console.log("Info (2): ", requestBody);
       fetchTimers();
+      var notif = new Notif();
+      notif.fetchTimers();
+      navigate(`/Timers/${month}/${day}`);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const formatDateForInput = (date) => {
-    return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
-  };
+  const filterByCategory = async () => {
+    if (categorySearch != null || categorySearch != ""){
+      fetchTimers();
+    }
+    try {
+      const userId = getIdFromToken();
+      const response = await axios.get(`http://localhost:8090/userTimers/${userId}/${categorySearch}`);
+      console.log(response.data);
+      setTimers(response.data);
+    } catch (error) {
+      console.error("Error getting timers by category:", error);
+    }
+  }
+  const comboBoxComp = () => {
 
-  const formatDueDate = (dueDateArray) => {
-    return new Date(
-      dueDateArray[0],
-      dueDateArray[1] - 1,
-      dueDateArray[2],
-      dueDateArray[3],
-      dueDateArray[4]
-    );
-  };
-
+    return (
+      <div> 
+      <input id = "filerCategoryInput" placeholder="Enter category name"
+       value={categorySearch}
+       onChange={(e) => {setCategorySearch(e.target.value)
+      
+      }
+       }></input>
+      <button onClick={filterByCategory}>Filter</button>
+    </div> 
+   )
+  }
   return (
     <div className="timers-background">
       <div className="timerSetup">
@@ -146,6 +213,7 @@ function Timers() {
         <button className="view-tasks-button" onClick={fetchUserTimers}>
           View Tasks
         </button>
+        {comboBoxComp()}
       </div>
       <div>
         {timers.map((timer, index) => (
