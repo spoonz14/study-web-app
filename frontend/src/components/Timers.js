@@ -11,8 +11,6 @@ function Timers() {
   const [priorityLevel, setPriority] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [category, setCategory] = useState("");
-  const [categorySearch, setCategorySearch] = useState("");
-
   const [timers, setTimers] = useState([]);
 
   useEffect(() => {
@@ -30,7 +28,7 @@ function Timers() {
     console.log(timerId);
     try {
       await axios.delete(`http://localhost:8090/deleteTimer/${timerId}`);
-      fetchUserTimers();
+      fetchTimers();
     } catch (error) {
       console.error("Error deleting timer:", error);
     }
@@ -70,16 +68,11 @@ function Timers() {
     }
   };
 
-  useEffect(() => {
-    fetchTimers();
-  }, [dayNumber, monthNumber]); // Add dayNumber and monthNumber as dependencies
-
   const fetchData = async () => {
     try {
-      const castedDate = new Date(dueDate);
-      let day = castedDate.getDate();
-      let month = castedDate.getMonth();
-      month++;
+      const castedDate = new Date();
+      const day = castedDate.getDay();
+      const month = castedDate.getMonth();
       const requestBody = {
         userId: userId,
         description: description,
@@ -89,46 +82,31 @@ function Timers() {
         numberedDay: day,
         numberedMonth: month,
       };
-      console.log("Casted date: ", castedDate);
       console.log("Info: ", requestBody);
       const response = await axios.post(
         "http://localhost:8090/Timers",
         requestBody
       );
       fetchTimers();
-      navigate(`/Timers/${month}/${day}`)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const filterByCategory = async () => {
-    if (categorySearch != null || categorySearch != ""){
-      fetchTimers();
-    }
-    try {
-      const userId = getIdFromToken();
-      const response = await axios.get(`http://localhost:8090/userTimers/${userId}/${categorySearch}`);
-      console.log(response.data);
-      setTimers(response.data);
-    } catch (error) {
-      console.error("Error getting timers by category:", error);
-    }
-  }
-  const comboBoxComp = () => {
+  const formatDateForInput = (date) => {
+    return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
+  };
 
-    return (
-      <div> 
-      <input id = "filerCategoryInput" placeholder="Enter category name"
-       value={categorySearch}
-       onChange={(e) => {setCategorySearch(e.target.value)
-      
-      }
-       }></input>
-      <button onClick={filterByCategory}>Filter</button>
-    </div> 
-   )
-  }
+  const formatDueDate = (dueDateArray) => {
+    return new Date(
+      dueDateArray[0],
+      dueDateArray[1] - 1,
+      dueDateArray[2],
+      dueDateArray[3],
+      dueDateArray[4]
+    );
+  };
+
   return (
     <div className="timers-background">
       <div className="timerSetup">
@@ -166,7 +144,6 @@ function Timers() {
         <button className="view-tasks-button" onClick={fetchUserTimers}>
           View Tasks
         </button>
-        {comboBoxComp()}
       </div>
       <div>
         {timers.map((timer, index) => (
