@@ -2,7 +2,7 @@
 
 .navbar {
   background-color: #ffffff;
-  color: #767575; /* Changed text color to match navigation links */
+  color: #767575;
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -19,18 +19,18 @@ nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex; /* Changed to flex to ensure consistent spacing */
-  gap: 20px; /* Added gap between navigation items */
+  display: flex;
+  gap: 20px;
 }
 
 nav ul li {
   display: inline;
-  margin-right: 40px; /* Adjust the margin as needed */
+  margin-right: 40px;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: inherit; /* Changed to inherit color from parent */
+  color: inherit;
 }
 
 nav ul li a:hover {
@@ -45,7 +45,7 @@ nav ul li a:hover {
   background: none;
   border: none;
   cursor: pointer;
-  color: inherit; /* Changed to inherit color from parent */
+  color: inherit;
   font-size: inherit;
   padding: 0;
 }
@@ -59,14 +59,14 @@ nav ul li a:hover {
     margin-top: 10%;
   }
   .navbar ul {
-    flex-direction: column; /* Adjusted property to flex-direction */
+    flex-direction: column;
     margin-top: 10%;
-    align-items: flex-start; /* Adjusted alignment */
-    margin-right: 0%; /* Added padding to the left for spacing */
+    align-items: flex-start;
+    margin-right: 0%;
   }
 
   .navbar ul li {
-    margin: 10px 0; /* Adjusted margin for spacing */
+    margin: 10px 0;
   }
   .logo {
     padding: 0%;
@@ -160,10 +160,10 @@ ul li button:hover {
 
 .register button[type="submit"],
 .register button[type="button"] {
-  display: inline-block; /* Change to inline-block to arrange horizontally */
-  width: 150px; /* Set the width to 150px or adjust as needed */
-  margin: 20px 10px; /* Add margin for spacing */
-  padding: 12px; /* Increase padding for bigger buttons */
+  display: inline-block;
+  width: 150px;
+  margin: 20px 10px;
+  padding: 12px;
   background-color: #fff;
   color: #4ec479;
   border: 2px solid #4ec479;
@@ -171,7 +171,7 @@ ul li button:hover {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 }
 
 .register button[type="submit"]:hover,
@@ -189,7 +189,7 @@ ul li button:hover {
 /* StudyRoom Styling */
 
 .StudyRoom-container {
-  margin-top: 150px; /* Adjust as needed */
+  margin-top: 150px;
   padding: 20px;
   background-color: #4ec479;
   border-radius: 15px;
@@ -200,12 +200,12 @@ ul li button:hover {
 
 .StudyRoom-header {
   text-align: center;
-  margin-bottom: 0px; /* Adjust as needed */
+  margin-bottom: 0px;
 }
 
 .StudyRoom-header h1 {
   font-size: 2.5rem;
-  color: #ffffff; /* Adjust color as needed */
+  color: #ffffff;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -245,10 +245,10 @@ ul li button:hover {
 }
 
 .delete-room-button {
-  display: inline-block; /* Change to inline-block to arrange horizontally */
-  width: 150px; /* Set the width to 150px or adjust as needed */
-  margin: 20px 10px; /* Add margin for spacing */
-  padding: 12px; /* Increase padding for bigger buttons */
+  display: inline-block;
+  width: 150px;
+  margin: 20px 10px;
+  padding: 12px;
   color: #fff;
   margin-left: 46%;
   text-align: center;
@@ -258,7 +258,7 @@ ul li button:hover {
   border-radius: 5px;
   border: none;
   transition: background-color 0.3s, color 0.3s;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 }
 
 .delete-room-button:hover {
@@ -279,8 +279,8 @@ html {
   padding: 20px;
   background-color: #4ec479;
   min-height: 500px;
-  max-height: 200px; /* Set a max-height for the container */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+  max-height: 200px;
+  overflow-y: auto;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   width: 50%;
@@ -351,10 +351,10 @@ html {
 }
 
 .create-room-button {
-  display: inline-block; /* Change to inline-block to arrange horizontally */
-  width: 150px; /* Set the width to 150px or adjust as needed */
-  margin: 20px 10px; /* Add margin for spacing */
-  padding: 12px; /* Increase padding for bigger buttons */
+  display: inline-block;
+  width: 150px;
+  margin: 20px 10px;
+  padding: 12px;
   background-color: #fff;
   margin-left: 40%;
   text-align: center;
@@ -364,7 +364,7 @@ html {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 }
 
 .create-room-button:hover {
@@ -628,13 +628,13 @@ html {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  max-height: 250px; /* Set a maximum height */
-  overflow-y: auto; /* Enable vertical scrolling */
-  position: relative; /* Set position to relative for children positioning */
+  max-height: 250px;
+  overflow-y: auto;
+  position: relative;
 }
 
 .messages-container {
-  margin-bottom: 60px; /* Adjust margin to make space for input container */
+  margin-bottom: 60px;
 }
 
 .sent-message {
@@ -657,9 +657,9 @@ html {
   display: flex;
   align-items: center;
   position: sticky;
-  bottom: 0; /* Stick input container to the bottom */
-  background-color: #fff; /* Optional: Set a background color */
-  padding: 10px; /* Optional: Add padding for better appearance */
+  bottom: 0;
+  background-color: #fff;
+  padding: 10px;
 }
 
 .input-container input {
