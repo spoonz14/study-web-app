@@ -73,11 +73,12 @@ function Timers() {
 
   useEffect(() => {
     fetchTimers();
-  }, [dayNumber, monthNumber]); // Add dayNumber and monthNumber as dependencies
+  }, [dayNumber, monthNumber]);
 
   const fetchData = async () => {
     try {
-      const castedDate = new Date(dueDate);
+      const castedDate = new Date();
+      console.log("Casted Date (1): ", castedDate);
       let day = castedDate.getDate();
       let month = castedDate.getMonth();
       month++;
@@ -90,12 +91,13 @@ function Timers() {
         numberedDay: day,
         numberedMonth: month,
       };
-      console.log("Casted date: ", castedDate);
-      console.log("Info: ", requestBody);
+      console.log("Casted date (2): ", castedDate);
+      console.log("Info (1): ", requestBody);
       const response = await axios.post(
         "http://localhost:8090/Timers",
         requestBody
       );
+      console.log("Info (2): ", requestBody);
       fetchTimers();
       var notif = new Notif();
       notif.fetchTimers();
