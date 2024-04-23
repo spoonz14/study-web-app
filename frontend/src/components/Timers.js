@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import Notif from "./Notif"
+import Notif from "./Notif.js"
 
 function Timers() {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ function Timers() {
     console.log(timerId);
     try {
       await axios.delete(`http://localhost:8090/deleteTimer/${timerId}`);
-      fetchTimers();
+      fetchUserTimers();
     } catch (error) {
       console.error("Error deleting timer:", error);
     }
@@ -73,81 +73,33 @@ function Timers() {
 
   useEffect(() => {
     fetchTimers();
-  }, [dayNumber, monthNumber]);
+  }, [dayNumber, monthNumber]); // Add dayNumber and monthNumber as dependencies
 
   const fetchData = async () => {
     try {
-      const castedDate = new Date();
-      console.log("Casted Date (1): ", castedDate);
+      const castedDate = new Date(dueDate);
       let day = castedDate.getDate();
       let month = castedDate.getMonth();
       month++;
-  
-      // Calculate the GMT offset for Alberta (Mountain Time)
-      const isDaylightSavingTime = () => {
-        const month = castedDate.getMonth() + 1; // Months are zero-indexed, so add 1
-        const day = castedDate.getDate();
-        const dayOfWeek = castedDate.getDay(); // Sunday (0) to Saturday (6)
-  
-        // Determine the start and end dates for MDT based on typical rules (second Sunday in March to first Sunday in November)
-        const startMDTDate = new Date(castedDate.getFullYear(), 2, 8); // March 8th (March is month 2)
-        const endMDTDate = new Date(castedDate.getFullYear(), 10, 1); // November 1st (November is month 10)
-  
-        // Check if the current date is within the MDT period
-        return (
-          month > startMDTDate.getMonth() &&
-          month < endMDTDate.getMonth() &&
-          !(month === startMDTDate.getMonth() && day < 8) &&
-          !(month === endMDTDate.getMonth() && day >= 8) &&
-          dayOfWeek === 0 // Sunday
-        );
-      };
-  
-      const getGMTOffset = () => {
-        const isDaylightSaving = isDaylightSavingTime();
-  
-        // Set the base offset for Mountain Standard Time (MST)
-        let gmtOffsetHours = -7;
-        gmtOffsetHours++;
-  
-        // Adjust for Mountain Daylight Time (MDT) if applicable
-        // if (isDaylightSaving) {
-        //   gmtOffsetHours++; // MDT is GMT-6
-        // }
-  
-        return gmtOffsetHours;
-      };
-  
-      const gmtOffsetHours = getGMTOffset();
-  
-      // Apply the GMT offset to the casted date
-      castedDate.setHours(castedDate.getHours() + gmtOffsetHours);
-  
-      // Convert castedDate to a string representation
-      const dateString = castedDate.toISOString(); // or castedDate.toString();
-      console.log("Date string: ", dateString);
-  
       const requestBody = {
         userId: userId,
         description: description,
         category: category,
         priorityLevel: Number(priorityLevel),
-        dueDate: dateString, // Use the string representation of castedDate
+        dueDate: castedDate,
         numberedDay: day,
         numberedMonth: month,
       };
-      console.log("Casted date (2): ", castedDate);
-      console.log("Info (1): ", requestBody);
-  
+      console.log("Casted date: ", castedDate);
+      console.log("Info: ", requestBody);
       const response = await axios.post(
         "http://localhost:8090/Timers",
         requestBody
       );
-      console.log("Info (2): ", requestBody);
       fetchTimers();
       var notif = new Notif();
       notif.fetchTimers();
-      navigate(`/Timers/${month}/${day}`);
+      navigate(`/Timers/${month}/${day}`)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
