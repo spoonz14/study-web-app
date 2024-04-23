@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import Notif from "./Notif.js"
 
 function Timers() {
   const navigate = useNavigate();
@@ -96,6 +97,8 @@ function Timers() {
         requestBody
       );
       fetchTimers();
+      var notif = new Notif();
+      notif.fetchTimers();
       navigate(`/Timers/${month}/${day}`)
     } catch (error) {
       console.error("Error fetching data:", error);
