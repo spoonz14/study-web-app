@@ -27,14 +27,14 @@ const Calendar = ({ handleDateClick }) => {
       try {
         const timersByMonth = await getCurrentMonth();
         setTimers(timersByMonth);
-        setEvents([...events, ...timersByMonth]); // Update events state with timers
+        setEvents([...events, ...timersByMonth]);
       } catch (error) {
         console.error("Error fetching timers:", error);
       }
     };
 
     fetchData();
-  }, [navigate]); // Only run effect when navigate changes
+  }, [navigate]);
 
   useEffect(() => {
     const handleEventClick = (info) => {
@@ -50,7 +50,7 @@ const Calendar = ({ handleDateClick }) => {
     return () => {
       calendarApi.off("dateClick", handleEventClick);
     };
-  }, [navigate]); // Only run effect when navigate changes
+  }, [navigate]);
 
   const getCurrentMonth = async () => {
     const now = new Date();
@@ -69,8 +69,12 @@ const Calendar = ({ handleDateClick }) => {
       const timers = response.data.map((timer) => ({
         id: timer.timerID,
         title: timer.description,
-        start: new Date(currentYear, parseInt(timer.numberedMonth) - 1, parseInt(timer.numberedDay)), // Ensure parsing to integers
-        allDay: true, // Set allDay property to true
+        start: new Date(
+          currentYear,
+          parseInt(timer.numberedMonth) - 1,
+          parseInt(timer.numberedDay)
+        ),
+        allDay: true,
       }));
       console.log("Timers: ", timers);
       return timers;
@@ -79,8 +83,6 @@ const Calendar = ({ handleDateClick }) => {
       return [];
     }
   };
-  
-  
 
   return (
     <div style={{ marginTop: "20px" }}>
