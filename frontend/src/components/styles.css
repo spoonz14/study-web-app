@@ -527,8 +527,8 @@ html {
   width: 80%; /* Adjusted width for responsiveness */
   max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
   margin: -0% auto; /* Center the form horizontally and adjust the top margin */
-  margin-top: -20%;
-  margin-right: 20%;
+  margin-top: -0%;
+  margin-right: 35%;
 }
 
 .new-note-form input,
@@ -578,9 +578,9 @@ html {
   padding: 20px;
   width: 80%; /* Adjusted width for responsiveness */
   max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
-  margin: -10% auto; /* Center the form horizontally and adjust the top margin */
-  margin-top: -23%;
-  margin-right: 20%;
+  margin: -00% auto; /* Center the form horizontally and adjust the top margin */
+  margin-top: 0%;
+  margin-right: 35%;
 }
 
 .note-edit-form input,
