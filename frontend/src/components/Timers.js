@@ -31,7 +31,7 @@ function Timers() {
     console.log(timerId);
     try {
       await axios.delete(`http://localhost:8090/deleteTimer/${timerId}`);
-      fetchUserTimers();
+      fetchTimers();
     } catch (error) {
       console.error("Error deleting timer:", error);
     }
