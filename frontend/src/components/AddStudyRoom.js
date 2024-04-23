@@ -7,7 +7,7 @@ import { jwtDecode, InvalidTokenError } from "jwt-decode";
 const AddStudyRoom = () => {
     const navigate = useNavigate();
 
-    const [studyRoom, setStudyRoom] = useState({ roomName: "" });
+    const [studyRoom, setStudyRoom] = useState({ roomName: "", description: "" });
     const [creationSuccess, setCreationSuccess] = useState(false);
     const [userId, setUserId] = useState(null); // State to store the user ID
 
@@ -72,6 +72,14 @@ const AddStudyRoom = () => {
                         type="text"
                         name="roomName"
                         placeholder="Roomname"
+                        onChange={handleChange}
+                    />
+                     {/* Add a new input for description */}
+                   <input
+                        type="text"
+                        name="description"
+                        placeholder="Description"
+                        value={studyRoom.description}
                         onChange={handleChange}
                     />
                     <button type="submit">Create</button>

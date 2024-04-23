@@ -309,7 +309,6 @@ html {
   z-index: -1;
 }
 .timers-background {
- 
   top: 0;
   left: 0;
   width: 100%;
@@ -323,18 +322,15 @@ html {
   background-color: white;
   border: 1px solid #ccc;
   padding: 20px;
-  width: 50%;
-  font-weight: 500;
-  font-size: 1.3rem;
-  display: flex;
-  justify-content: center;
-  margin-left: 23%;
-  font-family: "Montserrat", sans-serif;
   margin-bottom: 10px;
   border-radius: 20px;
-  text-align: center;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
+  flex-direction: column; /* Stack children elements vertically */
+  align-items: center; /* Align children to the start of the container */
+  text-align: center; /* Center the text for all child elements */
+  font-family: "Montserrat", sans-serif;
   color: #5f5e5e;
 }
 
@@ -342,13 +338,24 @@ html {
   background-color: #e9e9e9;
 }
 
+catalog-item .room-name {
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin-bottom: 5px; /* Adjust the bottom margin to create space between title and description */
+}
+
+.catalog-item .room-description {
+  font-size: 1rem; /* Adjust the font size as needed */
+  color: #666;
+}
+
 .catalog-loading,
 .catalog-error,
 .catalog-empty {
   text-align: center;
   margin-top: 20px;
-  color: #333; /* For better visibility */
-  font-size: 18px; /* Increase font size for readability */
+  color: #333;
+  font-size: 18px;
 }
 
 .create-room-button {
@@ -373,6 +380,20 @@ html {
   color: #fff;
 }
 
+.search-form {
+  margin-bottom: 20px;
+  margin-left: 37%;
+}
+
+.search-input {
+  text-align: center;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
 @media screen and (max-width: 480px) {
   .catalog-container {
     margin-top: 30%;
@@ -380,8 +401,6 @@ html {
     margin-left: 0%;
   }
 }
-
-/* Add Study Room Styling*/
 
 /* Timer Styling*/
 
@@ -412,7 +431,6 @@ html {
   box-shadow: 5px 8px 7px rgba(74, 78, 148, 0.337);
 }
 .timerSetup {
-  
   background-color: whitesmoke;
   border-radius: 12px;
   padding-bottom: 50px;
@@ -443,9 +461,9 @@ html {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 80%; /* Adjusted width for responsiveness */
-  max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
-  margin: 0% auto; /* Center the form horizontally and adjust the top margin */
+  width: 80%;
+  max-width: 700px;
+  margin: 0% auto;
 }
 
 .new-note-form input,
@@ -493,9 +511,9 @@ html {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 80%; /* Adjusted width for responsiveness */
-  max-width: 700px; /* Added max-width to ensure it doesn't stretch too wide */
-  margin: -10% auto; /* Center the form horizontally and adjust the top margin */
+  width: 80%;
+  max-width: 700px;
+  margin: -10% auto;
 }
 
 .note-edit-form input,

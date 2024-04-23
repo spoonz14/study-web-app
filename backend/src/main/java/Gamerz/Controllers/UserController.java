@@ -31,6 +31,8 @@ public class UserController {
     @PostMapping("/Timers")
     public ResponseEntity<String> registerTimer(@RequestBody AgendaTimer timer) {
         if (agendaTimerService.registerTimerToUser(timer)) {
+            String dateTime = timer.getDueDate();
+            System.out.println("Date time: "+ dateTime);
             return ResponseEntity.ok("Timer registration to user successful.");
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Timer registration to user failed");
