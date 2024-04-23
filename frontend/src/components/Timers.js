@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import Notif from "./Notif";
+import Notif from "./Notif.js"
 
 function Timers() {
   const navigate = useNavigate();

@@ -43,7 +43,7 @@ class Notif  {
             console.log("Time due: ", timeDue);
             setTimeout(
               () => {
-                console.log(this + "BLEEP")
+                console.log("BLEEP")
                 alert(`${timer.description} is due`);
                 //this.sound.play(); //doesnt work rn
               },
